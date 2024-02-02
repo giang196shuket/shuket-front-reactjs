@@ -6,8 +6,8 @@ import "react-app-polyfill/stable";
 import ReactDOM from "react-dom";
 import App from "./app/App";
 import "./index.scss"; // Standard version
-import * as redux from "./redux";
-import store, { persistor } from "./redux/store";
+import * as redux from "./store";
+import store, { persistor } from "./store/store";
 // import "./sass/style.react.rtl.css"; // RTL version
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "socicon/css/socicon.css";

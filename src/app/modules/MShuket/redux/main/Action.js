@@ -1,4 +1,4 @@
-import store from "../../../../../redux/store";
+import store from "../../../../../store/store";
 import { updateMenu } from "../../../Auth/redux/authSlice";
 import { fulfilledCall, pendingCall, rejectedCall } from "./Slice";
 import { getMenuLeftBar } from "./Thunk";

@@ -6,7 +6,7 @@ import { shallowEqual, useSelector } from "react-redux";
 import { Layout } from "../services/layout";
 import BasePage from "./BasePage";
 import { Logout, AuthPage } from "./modules/Auth";
-import ErrorsPage from "./modules/Errors/ErrorsPage";
+import ErrorsPage from "./modules/Extras/Errors/ErrorsPage";
 
 export function Routes() {
   const { isAuthorized } = useSelector(

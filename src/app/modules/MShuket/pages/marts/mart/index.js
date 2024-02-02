@@ -62,7 +62,7 @@ import {
 } from "../../../../../../services/helpers/index.js";
 import { StatusColumnFormatter } from "./helperTable/StatusColumnFormatter.js";
 import { ActionsColumnFormatter } from "./helperTable/ActionsColumnFormatter.js";
-import { ExportCSV } from "../../../Helpers/ExportCSV";
+import { ExportCSV } from "./../../../components/ExportCSV.js";
 import { generateCSVName } from "../../../Helpers/funtion";
 export {
   defaultSorted,

@@ -1,6 +1,27 @@
-
-import { formatPrice } from '../../../Helpers/funtion';
-import { ActionsColumnFormatter, BootstrapTable, NoRecordsFoundMessage, Pagination, PaginationProvider, PleaseWaitMessage, StatusColumnFormatter, defaultSorted, getHandlerTableChange, getSelectRow, getOrderList, paginationFactory, shallowEqual, sizePerPageList, sortCaret, useDispatch, useEffect, useLang, useOrderUIContext, useMemo, useSelector }  from './index'
+import { formatPrice } from "../../../Helpers/funtion";
+import {
+  ActionsColumnFormatter,
+  BootstrapTable,
+  NoRecordsFoundMessage,
+  Pagination,
+  PaginationProvider,
+  PleaseWaitMessage,
+  StatusColumnFormatter,
+  defaultSorted,
+  getHandlerTableChange,
+  getSelectRow,
+  getOrderList,
+  paginationFactory,
+  shallowEqual,
+  sizePerPageList,
+  sortCaret,
+  useDispatch,
+  useEffect,
+  useLang,
+  useOrderUIContext,
+  useMemo,
+  useSelector,
+} from "./index";
 
 export function OrderTable() {
   const lang = useLang();
@@ -26,9 +47,8 @@ export function OrderTable() {
   useEffect(() => {
     UIProps.setIds([]);
     dispatch(getOrderList(UIProps.queryParams));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [UIProps.queryParams, dispatch]);
-
 
   const columns = [
     {
@@ -36,31 +56,21 @@ export function OrderTable() {
       text: "STT",
       sort: true,
       sortCaret: sortCaret,
-      style: {
-        width: "100px",
-      },
     },
     {
       dataField: "orderCode",
       text: "Order code",
       sort: true,
       sortCaret: sortCaret,
-      formatter: (cell, row, rowIndex, extraData) => (
-        <div>
-          {row.orderCode}
-        </div>
-      ),
+      formatter: (cell, row, rowIndex, extraData) => <div>{row.orderCode}</div>,
       classes: "text-center pr-0",
       headerClasses: "text-center pr-0",
     },
     {
-      dataField:"orderDate",
+      dataField: "orderDate",
       text: "Order date",
       sort: true,
       sortCaret: sortCaret,
-      style: {
-        width: "150px",
-      },
       formatter: (cell, row, rowIndex, extraData) => (
         <div>{new Date(row.orderDate).toLocaleString()}</div>
       ),
@@ -90,7 +100,7 @@ export function OrderTable() {
       sortCaret: sortCaret,
       formatter: (cell, row, rowIndex, extraData) => (
         <div>
-          <b style={{color:"red"}}>{formatPrice(row.orderTotalPrice)}</b>
+          <b style={{ color: "red" }}>{formatPrice(row.orderTotalPrice)}</b>
         </div>
       ),
       classes: "text-center pr-0",
@@ -129,7 +139,7 @@ export function OrderTable() {
       sortCaret: sortCaret,
       formatter: (cell, row, rowIndex, extraData) => (
         <div>
-          <b style={{color:"red"}}>{formatPrice(row.orderPayPrice)}</b>
+          <b style={{ color: "red" }}>{formatPrice(row.orderPayPrice)}</b>
         </div>
       ),
       classes: "text-center pr-0",
@@ -149,9 +159,16 @@ export function OrderTable() {
       text: "Status",
       sort: true,
       sortCaret: sortCaret,
-      style: {
-        width: "100px",
-      },
+      formatter: (cell, row, rowIndex, extraData) => (
+        <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
+          <div style={{ backgroundColor: `${row.statusColorBox}`, width: 20 }}>
+            {" "}
+          </div>
+          <p style={{ color: `${row.statusColorText}` }}>
+            {row.orderStatusText}
+          </p>
+        </div>
+      ),
     },
     {
       dataField: "action",
@@ -164,14 +181,11 @@ export function OrderTable() {
       },
       classes: "text-right pr-0",
       headerClasses: "text-right pr-3",
-      style: {
-        minWidth: "100px",
-      },
     },
   ];
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
-      Showing  {from} to {to} of {size} Results
+      Showing {from} to {to} of {size} Results
     </span>
   );
   const paginationOptions = {
@@ -201,9 +215,7 @@ export function OrderTable() {
                 data={entities === null ? [] : entities}
                 columns={columns}
                 defaultSorted={defaultSorted}
-                onTableChange={getHandlerTableChange(
-                  UIProps.setQueryParams
-                )}
+                onTableChange={getHandlerTableChange(UIProps.setQueryParams)}
                 selectRow={getSelectRow({
                   entities,
                   ids: UIProps.ids,

@@ -11,7 +11,7 @@ export const getOrderList = createAsyncThunk(
         try {
           console.log('getOrderList',data)
           
-          const response = await axios.get(`${MAIN_URL}/get_order_list?page=${data.page}&limit=${data.limit}&sort_by_area=false`)
+          const response = await axios.post(`${MAIN_URL}/get_order_list`,data)
           return response.data
         } catch (err) {
           return rejectWithValue(err.message);

@@ -1,19 +1,19 @@
 import React, { Suspense, lazy } from "react";
 import { Redirect, Switch, Route } from "react-router-dom";
 import { LayoutSplashScreen, ContentRoute } from "../services/layout";
-import { BuilderPage } from "./pages/BuilderPage";
-import { MyPage } from "./pages/MyPage";
-import { DashboardPage } from "./pages/DashboardPage";
+import { BuilderPage } from "./dashboard/BuilderPage";
+import { MyPage } from "./dashboard/MyPage";
+import { DashboardPage } from "./dashboard/DashboardPage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addNotication } from "./modules/Auth/redux/authSlice";
 import { getMessagingToken } from "../firebase";
 
 const GoogleMaterialPage = lazy(() =>
-  import("./modules/MaterialUI/GoogleMaterialPage")
+  import("./modules/Extras/MaterialUI/GoogleMaterialPage")
 );
 const ReactBootstrapPage = lazy(() =>
-  import("./modules/ReactBootstrap/ReactBootstrapPage")
+  import("./modules/Extras/ReactBootstrap/ReactBootstrapPage")
 );
 
 const ShuketManagementPage = lazy(() =>
