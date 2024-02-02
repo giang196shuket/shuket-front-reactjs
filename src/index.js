@@ -1,17 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+import axios from "axios";
+import React from "react";
+import "react-app-polyfill/ie11";
+import "react-app-polyfill/stable";
+import ReactDOM from "react-dom";
+import App from "./app/App";
+import "./index.scss"; // Standard version
+import * as redux from "./redux";
+import store, { persistor } from "./redux/store";
+// import "./sass/style.react.rtl.css"; // RTL version
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "socicon/css/socicon.css";
+import "./services/assets/plugins/flaticon/flaticon.css";
+import "./services/assets/plugins/flaticon2/flaticon.css";
+import "./services/assets/plugins/keenthemes-icons/font/ki.css";
+// Datepicker
+import "react-datepicker/dist/react-datepicker.css";
+import { MetronicI18nProvider } from "./services/i18n";
+import {
+  MetronicLayoutProvider,
+  MetronicSplashScreenProvider,
+  MetronicSubheaderProvider
+} from "./services/layout";
+
+
+const { PUBLIC_URL } = process.env;
+
+
+redux.setupAxios(axios, store);
+
+ReactDOM.render(
+  <MetronicI18nProvider>
+    <MetronicLayoutProvider>
+      <MetronicSubheaderProvider>
+        <MetronicSplashScreenProvider>
+          <App store={store} persistor={persistor} basename={PUBLIC_URL} />
+        </MetronicSplashScreenProvider>
+      </MetronicSubheaderProvider>
+    </MetronicLayoutProvider>
+  </MetronicI18nProvider>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

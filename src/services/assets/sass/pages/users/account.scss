@@ -1,0 +1,36 @@
+@import "../../init";
+
+
+@media screen and (min-width: 1024px){
+    [class^="collapse-first-"]{
+        margin-left: 10em ;
+        background-color: 'red';
+
+      }
+      
+      [class^="collapse-second-"]{
+          margin-left: 10em ;
+      }
+}
+  
+@media screen and (min-width: 768px){
+    [class^="collapse-first-"]{
+        margin-left: 10em ;
+
+      }
+      
+      [class^="collapse-second-"]{
+          margin-left: 10em ;
+      }
+}
+
+@media screen and (max-width: 480px){
+    [class^="collapse-first-"]{
+        margin-left: 1em ;
+
+      }
+      
+      [class^="collapse-second-"]{
+          margin-left: 1em ;
+      }
+}
