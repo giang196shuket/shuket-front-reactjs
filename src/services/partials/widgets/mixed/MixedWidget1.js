@@ -83,7 +83,7 @@ export function MixedWidget1({ className }) {
             <div className="col bg-light-warning px-6 py-8 rounded-xl mr-7 mb-7">
               <span className="svg-icon svg-icon-3x svg-icon-warning d-block my-2">
                 <SVG
-                  src={toAbsoluteUrl("/media/svg/icons/Media/Equalizer.svg")}
+                  src={toAbsoluteUrl("/images/svg/icons/Media/Equalizer.svg")}
                 ></SVG>
               </span>
               <a
@@ -97,7 +97,7 @@ export function MixedWidget1({ className }) {
               <span className="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
                 <SVG
                   src={toAbsoluteUrl(
-                    "/media/svg/icons/Communication/Add-user.svg"
+                    "/images/svg/icons/Communication/Add-user.svg"
                   )}
                 ></SVG>
               </span>
@@ -113,7 +113,7 @@ export function MixedWidget1({ className }) {
             <div className="col bg-light-danger px-6 py-8 rounded-xl mr-7">
               <span className="svg-icon svg-icon-3x svg-icon-danger d-block my-2">
                 <SVG
-                  src={toAbsoluteUrl("/media/svg/icons/Design/Layers.svg")}
+                  src={toAbsoluteUrl("/images/svg/icons/Design/Layers.svg")}
                 ></SVG>
               </span>
               <a
@@ -127,7 +127,7 @@ export function MixedWidget1({ className }) {
               <span className="svg-icon svg-icon-3x svg-icon-success d-block my-2">
                 <SVG
                   src={toAbsoluteUrl(
-                    "/media/svg/icons/Communication/Urgent-mail.svg"
+                    "/images/svg/icons/Communication/Urgent-mail.svg"
                   )}
                 ></SVG>
               </span>

@@ -39,7 +39,7 @@ export function AdvanceTablesWidget4({ className }) {
                       <div className="symbol symbol-50 symbol-light mr-4">
                           <span className="symbol-label">
                             <span className="svg-icon h-75 align-self-end">
-                              <SVG src={toAbsoluteUrl("/media/svg/avatars/001-boy.svg")}/>
+                              <SVG src={toAbsoluteUrl("/images/svg/avatars/001-boy.svg")}/>
                             </span>
                           </span>
                       </div>
@@ -75,7 +75,7 @@ export function AdvanceTablesWidget4({ className }) {
                       </span>
                   </td>
                   <td>
-                    <img src={toAbsoluteUrl("/media/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
+                    <img src={toAbsoluteUrl("/images/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
                     <span className="text-muted font-weight-bold d-block font-size-sm">
                         Best Rated
                       </span>
@@ -90,7 +90,7 @@ export function AdvanceTablesWidget4({ className }) {
                       <div className="symbol symbol-50 symbol-light mr-4">
                         <span className="symbol-label">
                           <span className="svg-icon h-75 align-self-end">
-                            <SVG src={toAbsoluteUrl("/media/svg/avatars/018-girl-9.svg")}/>
+                            <SVG src={toAbsoluteUrl("/images/svg/avatars/018-girl-9.svg")}/>
                           </span>
                         </span>
                       </div>
@@ -126,7 +126,7 @@ export function AdvanceTablesWidget4({ className }) {
                     </span>
                   </td>
                   <td>
-                    <img src={toAbsoluteUrl("/media/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
+                    <img src={toAbsoluteUrl("/images/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
                     <span className="text-muted font-weight-bold d-block font-size-sm">
                       Above Avarage
                     </span>
@@ -141,7 +141,7 @@ export function AdvanceTablesWidget4({ className }) {
                       <div className="symbol symbol-50 symbol-light mr-4">
                         <span className="symbol-label">
                           <span className="svg-icon h-75 align-self-end">
-                            <SVG src={toAbsoluteUrl("/media/svg/avatars/047-girl-25.svg")}/>
+                            <SVG src={toAbsoluteUrl("/images/svg/avatars/047-girl-25.svg")}/>
                           </span>
                         </span>
                       </div>
@@ -178,7 +178,7 @@ export function AdvanceTablesWidget4({ className }) {
                     </span>
                   </td>
                   <td>
-                    <img src={toAbsoluteUrl("/media/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
+                    <img src={toAbsoluteUrl("/images/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
                     <span className="text-muted font-weight-bold d-block font-size-sm">
                       Best Rated
                     </span>
@@ -193,7 +193,7 @@ export function AdvanceTablesWidget4({ className }) {
                       <div className="symbol symbol-50 symbol-light mr-4">
                         <span className="symbol-label">
                           <span className="svg-icon h-75 align-self-end">
-                            <SVG src={toAbsoluteUrl("/media/svg/avatars/014-girl-7.svg")}/>
+                            <SVG src={toAbsoluteUrl("/images/svg/avatars/014-girl-7.svg")}/>
                           </span>
                         </span>
                       </div>
@@ -230,7 +230,7 @@ export function AdvanceTablesWidget4({ className }) {
                     </span>
                   </td>
                   <td>
-                    <img src={toAbsoluteUrl("/media/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
+                    <img src={toAbsoluteUrl("/images/logos/stars.png")} alt="image" style={{width: "5.5rem"}}/>
                     <span className="text-muted font-weight-bold d-block font-size-sm">
                       Avarage
                     </span>

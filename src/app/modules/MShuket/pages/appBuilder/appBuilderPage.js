@@ -54,7 +54,7 @@ export const AppBuilderPage = (props) => {
                           <span className="svg-icon svg-icon-md svg-icon-primary">
                             <SVG
                               src={toAbsoluteUrl(
-                                "/media/svg/icons/Communication/Write.svg"
+                                "/images/svg/icons/Communication/Write.svg"
                               )}
                             />
                           </span>
@@ -96,7 +96,7 @@ export const AppBuilderPage = (props) => {
                           <span className="svg-icon svg-icon-md svg-icon-primary">
                             <SVG
                               src={toAbsoluteUrl(
-                                "/media/svg/icons/Communication/Write.svg"
+                                "/images/svg/icons/Communication/Write.svg"
                               )}
                             />
                           </span>

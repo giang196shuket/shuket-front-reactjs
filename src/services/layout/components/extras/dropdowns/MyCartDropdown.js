@@ -14,7 +14,7 @@ const perfectScrollbarOptions = {
 };
 
 export function MyCartDropdown() {
-  const bgImage = toAbsoluteUrl("/media/misc/bg-1.jpg");
+  const bgImage = toAbsoluteUrl("/images/misc/bg-1.jpg");
   return (
     <Dropdown drop="down" alignRight>
       <Dropdown.Toggle
@@ -27,7 +27,7 @@ export function MyCartDropdown() {
         >
           <div className="btn btn-icon btn-clean btn-lg mr-1">
             <span className="svg-icon svg-icon-xl svg-icon-primary">
-              <SVG src={toAbsoluteUrl("/media/svg/icons/Shopping/Cart3.svg")} />
+              <SVG src={toAbsoluteUrl("/images/svg/icons/Shopping/Cart3.svg")} />
             </span>
           </div>
         </OverlayTrigger>
@@ -81,7 +81,7 @@ export function MyCartDropdown() {
               </div>
               <a href="#" className="symbol symbol-70 flex-shrink-0">
                 <img
-                  src={toAbsoluteUrl("/media/stock-600x400/img-1.jpg")}
+                  src={toAbsoluteUrl("/images/stock-600x400/img-1.jpg")}
                   alt=""
                 />
               </a>
@@ -119,7 +119,7 @@ export function MyCartDropdown() {
               </div>
               <a href="#" className="symbol symbol-70 flex-shrink-0">
                 <img
-                  src={toAbsoluteUrl("/media/stock-600x400/img-2.jpg")}
+                  src={toAbsoluteUrl("/images/stock-600x400/img-2.jpg")}
                   alt=""
                 />
               </a>
@@ -159,7 +159,7 @@ export function MyCartDropdown() {
               </div>
               <a href="#" className="symbol symbol-70 flex-shrink-0">
                 <img
-                  src={toAbsoluteUrl("/media/stock-600x400/img-3.jpg")}
+                  src={toAbsoluteUrl("/images/stock-600x400/img-3.jpg")}
                   alt=""
                 />
               </a>
@@ -197,7 +197,7 @@ export function MyCartDropdown() {
               </div>
               <a href="#" className="symbol symbol-70 flex-shrink-0">
                 <img
-                  src={toAbsoluteUrl("/media/stock-600x400/img-4.jpg")}
+                  src={toAbsoluteUrl("/images/stock-600x400/img-4.jpg")}
                   alt=""
                 />
               </a>

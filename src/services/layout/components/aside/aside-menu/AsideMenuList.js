@@ -24,7 +24,7 @@ export function AsideMenuList({ layoutProps }) {
           >
             <NavLink className="menu-link" to="/dashboard">
             <span className="svg-icon menu-icon">
-              <SVG src={toAbsoluteUrl("/media/svg/icons/Design/Layers.svg")}/>
+              <SVG src={toAbsoluteUrl("/images/svg/icons/Design/Layers.svg")}/>
             </span>
               <span className="menu-text">Dashboard</span>
             </NavLink>
@@ -38,7 +38,7 @@ export function AsideMenuList({ layoutProps }) {
           >
             <NavLink className="menu-link" to="/builder">
             <span className="svg-icon menu-icon">
-              <SVG src={toAbsoluteUrl("/media/svg/icons/Home/Library.svg")}/>
+              <SVG src={toAbsoluteUrl("/images/svg/icons/Home/Library.svg")}/>
             </span>
               <span className="menu-text">Layout Builder</span>
             </NavLink>
@@ -64,7 +64,7 @@ export function AsideMenuList({ layoutProps }) {
           >
             <NavLink className="menu-link menu-toggle" to="/google-material">
             <span className="svg-icon menu-icon">
-              <SVG src={toAbsoluteUrl("/media/svg/icons/Design/Cap-2.svg")}/>
+              <SVG src={toAbsoluteUrl("/images/svg/icons/Design/Cap-2.svg")}/>
             </span>
               <span className="menu-text">Material UI</span>
               <i className="menu-arrow"/>
@@ -959,7 +959,7 @@ export function AsideMenuList({ layoutProps }) {
           >
             <NavLink className="menu-link menu-toggle" to="/react-bootstrap">
             <span className="svg-icon menu-icon">
-              <SVG src={toAbsoluteUrl("/media/svg/icons/Shopping/Box2.svg")}/>
+              <SVG src={toAbsoluteUrl("/images/svg/icons/Shopping/Box2.svg")}/>
             </span>
               <span className="menu-text">Bootstrap</span>
               <i className="menu-arrow"/>
@@ -1416,7 +1416,7 @@ export function AsideMenuList({ layoutProps }) {
           >
             <NavLink className="menu-link menu-toggle" to="/e-commerce">
             <span className="svg-icon menu-icon">
-              <SVG src={toAbsoluteUrl("/media/svg/icons/Shopping/Bag2.svg")}/>
+              <SVG src={toAbsoluteUrl("/images/svg/icons/Shopping/Bag2.svg")}/>
             </span>
               <span className="menu-text">eCommerce</span>
             </NavLink>
@@ -1483,7 +1483,7 @@ export function AsideMenuList({ layoutProps }) {
             <NavLink className="menu-link menu-toggle" to="/error">
             <span className="svg-icon menu-icon">
               <SVG
-                  src={toAbsoluteUrl("/media/svg/icons/Code/Error-circle.svg")}
+                  src={toAbsoluteUrl("/images/svg/icons/Code/Error-circle.svg")}
               />
             </span>
               <span className="menu-text">Error Pages</span>

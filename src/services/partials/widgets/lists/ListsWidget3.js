@@ -33,7 +33,7 @@ export function ListsWidget3({ className }) {
               <span className="symbol-label">
                 <SVG
                   className="h-75 align-self-end"
-                  src={toAbsoluteUrl("/media/svg/avatars/009-boy-4.svg")}
+                  src={toAbsoluteUrl("/images/svg/avatars/009-boy-4.svg")}
                 ></SVG>
               </span>
             </div>
@@ -54,7 +54,7 @@ export function ListsWidget3({ className }) {
               <span className="symbol-label">
                 <SVG
                   className="h-75 align-self-end"
-                  src={toAbsoluteUrl("/media/svg/avatars/006-girl-3.svg")}
+                  src={toAbsoluteUrl("/images/svg/avatars/006-girl-3.svg")}
                 ></SVG>
               </span>
             </div>
@@ -75,7 +75,7 @@ export function ListsWidget3({ className }) {
               <span className="symbol-label">
                 <SVG
                   className="h-75 align-self-end"
-                  src={toAbsoluteUrl("/media/svg/avatars/011-boy-5.svg")}
+                  src={toAbsoluteUrl("/images/svg/avatars/011-boy-5.svg")}
                 ></SVG>
               </span>
             </div>
@@ -95,7 +95,7 @@ export function ListsWidget3({ className }) {
               <span className="symbol-label">
                 <SVG
                   className="h-75 align-self-end"
-                  src={toAbsoluteUrl("/media/svg/avatars/015-boy-6.svg")}
+                  src={toAbsoluteUrl("/images/svg/avatars/015-boy-6.svg")}
                 ></SVG>
               </span>
             </div>
@@ -116,7 +116,7 @@ export function ListsWidget3({ className }) {
               <span className="symbol-label">
                 <SVG
                   className="h-75 align-self-end"
-                  src={toAbsoluteUrl("/media/svg/avatars/016-boy-7.svg")}
+                  src={toAbsoluteUrl("/images/svg/avatars/016-boy-7.svg")}
                 ></SVG>
               </span>
             </div>

@@ -30,7 +30,7 @@ export const Notice = forwardRef(
         <div className="alert-icon alert-icon-top">
           <span className="svg-icon svg-icon-3x svg-icon-primary mt-4">
             <SVG
-              src={toAbsoluteUrl("/media/svg/icons/Tools/Compass.svg")}
+              src={toAbsoluteUrl("/images/svg/icons/Tools/Compass.svg")}
             ></SVG>
           </span>
         </div>

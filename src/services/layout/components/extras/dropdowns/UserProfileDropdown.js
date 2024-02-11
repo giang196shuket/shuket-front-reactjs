@@ -53,7 +53,7 @@ export function UserProfileDropdown() {
             <>
               <div className="d-flex align-items-center p-8 rounded-top">
                 <div className="symbol symbol-md bg-light-primary mr-3 flex-shrink-0">
-                  <img src={toAbsoluteUrl("/media/users/300_21.jpg")} alt="" />
+                  <img src={toAbsoluteUrl("/images/users/300_21.jpg")} alt="" />
                 </div>
                 <div className="text-dark m-0 flex-grow-1 mr-3 font-size-h5">
                   Sean Stone
@@ -71,7 +71,7 @@ export function UserProfileDropdown() {
               className="d-flex align-items-center justify-content-between flex-wrap p-8 bgi-size-cover bgi-no-repeat rounded-top"
               style={{
                 backgroundImage: `url(${toAbsoluteUrl(
-                  "/media/misc/bg-1.jpg"
+                  "/images/misc/bg-1.jpg"
                 )})`,
               }}
             >

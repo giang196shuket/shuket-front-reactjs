@@ -10,7 +10,7 @@ import { toAbsoluteUrl } from "../../../../helpers";
 import { DropdownTopbarItemToggler } from "../../../../partials/dropdowns";
 
 export function QuickActionsDropdown() {
-  const bgImage = toAbsoluteUrl("/media/misc/bg-2.jpg");
+  const bgImage = toAbsoluteUrl("/images/misc/bg-2.jpg");
   const uiService = useHtmlClassService();
  
   const layoutProps = useMemo(() => {
@@ -35,7 +35,7 @@ export function QuickActionsDropdown() {
             >
               <span className="svg-icon svg-icon-xl svg-icon-primary">
                 <SVG
-                  src={toAbsoluteUrl("/media/svg/icons/Media/Equalizer.svg")}
+                  src={toAbsoluteUrl("/images/svg/icons/Media/Equalizer.svg")}
                 />
               </span>
             </div>
@@ -57,7 +57,7 @@ export function QuickActionsDropdown() {
               <div className="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
                 <span className="svg-icon svg-icon-xl svg-icon-primary">
                   <SVG
-                    src={toAbsoluteUrl("/media/svg/icons/Media/Equalizer.svg")}
+                    src={toAbsoluteUrl("/images/svg/icons/Media/Equalizer.svg")}
                   />
                 </span>
               </div>
@@ -89,7 +89,7 @@ export function QuickActionsDropdown() {
                     <span className="svg-icon svg-icon-3x svg-icon-success">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/Shopping/Euro.svg"
+                          "/images/svg/icons/Shopping/Euro.svg"
                         )}
                       ></SVG>
                     </span>
@@ -111,7 +111,7 @@ export function QuickActionsDropdown() {
                     <span className="svg-icon svg-icon-3x svg-icon-success">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/Communication/Mail-attachment.svg"
+                          "/images/svg/icons/Communication/Mail-attachment.svg"
                         )}
                       ></SVG>
                     </span>
@@ -132,7 +132,7 @@ export function QuickActionsDropdown() {
                     <span className="svg-icon svg-icon-3x svg-icon-success">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/Shopping/Box2.svg"
+                          "/images/svg/icons/Shopping/Box2.svg"
                         )}
                       ></SVG>
                     </span>
@@ -153,7 +153,7 @@ export function QuickActionsDropdown() {
                     <span className="svg-icon svg-icon-3x svg-icon-success">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/Communication/Group.svg"
+                          "/images/svg/icons/Communication/Group.svg"
                         )}
                       ></SVG>
                     </span>

@@ -80,7 +80,7 @@ export function AdvanceTablesWidget2({ className }) {
                   <div className="symbol symbol-50 symbol-light mr-1">
                     <span className="symbol-label">
                       <SVG
-                        src={toAbsoluteUrl("/media/svg/misc/006-plurk.svg")}
+                        src={toAbsoluteUrl("/images/svg/misc/006-plurk.svg")}
                         className="h-50 align-self-center"
                       ></SVG>
                     </span>
@@ -124,7 +124,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Settings-1.svg"
+                          "/images/svg/icons/General/Settings-1.svg"
                         )}
                       ></SVG>
                     </span>
@@ -133,7 +133,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/Communication/Write.svg"
+                          "/images/svg/icons/Communication/Write.svg"
                         )}
                       ></SVG>
                     </span>
@@ -142,7 +142,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Trash.svg"
+                          "/images/svg/icons/General/Trash.svg"
                         )}
                       ></SVG>
                     </span>
@@ -155,7 +155,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="symbol-label">
                       <SVG
                         className="h-50 align-self-center"
-                        src={toAbsoluteUrl("/media/svg/misc/015-telegram.svg")}
+                        src={toAbsoluteUrl("/images/svg/misc/015-telegram.svg")}
                       ></SVG>
                     </span>
                   </div>
@@ -198,7 +198,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Settings-1.svg"
+                          "/images/svg/icons/General/Settings-1.svg"
                         )}
                       ></SVG>
                     </span>
@@ -207,7 +207,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/Communication/Write.svg"
+                          "/images/svg/icons/Communication/Write.svg"
                         )}
                       ></SVG>
                     </span>
@@ -216,7 +216,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Trash.svg"
+                          "/images/svg/icons/General/Trash.svg"
                         )}
                       ></SVG>
                     </span>
@@ -229,7 +229,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="symbol-label">
                       <SVG
                         className="h-50 align-self-center"
-                        src={toAbsoluteUrl("/media/svg/misc/003-puzzle.svg")}
+                        src={toAbsoluteUrl("/images/svg/misc/003-puzzle.svg")}
                       ></SVG>
                     </span>
                   </div>
@@ -272,7 +272,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Settings-1.svg"
+                          "/images/svg/icons/General/Settings-1.svg"
                         )}
                       ></SVG>
                     </span>
@@ -281,7 +281,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/Communication/Write.svg"
+                          "/images/svg/icons/Communication/Write.svg"
                         )}
                       ></SVG>
                     </span>
@@ -290,7 +290,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Trash.svg"
+                          "/images/svg/icons/General/Trash.svg"
                         )}
                       ></SVG>
                     </span>
@@ -303,7 +303,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="symbol-label">
                       <SVG
                         className="h-50 align-self-center"
-                        src={toAbsoluteUrl("/media/svg/misc/005-bebo.svg")}
+                        src={toAbsoluteUrl("/images/svg/misc/005-bebo.svg")}
                       ></SVG>
                     </span>
                   </div>
@@ -346,7 +346,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Settings-1.svg"
+                          "/images/svg/icons/General/Settings-1.svg"
                         )}
                       ></SVG>
                     </span>
@@ -355,7 +355,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/Communication/Write.svg"
+                          "/images/svg/icons/Communication/Write.svg"
                         )}
                       ></SVG>
                     </span>
@@ -364,7 +364,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Trash.svg"
+                          "/images/svg/icons/General/Trash.svg"
                         )}
                       ></SVG>
                     </span>
@@ -378,7 +378,7 @@ export function AdvanceTablesWidget2({ className }) {
                       <SVG
                         className="h-50 align-self-center"
                         src={toAbsoluteUrl(
-                          "/media/svg/misc/014-kickstarter.svg"
+                          "/images/svg/misc/014-kickstarter.svg"
                         )}
                       ></SVG>
                     </span>
@@ -422,7 +422,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Settings-1.svg"
+                          "/images/svg/icons/General/Settings-1.svg"
                         )}
                       ></SVG>
                     </span>
@@ -431,7 +431,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/Communication/Write.svg"
+                          "/images/svg/icons/Communication/Write.svg"
                         )}
                       ></SVG>
                     </span>
@@ -440,7 +440,7 @@ export function AdvanceTablesWidget2({ className }) {
                     <span className="svg-icon svg-icon-md svg-icon-primary">
                       <SVG
                         src={toAbsoluteUrl(
-                          "/media/svg/icons/General/Trash.svg"
+                          "/images/svg/icons/General/Trash.svg"
                         )}
                       ></SVG>
                     </span>

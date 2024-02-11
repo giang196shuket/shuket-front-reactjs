@@ -28,7 +28,7 @@ export function HeaderMenuWrapper() {
         if (layoutProps.headerSelfTheme && layoutProps.headerSelfTheme !== "dark") {
             result = "logo-dark.png";
         }
-        return toAbsoluteUrl(`/media/logos/${result}`);
+        return toAbsoluteUrl(`/images/logos/${result}`);
     };
 
     return <>

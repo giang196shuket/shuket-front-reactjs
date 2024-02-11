@@ -83,7 +83,7 @@ export function QuickPanel() {
                     <div className="symbol symbol-50 symbol-light mr-5">
                     <span className="symbol-label">
                       <img
-                          src={toAbsoluteUrl("/media/svg/misc/006-plurk.svg")}
+                          src={toAbsoluteUrl("/images/svg/misc/006-plurk.svg")}
                           alt=""
                           className="h-50 align-self-center"
                       />
@@ -109,7 +109,7 @@ export function QuickPanel() {
                     <div className="symbol symbol-50 symbol-light mr-5">
                     <span className="symbol-label">
                       <img
-                          src={toAbsoluteUrl("/media/svg/misc/015-telegram.svg")}
+                          src={toAbsoluteUrl("/images/svg/misc/015-telegram.svg")}
                           alt=""
                           className="h-50 align-self-center"
                       />
@@ -135,7 +135,7 @@ export function QuickPanel() {
                     <div className="symbol symbol-50 symbol-light mr-5">
                     <span className="symbol-label">
                       <img
-                          src={toAbsoluteUrl("/media/svg/misc/003-puzzle.svg")}
+                          src={toAbsoluteUrl("/images/svg/misc/003-puzzle.svg")}
                           alt=""
                           className="h-50 align-self-center"
                       />
@@ -161,7 +161,7 @@ export function QuickPanel() {
                     <div className="symbol symbol-50 symbol-light mr-5">
                     <span className="symbol-label">
                       <img
-                          src={toAbsoluteUrl("/media/svg/misc/005-bebo.svg")}
+                          src={toAbsoluteUrl("/images/svg/misc/005-bebo.svg")}
                           alt=""
                           className="h-50 align-self-center"
                       />
@@ -188,7 +188,7 @@ export function QuickPanel() {
                     <span className="symbol-label">
                       <img
                           src={toAbsoluteUrl(
-                              "/media/svg/misc/014-kickstarter.svg"
+                              "/images/svg/misc/014-kickstarter.svg"
                           )}
                           alt=""
                           className="h-50 align-self-center"
@@ -218,7 +218,7 @@ export function QuickPanel() {
                   <div className="d-flex align-items-center bg-light-warning rounded p-5 mb-5">
                   <span className="svg-icon svg-icon-warning mr-5">
                     <SVG
-                        src={toAbsoluteUrl("/media//svg/icons/Home/Library.svg")}
+                        src={toAbsoluteUrl("/images//svg/icons/Home/Library.svg")}
                         className="svg-icon svg-icon-lg"
                     ></SVG>
                   </span>
@@ -244,7 +244,7 @@ export function QuickPanel() {
                   <span className="svg-icon svg-icon-success mr-5">
                     <SVG
                         src={toAbsoluteUrl(
-                            "/media/svg/icons/Communication/Write.svg"
+                            "/images/svg/icons/Communication/Write.svg"
                         )}
                         className="svg-icon svg-icon-lg"
                     ></SVG>
@@ -270,7 +270,7 @@ export function QuickPanel() {
                   <span className="svg-icon svg-icon-danger mr-5">
                     <SVG
                         src={toAbsoluteUrl(
-                            "/media/svg/icons/Communication/Group-chat.svg"
+                            "/images/svg/icons/Communication/Group-chat.svg"
                         )}
                         className="svg-icon svg-icon-lg"
                     ></SVG>
@@ -296,7 +296,7 @@ export function QuickPanel() {
                   <span className="svg-icon svg-icon-info mr-5">
                     <SVG
                         src={toAbsoluteUrl(
-                            "/media/svg/icons/General/Attachment2.svg"
+                            "/images/svg/icons/General/Attachment2.svg"
                         )}
                         className="svg-icon svg-icon-lg"
                     ></SVG>

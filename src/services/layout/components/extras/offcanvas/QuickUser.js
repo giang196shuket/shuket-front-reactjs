@@ -40,7 +40,7 @@ export function QuickUser() {
             >
               <div className="symbol-label" style={{
                 backgroundImage: `url(${toAbsoluteUrl(
-                    "/media/users/300_21.jpg"
+                    "/images/users/300_21.jpg"
                 )})`
               }}/>
               <i className="symbol-badge bg-success"/>
@@ -60,7 +60,7 @@ export function QuickUser() {
                     <span className="svg-icon-lg svg-icon-primary">
                       <SVG
                           src={toAbsoluteUrl(
-                              "/media/svg/icons/Communication/Mail-notification.svg"
+                              "/images/svg/icons/Communication/Mail-notification.svg"
                           )}
                       ></SVG>
                     </span>
@@ -88,7 +88,7 @@ export function QuickUser() {
                   <span className="svg-icon svg-icon-md svg-icon-success">
                     <SVG
                         src={toAbsoluteUrl(
-                            "/media/svg/icons/General/Notification2.svg"
+                            "/images/svg/icons/General/Notification2.svg"
                         )}
                     ></SVG>
                   </span>
@@ -114,7 +114,7 @@ export function QuickUser() {
                   <span className="svg-icon svg-icon-md svg-icon-warning">
                     <SVG
                         src={toAbsoluteUrl(
-                            "/media/svg/icons/Shopping/Chart-bar1.svg"
+                            "/images/svg/icons/Shopping/Chart-bar1.svg"
                         )}
                     ></SVG>
                   </span>
@@ -134,7 +134,7 @@ export function QuickUser() {
                   <span className="svg-icon svg-icon-md svg-icon-danger">
                     <SVG
                         src={toAbsoluteUrl(
-                            "/media/svg/icons/Files/Selected-file.svg"
+                            "/images/svg/icons/Files/Selected-file.svg"
                         )}
                     ></SVG>
                   </span>
@@ -154,7 +154,7 @@ export function QuickUser() {
                   <span className="svg-icon svg-icon-md svg-icon-primary">
                     <SVG
                         src={toAbsoluteUrl(
-                            "/media/svg/icons/Communication/Mail-opened.svg"
+                            "/images/svg/icons/Communication/Mail-opened.svg"
                         )}
                     ></SVG>
                   </span>
@@ -176,7 +176,7 @@ export function QuickUser() {
             <div className="d-flex align-items-center bg-light-warning rounded p-5 gutter-b">
             <span className="svg-icon svg-icon-warning mr-5">
               <SVG
-                  src={toAbsoluteUrl("/media/svg/icons/Home/Library.svg")}
+                  src={toAbsoluteUrl("/images/svg/icons/Home/Library.svg")}
                   className="svg-icon svg-icon-lg"
               ></SVG>
             </span>
@@ -199,7 +199,7 @@ export function QuickUser() {
             <div className="d-flex align-items-center bg-light-success rounded p-5 gutter-b">
             <span className="svg-icon svg-icon-success mr-5">
               <SVG
-                  src={toAbsoluteUrl("/media/svg/icons/Communication/Write.svg")}
+                  src={toAbsoluteUrl("/images/svg/icons/Communication/Write.svg")}
                   className="svg-icon svg-icon-lg"
               ></SVG>
             </span>
@@ -222,7 +222,7 @@ export function QuickUser() {
             <span className="svg-icon svg-icon-danger mr-5">
               <SVG
                   src={toAbsoluteUrl(
-                      "/media/svg/icons/Communication/Group-chat.svg"
+                      "/images/svg/icons/Communication/Group-chat.svg"
                   )}
                   className="svg-icon svg-icon-lg"
               ></SVG>
@@ -245,7 +245,7 @@ export function QuickUser() {
             <div className="d-flex align-items-center bg-light-info rounded p-5">
             <span className="svg-icon svg-icon-info mr-5">
               <SVG
-                  src={toAbsoluteUrl("/media/svg/icons/General/Attachment2.svg")}
+                  src={toAbsoluteUrl("/images/svg/icons/General/Attachment2.svg")}
                   className="svg-icon svg-icon-lg"
               ></SVG>
             </span>

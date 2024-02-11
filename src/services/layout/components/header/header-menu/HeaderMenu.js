@@ -196,7 +196,7 @@ export function HeaderMenu({ layoutProps }) {
                   <span className="svg-icon menu-icon">
                     <SVG
                       src={toAbsoluteUrl(
-                        "/media/svg/icons/Design/PenAndRuller.svg"
+                        "/images/svg/icons/Design/PenAndRuller.svg"
                       )}
                     />
                   </span>
@@ -388,7 +388,7 @@ export function HeaderMenu({ layoutProps }) {
                   <span className="svg-icon menu-icon">
                     <SVG
                       src={toAbsoluteUrl(
-                        "/media/svg/icons/Navigation/Arrow-from-left.svg"
+                        "/images/svg/icons/Navigation/Arrow-from-left.svg"
                       )}
                     />
                   </span>
@@ -544,7 +544,7 @@ export function HeaderMenu({ layoutProps }) {
                   <span className="svg-icon menu-icon">
                     <SVG
                       src={toAbsoluteUrl(
-                        "/media/svg/icons/Layout/Layout-left-panel-1.svg"
+                        "/images/svg/icons/Layout/Layout-left-panel-1.svg"
                       )}
                     />
                   </span>
@@ -646,7 +646,7 @@ export function HeaderMenu({ layoutProps }) {
                   <span className="svg-icon menu-icon">
                     <SVG
                       src={toAbsoluteUrl(
-                        "/media/svg/icons/General/Half-star.svg"
+                        "/images/svg/icons/General/Half-star.svg"
                       )}
                     />
                   </span>
@@ -729,7 +729,7 @@ export function HeaderMenu({ layoutProps }) {
                 >
                   <span className="svg-icon menu-icon">
                     <SVG
-                      src={toAbsoluteUrl("/media/svg/icons/Devices/iMac.svg")}
+                      src={toAbsoluteUrl("/images/svg/icons/Devices/iMac.svg")}
                     />
                   </span>
                   <span className="menu-text">Data Display</span>
@@ -920,7 +920,7 @@ export function HeaderMenu({ layoutProps }) {
                   <span className="svg-icon menu-icon">
                     <SVG
                       src={toAbsoluteUrl(
-                        "/media/svg/icons/Tools/Swiss-knife.svg"
+                        "/images/svg/icons/Tools/Swiss-knife.svg"
                       )}
                     />
                   </span>
@@ -1094,7 +1094,7 @@ export function HeaderMenu({ layoutProps }) {
                   <span className="svg-icon menu-icon">
                     <SVG
                       src={toAbsoluteUrl(
-                        "/media/svg/icons/Layout/Layout-top-panel-2.svg"
+                        "/images/svg/icons/Layout/Layout-top-panel-2.svg"
                       )}
                     />
                   </span>

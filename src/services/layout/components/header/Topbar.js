@@ -62,7 +62,7 @@ export function Topbar() {
               onClick={() => handelReset()}
               className="svg-icon svg-icon-xl svg-icon-primary"
             >
-              <SVG src={toAbsoluteUrl("/media/svg/icons/Media/Repeat.svg")} />
+              <SVG src={toAbsoluteUrl("/images/svg/icons/Media/Repeat.svg")} />
             </span>
           </div>
         </div>
@@ -92,7 +92,7 @@ export function Topbar() {
               <span className="svg-icon svg-icon-xl svg-icon-primary">
                 <SVG
                   src={toAbsoluteUrl(
-                    "/media/svg/icons/Layout/Layout-4-blocks.svg"
+                    "/images/svg/icons/Layout/Layout-4-blocks.svg"
                   )}
                 />
               </span>

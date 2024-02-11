@@ -21,7 +21,7 @@ export const ActionsColumnFormatter = (
  >
    <span className="svg-icon svg-icon-md svg-icon-primary">
      <SVG
-       src={toAbsoluteUrl("/media/svg/icons/Communication/Write.svg")}
+       src={toAbsoluteUrl("/images/svg/icons/Communication/Write.svg")}
      />
    </span>
  </a>
@@ -39,7 +39,7 @@ export const ActionsColumnFormatter = (
           onClick={() => openDelete(row[columnName])}
         >
           <span className="svg-icon svg-icon-md svg-icon-danger">
-            <SVG src={toAbsoluteUrl("/media/svg/icons/General/Trash.svg")} />
+            <SVG src={toAbsoluteUrl("/images/svg/icons/General/Trash.svg")} />
           </span>
         </a>
       </OverlayTrigger>

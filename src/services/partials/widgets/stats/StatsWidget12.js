@@ -58,7 +58,7 @@ export function StatsWidget12({ className }) {
               <span className="svg-icon svg-icon-xl svg-icon-primary">
                 <SVG
                   src={toAbsoluteUrl(
-                    "/media/svg/icons/Communication/Group.svg"
+                    "/images/svg/icons/Communication/Group.svg"
                   )}
                 ></SVG>
               </span>

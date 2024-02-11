@@ -72,7 +72,7 @@ export function ListsWidget9({ className }) {
                     <span className="symbol-label">
                       <SVG
                         className="h-75 align-self-end"
-                        src={toAbsoluteUrl("/media/svg/avatars/004-boy-1.svg")}
+                        src={toAbsoluteUrl("/images/svg/avatars/004-boy-1.svg")}
                       ></SVG>
                     </span>
                   </a>
@@ -81,7 +81,7 @@ export function ListsWidget9({ className }) {
                     <span className="symbol-label">
                       <SVG
                         className="h-75 align-self-end"
-                        src={toAbsoluteUrl("/media/svg/avatars/002-girl.svg")}
+                        src={toAbsoluteUrl("/images/svg/avatars/002-girl.svg")}
                       ></SVG>
                     </span>
                   </a>

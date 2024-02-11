@@ -91,7 +91,7 @@ export function SearchDropdown() {
             id="kt_quick_search_toggle"
           >
             <span className="svg-icon svg-icon-xl svg-icon-primary">
-              <SVG src={toAbsoluteUrl("/media/svg/icons/General/Search.svg")} />
+              <SVG src={toAbsoluteUrl("/images/svg/icons/General/Search.svg")} />
             </span>
           </div>
         </div>
@@ -120,7 +120,7 @@ export function SearchDropdown() {
             >
               <span className="svg-icon svg-icon-xl svg-icon-primary">
                 <SVG
-                  src={toAbsoluteUrl("/media/svg/icons/General/Search.svg")}
+                  src={toAbsoluteUrl("/images/svg/icons/General/Search.svg")}
                 />
               </span>
             </div>
@@ -140,7 +140,7 @@ export function SearchDropdown() {
                       <span className="svg-icon svg-icon-lg">
                         <SVG
                           src={toAbsoluteUrl(
-                            "/media/svg/icons/General/Search.svg"
+                            "/images/svg/icons/General/Search.svg"
                           )}
                         />
                       </span>

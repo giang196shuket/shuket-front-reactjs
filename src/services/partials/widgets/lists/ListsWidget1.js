@@ -39,7 +39,7 @@ export function ListsWidget1({ className }) {
                 <span className="svg-icon svg-icon-lg svg-icon-primary">
                   <SVG
                     className="h-75 align-self-end"
-                    src={toAbsoluteUrl("/media/svg/icons/Home/Library.svg")}
+                    src={toAbsoluteUrl("/images/svg/icons/Home/Library.svg")}
                   ></SVG>
                 </span>
               </span>
@@ -63,7 +63,7 @@ export function ListsWidget1({ className }) {
                   <SVG
                     className="h-75 align-self-end"
                     src={toAbsoluteUrl(
-                      "/media/svg/icons/Communication/Write.svg"
+                      "/images/svg/icons/Communication/Write.svg"
                     )}
                   ></SVG>
                 </span>
@@ -86,7 +86,7 @@ export function ListsWidget1({ className }) {
                   <SVG
                     className="h-75 align-self-end"
                     src={toAbsoluteUrl(
-                      "/media/svg/icons/Communication/Group-chat.svg"
+                      "/images/svg/icons/Communication/Group-chat.svg"
                     )}
                   ></SVG>
                 </span>
@@ -111,7 +111,7 @@ export function ListsWidget1({ className }) {
                   <SVG
                     className="h-75 align-self-end"
                     src={toAbsoluteUrl(
-                      "/media/svg/icons/General/Attachment2.svg"
+                      "/images/svg/icons/General/Attachment2.svg"
                     )}
                   ></SVG>
                 </span>
@@ -136,7 +136,7 @@ export function ListsWidget1({ className }) {
                   <SVG
                     className="h-75 align-self-end"
                     src={toAbsoluteUrl(
-                      "/media/svg/icons/Communication/Shield-user.svg"
+                      "/images/svg/icons/Communication/Shield-user.svg"
                     )}
                   ></SVG>
                 </span>

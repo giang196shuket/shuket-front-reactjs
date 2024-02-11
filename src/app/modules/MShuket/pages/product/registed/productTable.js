@@ -369,7 +369,7 @@ function ProductTable(props) {
         >
           <span className="svg-icon svg-icon-md svg-icon-primary">
             <SVG
-              src={toAbsoluteUrl("/media/svg/icons/Communication/Write.svg")}
+              src={toAbsoluteUrl("/images/svg/icons/Communication/Write.svg")}
             />
           </span>
         </a>
