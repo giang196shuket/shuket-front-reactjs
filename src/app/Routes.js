@@ -3,10 +3,11 @@
 import React from "react";
 import { Redirect, Switch, Route } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
-import { Layout } from "../services/layout";
+import { Layout } from "../module/layout";
 import BasePage from "./BasePage";
-import { Logout, AuthPage } from "./modules/Auth";
-import ErrorsPage from "./modules/Extras/Errors/ErrorsPage";
+import ErrorsPage from "./view/Extras/Errors/ErrorsPage";
+import { AuthPage } from "./view/Auth/components/AuthPage";
+import Logout from "./view/Auth/components/Logout";
 
 export function Routes() {
   const { isAuthorized } = useSelector(

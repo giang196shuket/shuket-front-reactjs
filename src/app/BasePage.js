@@ -1,23 +1,23 @@
 import React, { Suspense, lazy } from "react";
 import { Redirect, Switch, Route } from "react-router-dom";
-import { LayoutSplashScreen, ContentRoute } from "../services/layout";
+import { LayoutSplashScreen, ContentRoute } from "../module/layout";
 import { BuilderPage } from "./dashboard/BuilderPage";
 import { MyPage } from "./dashboard/MyPage";
 import { DashboardPage } from "./dashboard/DashboardPage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addNotication } from "./modules/Auth/redux/authSlice";
+import { addNotication } from "./view/Auth/redux/authSlice";
 import { getMessagingToken } from "../firebase";
 
 const GoogleMaterialPage = lazy(() =>
-  import("./modules/Extras/MaterialUI/GoogleMaterialPage")
+  import("./view/Extras/MaterialUI/GoogleMaterialPage")
 );
 const ReactBootstrapPage = lazy(() =>
-  import("./modules/Extras/ReactBootstrap/ReactBootstrapPage")
+  import("./view/Extras/ReactBootstrap/ReactBootstrapPage")
 );
 
-const ShuketManagementPage = lazy(() =>
-  import("./modules/MShuket/pages/mShuketPage")
+const Page = lazy(() =>
+  import("./view/Page/components/page")
 );
 export default function BasePage() {
  //get notification from server woker and FCM
@@ -45,7 +45,7 @@ export default function BasePage() {
         <ContentRoute path="/my-page" component={MyPage} />
         <Route path="/google-material" component={GoogleMaterialPage} />
         <Route path="/react-bootstrap" component={ReactBootstrapPage} />
-        <Route path="/m-shuket" component={ShuketManagementPage} />
+        <Route path="/m-shuket" component={Page} />
         <Redirect path="*" to="error/error-v1" />
       </Switch>
     </Suspense>

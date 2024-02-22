@@ -11,17 +11,17 @@ import store, { persistor } from "./store/store";
 // import "./sass/style.react.rtl.css"; // RTL version
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "socicon/css/socicon.css";
-import "./services/assets/plugins/flaticon/flaticon.css";
-import "./services/assets/plugins/flaticon2/flaticon.css";
-import "./services/assets/plugins/keenthemes-icons/font/ki.css";
+import "./module/assets/plugins/flaticon/flaticon.css";
+import "./module/assets/plugins/flaticon2/flaticon.css";
+import "./module/assets/plugins/keenthemes-icons/font/ki.css";
 // Datepicker
 import "react-datepicker/dist/react-datepicker.css";
-import { MetronicI18nProvider } from "./services/i18n";
+import { MetronicI18nProvider } from "./module/i18n";
 import {
   MetronicLayoutProvider,
   MetronicSplashScreenProvider,
   MetronicSubheaderProvider
-} from "./services/layout";
+} from "./module/layout";
 
 
 const { PUBLIC_URL } = process.env;

@@ -1,6 +1,6 @@
 
 import store from './store'
-import { logoutAccount } from '../app/modules/Auth/redux/authSlice'
+import { logoutAccount } from '../app/view/Auth/redux/authSlice'
 
 // lỗi chung thì viết trong middleware
 export const middlewareError = (api) => (next) => (action) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import {Builder} from "../../services/partials";
+import {Builder} from "../../module/partials";
 
 export function BuilderPage() {
     return <Builder />;

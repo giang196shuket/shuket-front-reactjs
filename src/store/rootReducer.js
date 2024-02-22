@@ -3,18 +3,18 @@ import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
-// import * as auth from "../app/modules/Auth/redux/authRedux";
-import { authSlice } from "../app/modules/Auth/redux/authSlice";
-import { martSlice } from "../app/modules/MShuket/redux/marts/Slice";
-import { mainSlice } from "../app/modules/MShuket/redux/main/Slice";
-import { fcmSlice } from "../app/modules/MShuket/redux/fcm/Slice";
-import { imagesSlice } from "../app/modules/MShuket/redux/images/Slice";
-import { productSlice } from "../app/modules/MShuket/redux/product/Slice";
-import { deliverySlice } from "../app/modules/MShuket/redux/delivery/Slice";
-import { usersSlice } from "../app/modules/MShuket/redux/users/Slice";
-import { catalogSlice } from "../app/modules/MShuket/redux/catalog/Slice";
-import { noticeSlice } from "../app/modules/MShuket/redux/notice/Slice";
-import { orderSlice } from "../app/modules/MShuket/redux/order/Slice";
+// import * as auth from "../app/view/Auth/redux/authRedux";
+import { authSlice } from "../app/view/Auth/redux/authSlice";
+import { martSlice } from "../app/view/Page/redux/marts/Slice";
+import { mainSlice } from "../app/view/Page/redux/main/Slice";
+import { fcmSlice } from "../app/view/Page/redux/fcm/Slice";
+import { imagesSlice } from "../app/view/Page/redux/images/Slice";
+import { productSlice } from "../app/view/Page/redux/product/Slice";
+import { deliverySlice } from "../app/view/Page/redux/delivery/Slice";
+import { usersSlice } from "../app/view/Page/redux/users/Slice";
+import { catalogSlice } from "../app/view/Page/redux/catalog/Slice";
+import { noticeSlice } from "../app/view/Page/redux/notice/Slice";
+import { orderSlice } from "../app/view/Page/redux/order/Slice";
 
 const persistCommonConfig = {
   storage: storage,

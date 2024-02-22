@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Dashboard
-} from "../../services/partials";
+} from "../../module/partials";
 
 export function DashboardPage() {
   return <Dashboard />;
