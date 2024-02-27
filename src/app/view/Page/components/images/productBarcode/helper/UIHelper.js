@@ -1,31 +1,10 @@
-export const initialFilter = {
-  keywordType: "",
-  keywordValue: "",
-  status: "",
-  page: 1,
-  limit: 10,
-  dateStart:"",
-  dateEnd:""
-};
-
-export const statusList = [
-  {
-    text: "Active",
-    value: "used",
-  },
-  {
-    text: "Deactive",
-    value: "unused",
-  },
-];
-
 
 export const keyImagesList = [
   { text: "Product tag", value: "tags" },
   { text: "Product code", value: "code" },
   { text: "Product name", value: "name" },
-
 ];
+
 export const ImageCategories = [
   {
     cate_code: "110",

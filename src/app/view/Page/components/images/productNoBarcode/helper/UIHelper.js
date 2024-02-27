@@ -1,15 +1,3 @@
-export const initialFilter = {
-  keywordType: "",
-  keywordValue: "",
-  status: "",
-  appType: "",
-  useStock: false,
-  isSyncOrder: false,
-  orderBy: "desc", // asc||desc
-  sortField: "registerDate", //
-  page: 1,
-  limit: 10,
-};
 
 export const ImageType = [
   {

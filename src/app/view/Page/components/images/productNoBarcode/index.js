@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useCallback } from "react";
 import { isEqual, isFunction } from "lodash";
-import { initialFilter } from "./helper/UIHelper";
 import { injectIntl } from "react-intl";
 import { useEffect, useMemo } from "react";
 
@@ -20,16 +19,16 @@ import { Pagination } from "../../../../../../module/partials/controls";
 import { useProductNoBarcodeUIContext } from "./productNoBarcodeUIContext";
 import { getListImagesWithoutBarcode } from "../../../redux/images/Thunk";
 import { ActionsColumnFormatter } from "./helper/ActionsColumnFormatter";
-import { defaultSorted, sizePerPageList } from "../../../common/UIhelpers";
+import { defaultSorted, sizePerPageList, initialFilter, statusList, orderList } from "../../../common/UIhelpers";
 
 import { Formik } from "formik";
+import DatePicker from "rsuite/DatePicker";
 
 import {
   ImageCategories,
   ImageType,
-  keyImagesList,
+  keyImagesList
 } from "./helper/UIHelper";
-import { sortType, statusList } from "../../../common/UIhelpers";
 import {
   Card,
   CardBody,
@@ -40,18 +39,25 @@ import {
 import ProductNoBarcodeTable from "./productNoBarcodeTable";
 import { ProductNoBarcodeGrouping } from "./productNoBarcodeGrouping";
 import { ProductNoBarcodeFilter } from "./productNoBarcodeFilter";
+import { editProductNoBarcodeImage } from "../../../redux/images/Slice";
 
 import {
   addImagesCouponBanner,
   getCatesImages,
 } from "../../../redux/images/Thunk";
+import { format } from "date-fns";
+import SwitchesCustom from "../common/Switches";
 
 export {
+  SwitchesCustom,
+  DatePicker,
+  format,
+  orderList,
+  editProductNoBarcodeImage,
   Formik,
   ImageCategories,
   ImageType,
   keyImagesList,
-  sortType,
   statusList,
   Card,
   CardBody,

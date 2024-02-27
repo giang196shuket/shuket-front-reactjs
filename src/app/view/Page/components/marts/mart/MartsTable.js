@@ -1,5 +1,26 @@
-
-import { ActionsColumnFormatter, BootstrapTable, NoRecordsFoundMessage, Pagination, PaginationProvider, PleaseWaitMessage, StatusColumnFormatter, defaultSorted, getHandlerTableChange, getSelectRow, moaSearchList, paginationFactory, shallowEqual, sizePerPageList, sortCaret, useDispatch, useEffect, useLang, useMartsUIContext, useMemo, useSelector }  from './index'
+import {
+  ActionsColumnFormatter,
+  BootstrapTable,
+  NoRecordsFoundMessage,
+  Pagination,
+  PaginationProvider,
+  PleaseWaitMessage,
+  StatusColumnFormatter,
+  defaultSorted,
+  getHandlerTableChange,
+  getSelectRow,
+  getMoaMartList,
+  paginationFactory,
+  shallowEqual,
+  sizePerPageList,
+  sortCaret,
+  useDispatch,
+  useEffect,
+  useLang,
+  useMartsUIContext,
+  useMemo,
+  useSelector,
+} from "./index";
 
 export function MartsTable() {
   const lang = useLang();
@@ -24,24 +45,35 @@ export function MartsTable() {
   const dispatch = useDispatch();
   useEffect(() => {
     martsUIProps.setIds([]);
-    dispatch(moaSearchList(martsUIProps.queryParams));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(getMoaMartList(martsUIProps.queryParams));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [martsUIProps.queryParams, dispatch]);
-
 
   const columns = [
     {
+      text: "IMAGE",
+      sort: true,
+      style: {
+        width: "300px",
+      },
+      formatter: (cell, row, rowIndex, extraData) => (
+        <img style={{ width: "60%" }} src={row.logo_url} alt="" />
+      ),
+    },
+    {
       dataField: "mart_code",
-      text: "Mart Code",
+      text: "Code",
       sort: true,
       sortCaret: sortCaret,
       style: {
         width: "100px",
       },
+      classes: "text-center pr-0",
+      headerClasses: "text-center pr-0",
     },
     {
       dataField: "mart_name",
-      text: "Mart Name",
+      text: "Name",
       sort: true,
       sortCaret: sortCaret,
       formatter: (cell, row, rowIndex, extraData) => (
@@ -57,7 +89,7 @@ export function MartsTable() {
     {
       dataField:
         lang && lang === "en" ? "mart_type_name_en" : "mart_type_name_ko",
-      text: "Mart Type Name",
+      text: "Mart Type",
       sort: true,
       sortCaret: sortCaret,
       style: {
@@ -109,14 +141,14 @@ export function MartsTable() {
   ];
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
-      Showing  {from} to {to} of {size} Results
+      Showing {from} to {to} of {size} Results
     </span>
   );
   const paginationOptions = {
     custom: true,
     totalSize: totalCount,
     sizePerPageList: sizePerPageList,
-    sizePerPage: martsUIProps.queryParams.sizePerPage,
+    limit: martsUIProps.queryParams.limit,
     page: martsUIProps.queryParams.page,
     paginationTotalRenderer: customTotal,
   };
@@ -142,11 +174,11 @@ export function MartsTable() {
                 onTableChange={getHandlerTableChange(
                   martsUIProps.setQueryParams
                 )}
-                selectRow={getSelectRow({
-                  entities,
-                  ids: martsUIProps.ids,
-                  setIds: martsUIProps.setIds,
-                })}
+                // selectRow={getSelectRow({
+                //   entities,
+                //   ids: martsUIProps.ids,
+                //   setIds: martsUIProps.setIds,
+                // })}
                 {...paginationTableProps}
               >
                 <PleaseWaitMessage entities={entities} />

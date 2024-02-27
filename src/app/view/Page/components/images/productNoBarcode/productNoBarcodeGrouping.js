@@ -1,5 +1,7 @@
-import { useProductNoBarcodeUIContext, useMemo } from './index'
-
+import { useState } from "react";
+import { useProductNoBarcodeUIContext, useMemo, statusList, useDispatch } from "./index";
+import { updateMultiStatusImgs } from "../../../redux/images/Thunk";
+import { useHistory  } from "react-router-dom";
 
 export function ProductNoBarcodeGrouping() {
   // Products UI Context
@@ -8,13 +10,19 @@ export function ProductNoBarcodeGrouping() {
     return {
       ids: UIContext.ids,
       setIds: UIContext.setIds,
-      openDelete: UIContext.openDelete,
-      openFetchDialog: UIContext.openFetchDialog,
-      openUpdateStatusDialog:
-      UIContext.openUpdateStatusDialog,
     };
   }, [UIContext]);
 
+  const [status, setStatus] = useState("used");
+  const dispatch = useDispatch()
+  const history = useHistory ();
+
+  const handleUpdate = () =>{
+    dispatch(updateMultiStatusImgs({code :UIContext.ids, status: status === 'used' ? 'A' : 'C'}))
+    .then((res)=>{
+      history.go(0);
+    })
+  }
   return (
     <div className="form">
       <div className="row align-items-center form-group-actions margin-top-20 margin-bottom-20">
@@ -27,27 +35,27 @@ export function ProductNoBarcodeGrouping() {
                 </span>
               </label>
             </div>
-            <div>
-              <button
-                type="button"
-                className="btn btn-danger font-weight-bolder font-size-sm"
-                onClick={UIProps.openDelete}
+            <div className="row">
+              <select
+                className="form-control col-lg-1"
+                placeholder="Filter by Status"
+                name="status"
+                onChange={(e) => {
+                  setStatus(e.target.value);
+                }}
+                value={status}
               >
-                <i className="fa fa-trash"></i> Delete All
-              </button>
+                {statusList.map((statusList) => (
+                  <option key={statusList.value} value={statusList.value}>
+                    {statusList.text}
+                  </option>
+                ))}
+              </select>
               &nbsp;
               <button
                 type="button"
-                className="btn btn-light-primary font-weight-bolder font-size-sm"
-                onClick={UIProps.openFetchtDialog}
-              >
-                <i className="fa fa-stream"></i> Fetch Selected
-              </button>
-              &nbsp;
-              <button
-                type="button"
-                className="btn btn-light-primary font-weight-bolder font-size-sm"
-                onClick={UIProps.openUpdateStatusDialog}
+                className="btn btn-light-primary font-weight-bolder font-size-sm col-lg-1"
+                onClick={handleUpdate}
               >
                 <i className="fa fa-sync-alt"></i> Update Status
               </button>

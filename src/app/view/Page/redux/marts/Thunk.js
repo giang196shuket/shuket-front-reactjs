@@ -24,8 +24,8 @@ export const uploadMartLogo = createAsyncThunk(
   );
 
 
-  export const moaSearchList = createAsyncThunk(
-    'moaSearchList',
+  export const getMoaMartList = createAsyncThunk(
+    'getMoaMartList',
     async (data,{rejectWithValue}) => {
         try {
           const params = {
@@ -38,7 +38,7 @@ export const uploadMartLogo = createAsyncThunk(
             isSyncOrder: data.isSyncOrder === 1 ? true: false,
             useStock: data.useStock === 1 ? true: false
           }
-          const response = await Axios.post(`${MAIN_URL}/moa_search_list`,params)
+          const response = await Axios.post(`${MAIN_URL}/get_moa_mart_list`,params)
           return response.data
         } catch (err) {
           return rejectWithValue(err.message);

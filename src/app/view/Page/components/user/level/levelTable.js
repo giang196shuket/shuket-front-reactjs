@@ -30,7 +30,7 @@ function UserLevelTable(props) {
 
   const columns = [
     {
-      dataField: "id",
+      dataField: "seq",
       text: "STT",
       sort: true,
       sortCaret: sortCaret,

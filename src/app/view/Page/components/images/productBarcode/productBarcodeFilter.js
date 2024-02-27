@@ -7,6 +7,7 @@ import {
   useMemo,
   DatePicker,
   format,
+  orderList,
 } from "./index";
 
 const prepareFilter = (queryParams, values) => {
@@ -40,6 +41,7 @@ export function ProductBarcodeFilter({ listLoading }) {
           keywordValue: "",
           dateStart: "",
           dateEnd: "",
+          orderBy: ""
         }}
         onSubmit={(values) => {
           applyFilter(values);
@@ -95,7 +97,7 @@ export function ProductBarcodeFilter({ listLoading }) {
                 </small>
               </div>
 
-              <div className="col-lg-2">
+              <div className="col-lg-1">
                 <select
                   className="form-control"
                   placeholder="Filter by Status"
@@ -118,11 +120,31 @@ export function ProductBarcodeFilter({ listLoading }) {
                   <b>Filter</b> by Status
                 </small>
               </div>
+              <div className="col-lg-1">
+                <select
+                  className="form-control"
+                  placeholder="Filter by Status"
+                  name="orderBy"
+                  onBlur={handleBlur}
+                  onChange={(e) => {
+                    setFieldValue("orderBy", e.target.value);
+                    //handleSubmit();
+                  }}
+                  value={values.orderBy}
+                >
+                  <option value="">All</option>
+                  {orderList.map((orderList) => (
+                    <option key={orderList.value} value={orderList.value}>
+                      {orderList.text}
+                    </option>
+                  ))}
+                </select>
+                <small className="form-text text-muted">
+                  <b>Filter</b> by Order
+                </small>
+              </div>
               <div className="col-lg-6 form-group row">
-                <label className="col-form-label text-right col-lg-3 ">
-                  Date start
-                </label>
-                <div className="col-lg-3">
+                <div className="col-lg-4">
                   <DatePicker
                     format="yyyy-MM-dd"
                     placeholder="Select date"
@@ -132,11 +154,12 @@ export function ProductBarcodeFilter({ listLoading }) {
                       setFieldValue("dateStart", format(date, "yyyy-MM-dd"));
                     }}
                   />
+                  <small className="form-text text-muted">
+                    <b>Filter</b> value of Type
+                  </small>
                 </div>
-                <label className="col-form-label text-right col-lg-3 ">
-                  Date end
-                </label>
-                <div className="col-lg-3">
+
+                <div className="col-lg-4">
                   <DatePicker
                     format="yyyy-MM-dd"
                     placeholder="Select date"
@@ -146,29 +169,33 @@ export function ProductBarcodeFilter({ listLoading }) {
                       setFieldValue("dateEnd", format(date, "yyyy-MM-dd"));
                     }}
                   />
+                  <small className="form-text text-muted">
+                    <b>Filter</b> value of Type
+                  </small>
+                </div>
+                <div className="col-lg-4  form-group row ">
+                  <button
+                    type="reset"
+                    className="btn btn-success col-lg-5"
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </button>
+                  <p className="col-lg-1"></p>
+                  <button
+                    type="reset"
+                    className="btn btn-secondary col-lg-5"
+                    onClick={() => {
+                      setFieldValue("keywordType", "");
+                      setFieldValue("keywordValue", "");
+                      setFieldValue("status", "");
+                      handleSubmit();
+                    }}
+                  >
+                    Cancel
+                  </button>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-2 ">
-              <button
-                type="reset"
-                className="btn btn-success mr-2"
-                onClick={handleSubmit}
-              >
-                Submit
-              </button>
-              <button
-                type="reset"
-                className="btn btn-secondary"
-                onClick={() => {
-                  setFieldValue("keywordType", "");
-                  setFieldValue("keywordValue", "");
-                  setFieldValue("status", "");
-                  handleSubmit();
-                }}
-              >
-                Cancel
-              </button>
             </div>
           </form>
         )}

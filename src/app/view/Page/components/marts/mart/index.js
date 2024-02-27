@@ -52,7 +52,7 @@ import paginationFactory, {
 } from "react-bootstrap-table2-paginator";
 import { useLang } from "../../../../../../module/i18n/index.js";
 import { Pagination } from "../../../../../../module/partials/controls/index.js";
-import { moaSearchList } from "../../../redux/marts/Thunk.js";
+import { getMoaMartList } from "../../../redux/marts/Thunk.js";
 import {
   getSelectRow,
   getHandlerTableChange,
@@ -130,7 +130,7 @@ export {
   PleaseWaitMessage,
   sortCaret,
   Pagination,
-  moaSearchList,
+  getMoaMartList,
   StatusColumnFormatter,
   ActionsColumnFormatter,
 };

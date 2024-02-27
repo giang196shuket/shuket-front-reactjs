@@ -52,7 +52,7 @@ export function OrderTable() {
 
   const columns = [
     {
-      dataField: "id",
+      dataField: "seq",
       text: "STT",
       sort: true,
       sortCaret: sortCaret,
@@ -192,7 +192,7 @@ export function OrderTable() {
     custom: true,
     totalSize: totalCount,
     sizePerPageList: sizePerPageList,
-    sizePerPage: UIProps.queryParams.sizePerPage,
+    limit: UIProps.queryParams.limit,
     page: UIProps.queryParams.page,
     paginationTotalRenderer: customTotal,
   };

@@ -1,8 +1,9 @@
+import { orderList } from '../../../common/UIhelpers';
 import { Formik, isEqual, keyTypeList, statusList, useMartsUIContext, useMemo, useSelector }  from './index'
 
 const prepareFilter = (queryParams, values) => {
-  const { status, keyType, keyValue, appType, useStock, isSyncOrder, keywordType, keywordValue} = values;
-  return { status, keyType, keyValue, appType, useStock, isSyncOrder, keywordType, keywordValue} ;
+  const newQueryParams = { ...queryParams, ...values };
+  return newQueryParams;
 };
 
 export function MartsFilter({ listLoading }) {
@@ -27,9 +28,9 @@ export function MartsFilter({ listLoading }) {
     <>
       <Formik
         initialValues={{
-          status: "", // values => All=""/Selling=0/Sold=1
-          keyType: "", // values => All=""/New=0/Used=1
-          keyValue: "",
+          status: "", 
+          keywordType: "", 
+          keywordValue: "",
           appType: "",
           useStock: false,
           isSyncOrder: false
@@ -47,17 +48,17 @@ export function MartsFilter({ listLoading }) {
         }) => (
           <form onSubmit={handleSubmit} className="form form-label-right">
             <div className="form-group row">
-              <div className="col-lg-2 offset-md-2">
+              <div className="col-lg-2">
                 <select
                   className="form-control"
-                  name="keyType"
+                  name="keywordType"
                   placeholder={"Filter by Type"}
                   onChange={(e) => {
-                    setFieldValue("keyType", e.target.value);
+                    setFieldValue("keywordType", e.target.value);
                     //handleSubmit();
                   }}
                   onBlur={handleBlur}
-                  value={values.keyType}
+                  value={values.keywordType}
                 >
                   <option value="">All</option>
                   {keyTypeList.map((typeList) => (
@@ -75,40 +76,17 @@ export function MartsFilter({ listLoading }) {
                 <input
                   type="text"
                   className="form-control"
-                  name="keyValue"
+                  name="keywordValue"
                   placeholder="Search"
                   onBlur={handleBlur}
-                  value={values.keyValue}
+                  value={values.keywordValue}
                   onChange={(e) => {
-                    setFieldValue("keyValue", e.target.value);
+                    setFieldValue("keywordValue", e.target.value);
                     //handleSubmit();
                   }}
                 />
                 <small className="form-text text-muted">
                   <b>Filter</b> value of Type
-                </small>
-              </div>
-              <div className="col-lg-2">
-                <select
-                  className="form-control"
-                  placeholder="Filter by Status"
-                  name="status"
-                  onBlur={handleBlur}
-                  onChange={(e) => {
-                    setFieldValue("status", e.target.value);
-                    //handleSubmit();
-                  }}
-                  value={values.status}
-                >
-                  <option value="">All</option>
-                  {statusList.map((statusList) => (
-                    <option key={statusList.value} value={statusList.value}>
-                      {statusList.text}
-                    </option>
-                  ))}
-                </select>
-                <small className="form-text text-muted">
-                  <b>Filter</b> by Status
                 </small>
               </div>
               <div className="col-lg-2">
@@ -134,9 +112,54 @@ export function MartsFilter({ listLoading }) {
                   <b>Filter</b> by type of App
                 </small>
               </div>
-            </div>
-            <div className="form-group row">
-              <div className="col-lg-2 offset-md-2">
+              <div className="col-lg-1">
+                <select
+                  className="form-control"
+                  placeholder="Filter by Status"
+                  name="status"
+                  onBlur={handleBlur}
+                  onChange={(e) => {
+                    setFieldValue("status", e.target.value);
+                    //handleSubmit();
+                  }}
+                  value={values.status}
+                >
+                  <option value="">All</option>
+                  {statusList.map((statusList) => (
+                    <option key={statusList.code} value={statusList.code}>
+                      {statusList.text}
+                    </option>
+                  ))}
+                </select>
+                <small className="form-text text-muted">
+                  <b>Filter</b> by Status
+                </small>
+              </div>
+        
+              <div className="col-lg-1">
+                <select
+                  className="form-control"
+                  placeholder="Filter by Status"
+                  name="orderBy"
+                  onBlur={handleBlur}
+                  onChange={(e) => {
+                    setFieldValue("orderBy", e.target.value);
+                    //handleSubmit();
+                  }}
+                  value={values.orderBy}
+                >
+                  <option value="">All</option>
+                  {orderList.map((orderList) => (
+                    <option key={orderList.value} value={orderList.value}>
+                      {orderList.text}
+                    </option>
+                  ))}
+                </select>
+                <small className="form-text text-muted">
+                  <b>Filter</b> by Order
+                </small>
+              </div>
+              <div className="col-lg-1">
                 <label className="checkbox  mt-2">
                   <input type="checkbox" onChange={(e) => {
                     setFieldValue("useStock", !values.useStock);
@@ -144,34 +167,28 @@ export function MartsFilter({ listLoading }) {
                   <span></span>
                 </label>
               </div>
-              <div className="col-lg-2 offset-md-2">
-                {/* <label className="checkbox checkbox-md ">
-                  <input type="checkbox mt-2" onChange={(e) => {
-                    setFieldValue("isSyncOrder", e.target.value);
-                  }} /> Sync Order
-                  <span />
-                </label> */}
+              <div className="col-lg-1">
                 <label className="checkbox  mt-2">
                   <input type="checkbox" onChange={(e) => {
                     setFieldValue("isSyncOrder", !values.isSyncOrder);
                   }} /> Sync Order
                   <span></span>
-                </label>
-               
+                </label>              
               </div>
-              <div className="col-lg-2  offset-md-2">
+              <div className="col-lg-2 ">
                 <button type="reset" className="btn btn-success mr-2" onClick={handleSubmit}>Submit</button>
                 <button type="reset" className="btn btn-secondary" onClick={() => {
                   setFieldValue("isSyncOrder", false);
                   setFieldValue("useStock", false);
                   setFieldValue("status", "");
-                  setFieldValue("keyType", "");
-                  setFieldValue("keyValue", "");
+                  setFieldValue("keywordType", "");
+                  setFieldValue("keywordValue", "");
                   setFieldValue("appType", "");
                   handleSubmit();
                 }}>Cancel</button>
               </div>
             </div>
+            
           </form>
         )}
       </Formik>

@@ -1,4 +1,4 @@
-import { ActionsColumnFormatter, BootstrapTable, NoRecordsFoundMessage, Pagination, PaginationProvider, PleaseWaitMessage, defaultSorted, getHandlerTableChange, getImageBannerCoupon, getSelectRow, injectIntl, paginationFactory, shallowEqual, sizePerPageList, sortCaret, useDispatch, useEffect, useBannerCouponUIContext, useMemo, useSelector } from './index'
+import { ActionsColumnFormatter, SwitchesCustom, BootstrapTable, NoRecordsFoundMessage, Pagination, PaginationProvider, PleaseWaitMessage, defaultSorted, getHandlerTableChange, getImageBannerCoupon, getSelectRow, injectIntl, paginationFactory, shallowEqual, sizePerPageList, sortCaret, useDispatch, useEffect, useBannerCouponUIContext, useMemo, useSelector } from './index'
 
 
 function BannerCouponTable(props) {
@@ -11,7 +11,7 @@ function BannerCouponTable(props) {
       setIds: UIContext.setIds,
       queryParams: UIContext.queryParams,
       setQueryParams: UIContext.setQueryParams,
-      openEdit: UIContext.openEdit,
+      openAdd: UIContext.openAdd,
       openDelete: UIContext.openDelete,
     };
   }, [UIContext]);
@@ -25,17 +25,12 @@ function BannerCouponTable(props) {
 
   useEffect(() => {
     UIProps.setIds([]);
-    dispatch(getImageBannerCoupon({
-      filter_status:"A",
-      page:1,
-      per_page:20
-  
-  }));
+    dispatch(getImageBannerCoupon(UIProps.queryParams));
   }, [dispatch, UIProps.queryParams]);
 
   const columns = [
     {
-      dataField: "bnr_code",
+      dataField: "code",
       text: "STT",
       sort: true,
       sortCaret: sortCaret,
@@ -44,7 +39,7 @@ function BannerCouponTable(props) {
       },
     },
     {
-      dataField: "bnr_image",
+      dataField: "image",
       text: "IMAGE",
       sort: true,
       sortCaret: sortCaret,
@@ -52,12 +47,12 @@ function BannerCouponTable(props) {
         width: "150px",
       },
       formatter: (cell, row, rowIndex, extraData) => (
-        <img style={{width:'100%'}}  src={row.bnr_image} alt="" />
+        <img style={{width:'100%'}}  src={row.image} alt="" />
       ),
     },
 
     {
-      dataField: "bnr_name",
+      dataField: "name",
       text: "IMAGE INFO",
       sort: true,
       sortCaret: sortCaret,
@@ -65,7 +60,7 @@ function BannerCouponTable(props) {
       headerClasses: "text-center pr-0",
     },
     {
-      dataField: "bnr_type_en",
+      dataField: "typeImageEN",
       text: "IMAGE TYPE",
       sort: true,
       sortCaret: sortCaret,
@@ -73,7 +68,7 @@ function BannerCouponTable(props) {
       headerClasses: "text-center pr-0",
     },
     {
-      dataField: "bnr_cate_en",
+      dataField: "categoryEn",
       text: "IMAGE CATE",
       sort: true,
       sortCaret: sortCaret,
@@ -81,25 +76,38 @@ function BannerCouponTable(props) {
       headerClasses: "text-center pr-0",
     },
     {
-      dataField: "c_time",
+      dataField: "cTime",
       text: "IMAGE CATE",
       sort: true,
       sortCaret: sortCaret,
       classes: "text-center pr-0",
       headerClasses: "text-center pr-0",
       formatter: (cell, row, rowIndex, extraData) => (
-        <p>{new Date(row.c_time).toLocaleString()}</p>
+        <p>{new Date(row.cTime).toLocaleString()}</p>
       ),
     },
-    
+    {
+      text: "STATUS",
+      sort: true,
+      sortCaret: sortCaret,
+      classes: "text-center pr-0",
+      headerClasses: "text-center pr-0",
+      formatter: (cell, row, rowIndex, extraData) => (
+        <div>
+          <SwitchesCustom
+            status={row.status === "A" ? true : false}
+            code={row.code}
+          ></SwitchesCustom>
+        </div>
+      ),
+    },
     {
       dataField: "method",
       text: "Methods",
       formatter: ActionsColumnFormatter,
       formatExtraData: {
-        openEdit: UIProps.openEdit,
         openDelete: UIProps.openDelete,
-        columnName: 'fcm_code'
+        columnName: 'code'
 
       },
       classes: "text-right pr-0",
@@ -111,7 +119,7 @@ function BannerCouponTable(props) {
   ];
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
-      ShowingA {from} to {to} of {size} Results
+      Showing {from} to {to} of {size} Results
     </span>
   );
   const paginationOptions = {
@@ -139,18 +147,18 @@ function BannerCouponTable(props) {
                 bootstrap4
                 bordered={false}
                 remote
-                keyField="fcm_code"
+                keyField="id"
                 data={bannerCouponImage === null ? [] : bannerCouponImage}
                 columns={columns}
                 defaultSorted={defaultSorted}
                 onTableChange={getHandlerTableChange(
                     UIProps.setQueryParams
                 )}
-                selectRow={getSelectRow({
-                  entities: bannerCouponImage,
-                  ids: UIProps.ids,
-                  setIds: UIProps.setIds,
-                })}
+                // selectRow={getSelectRow({
+                //   entities: bannerCouponImage,
+                //   ids: UIProps.ids,
+                //   setIds: UIProps.setIds,
+                // })}
                 {...paginationTableProps}
               >
                 <PleaseWaitMessage entities={bannerCouponImage} />

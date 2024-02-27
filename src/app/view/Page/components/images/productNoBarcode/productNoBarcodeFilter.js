@@ -1,33 +1,21 @@
-import { Formik, ImageCategories, ImageType, isEqual, keyImagesList, sortType, statusList, useProductNoBarcodeUIContext, useMemo, useSelector } from './index'
+import {
+  Formik,
+  isEqual,
+  keyImagesList,
+  statusList,
+  useProductNoBarcodeUIContext,
+  useMemo,
+  DatePicker,
+  format,
+  orderList,
+} from "./index";
 
 const prepareFilter = (queryParams, values) => {
-  const { status, keyType, keyValue, appType, useStock, isSyncOrder } = values;
-  const newQueryParams = { ...queryParams };
-  const filter = {};
-  // Filter by status
-  filter.status = status !== "" ? status : "";
-
-  // Filter by condition
-  filter.keyType = keyType !== "" ? keyType : '';
-  filter.keyValue = keyValue !== "" ? keyValue : '';
-  filter.appType = appType !== "" ? appType : '';
-  if (useStock) {
-    filter.useStock = 1;
-  } else {
-    filter.useStock = 0;
-  }
-  if (isSyncOrder) {
-    filter.isSyncOrder = 1;
-  } else {
-    filter.isSyncOrder = 0;
-  }
-  newQueryParams.filter = filter;
+  const newQueryParams = { ...queryParams, ...values };
   return newQueryParams;
 };
 
 export function ProductNoBarcodeFilter({ listLoading }) {
-  const typeMart = useSelector((state) => state.main.typeMart);
-
   // Products UI Context
   const UIContext = useProductNoBarcodeUIContext();
   const UIProps = useMemo(() => {
@@ -48,12 +36,12 @@ export function ProductNoBarcodeFilter({ listLoading }) {
     <>
       <Formik
         initialValues={{
-          status: "", // values => All=""/Selling=0/Sold=1
-          keyType: "", // values => All=""/New=0/Used=1
-          keyValue: "",
-          appType: "",
-          useStock: false,
-          isSyncOrder: false
+          status: "",
+          keywordType: "",
+          keywordValue: "",
+          dateStart: "",
+          dateEnd: "",
+          orderBy: ""
         }}
         onSubmit={(values) => {
           applyFilter(values);
@@ -68,17 +56,17 @@ export function ProductNoBarcodeFilter({ listLoading }) {
         }) => (
           <form onSubmit={handleSubmit} className="form form-label-right">
             <div className="form-group row">
-              <div className="col-lg-2 offset-md-2">
+              <div className="col-lg-2">
                 <select
                   className="form-control"
-                  name="keyType"
-                  placeholder={"Filter by Type"}
+                  name="keywordType"
+                  placeholder={"Filter by tag, code, name"}
                   onChange={(e) => {
-                    setFieldValue("keyType", e.target.value);
+                    setFieldValue("keywordType", e.target.value);
                     //handleSubmit();
                   }}
                   onBlur={handleBlur}
-                  value={values.keyType}
+                  value={values.keywordType}
                 >
                   <option value="">All</option>
                   {keyImagesList.map((typeList) => (
@@ -86,22 +74,21 @@ export function ProductNoBarcodeFilter({ listLoading }) {
                       {typeList.text}
                     </option>
                   ))}
-
                 </select>
                 <small className="form-text text-muted">
-                  <b>Filter</b> by name
+                  <b>Filter</b> by tag
                 </small>
               </div>
               <div className="col-lg-2">
                 <input
                   type="text"
                   className="form-control"
-                  name="keyValue"
+                  name="keywordValue"
                   placeholder="Search"
                   onBlur={handleBlur}
-                  value={values.keyValue}
+                  value={values.keywordValue}
                   onChange={(e) => {
-                    setFieldValue("keyValue", e.target.value);
+                    setFieldValue("keywordValue", e.target.value);
                     //handleSubmit();
                   }}
                 />
@@ -109,8 +96,8 @@ export function ProductNoBarcodeFilter({ listLoading }) {
                   <b>Filter</b> value of Type
                 </small>
               </div>
-              
-              <div className="col-lg-2">
+
+              <div className="col-lg-1">
                 <select
                   className="form-control"
                   placeholder="Filter by Status"
@@ -133,89 +120,81 @@ export function ProductNoBarcodeFilter({ listLoading }) {
                   <b>Filter</b> by Status
                 </small>
               </div>
-              <div className="col-lg-2">
+              <div className="col-lg-1">
                 <select
                   className="form-control"
-                  placeholder="Filter by Type"
-                  name="appType"
+                  placeholder="Filter by Status"
+                  name="orderBy"
                   onBlur={handleBlur}
                   onChange={(e) => {
-                    setFieldValue("appType", e.target.value);
+                    setFieldValue("orderBy", e.target.value);
                     //handleSubmit();
                   }}
-                  value={values.appType}
+                  value={values.orderBy}
                 >
                   <option value="">All</option>
-                  {ImageType.map((type) => (
-                    <option key={type.value} value={type.code}>
-                      {type.name}
+                  {orderList.map((orderList) => (
+                    <option key={orderList.value} value={orderList.value}>
+                      {orderList.text}
                     </option>
                   ))}
                 </select>
                 <small className="form-text text-muted">
-                  <b>Filter</b> by type 
+                  <b>Filter</b> by Order
                 </small>
               </div>
-            </div>
-            <div className="form-group row">
-          
-            <div className="col-lg-2  offset-md-2">
-                <select
-                  className="form-control"
-                  placeholder="Filter by sort"
-                  name="sort"
-                  onBlur={handleBlur}
-                  onChange={(e) => {
-                    setFieldValue("sort", e.target.value);
-                    //handleSubmit();
-                  }}
-                  value={values.appType}
-                >
-                  <option value="">All</option>
-                  {sortType.map((type) => (
-                    <option key={type.value} value={type.code}>
-                      {type.name}
-                    </option>
-                  ))}
-                </select>
-                <small className="form-text text-muted">
-                  <b>Filter</b> by sort 
-                </small>
-              </div>
-              <div className="col-lg-2  ">
-                <select
-                  className="form-control"
-                  placeholder="Filter by sort"
-                  name="sort"
-                  onBlur={handleBlur}
-                  onChange={(e) => {
-                    setFieldValue("sort", e.target.value);
-                    //handleSubmit();
-                  }}
-                  value={values.appType}
-                >
-                  <option value="">All</option>
-                  {ImageCategories.map((type) => (
-                    <option key={type.value} value={type.code}>
-                      {type.cate_name}
-                    </option>
-                  ))}
-                </select>
-                <small className="form-text text-muted">
-                  <b>Filter</b> by category 
-                </small>
-              </div>
-              <div className="col-lg-2 ">
-                <button type="reset" className="btn btn-success mr-2" onClick={handleSubmit}>Submit</button>
-                <button type="reset" className="btn btn-secondary" onClick={() => {
-                  setFieldValue("isSyncOrder", false);
-                  setFieldValue("useStock", false);
-                  setFieldValue("status", "");
-                  setFieldValue("keyType", "");
-                  setFieldValue("keyValue", "");
-                  setFieldValue("appType", "");
-                  handleSubmit();
-                }}>Cancel</button>
+              <div className="col-lg-6 form-group row">
+                <div className="col-lg-4">
+                  <DatePicker
+                    format="yyyy-MM-dd"
+                    placeholder="Select date"
+                    name="dateStart"
+                    // value={values.dateStart}
+                    onChange={(date) => {
+                      setFieldValue("dateStart", format(date, "yyyy-MM-dd"));
+                    }}
+                  />
+                  <small className="form-text text-muted">
+                    <b>Filter</b> value of Type
+                  </small>
+                </div>
+
+                <div className="col-lg-4">
+                  <DatePicker
+                    format="yyyy-MM-dd"
+                    placeholder="Select date"
+                    name="dateEnd"
+                    // value={values.dateEnd}
+                    onChange={(date) => {
+                      setFieldValue("dateEnd", format(date, "yyyy-MM-dd"));
+                    }}
+                  />
+                  <small className="form-text text-muted">
+                    <b>Filter</b> value of Type
+                  </small>
+                </div>
+                <div className="col-lg-4  form-group row ">
+                  <button
+                    type="reset"
+                    className="btn btn-success col-lg-5"
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </button>
+                  <p className="col-lg-1"></p>
+                  <button
+                    type="reset"
+                    className="btn btn-secondary col-lg-5"
+                    onClick={() => {
+                      setFieldValue("keywordType", "");
+                      setFieldValue("keywordValue", "");
+                      setFieldValue("status", "");
+                      handleSubmit();
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           </form>

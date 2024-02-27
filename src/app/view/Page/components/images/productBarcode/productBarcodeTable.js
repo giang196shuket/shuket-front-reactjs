@@ -1,3 +1,4 @@
+import TagsInput from "react-tagsinput";
 import {
   ActionsColumnFormatter,
   BootstrapTable,
@@ -20,7 +21,11 @@ import {
   useMemo,
   useSelector,
   SwitchesCustom,
+  editProductBarcodeImage
 } from "./index";
+import 'react-tagsinput/react-tagsinput.css'
+import '../../../../../../module/assets/sass/pages/images/productBarcode.scss'
+import { useState } from "react";
 
 function ProductBarcodeTable(props) {
   const UIContext = useProductBarcodeUIContext();
@@ -41,19 +46,22 @@ function ProductBarcodeTable(props) {
     shallowEqual
   );
 
-  const { productBarcodeImage: entities, isLoading } = currentState;
+  const {
+    productBarcodeImage: entities,
+    productBarcodeImageTotal: total,
+    isLoading,
+    productBarcodeImageEdit,
+  } = currentState;
   const dispatch = useDispatch();
-  console.log('UIProps.queryParams', UIProps.queryParams)
+  console.log("UIProps.queryParams", UIProps.queryParams);
   useEffect(() => {
     UIProps.setIds([]);
-    dispatch(
-      getListImagesWithBarcode(UIProps.queryParams)
-    );
+    dispatch(getListImagesWithBarcode(UIProps.queryParams));
   }, [dispatch, UIProps.queryParams]);
 
   const columns = [
     {
-      dataField: "id",
+      dataField: "seq",
       text: "STT",
       sort: true,
       sortCaret: sortCaret,
@@ -103,7 +111,6 @@ function ProductBarcodeTable(props) {
       ),
     },
     {
-      dataField: "c_time",
       text: "STATUS",
       sort: true,
       sortCaret: sortCaret,
@@ -111,7 +118,10 @@ function ProductBarcodeTable(props) {
       headerClasses: "text-center pr-0",
       formatter: (cell, row, rowIndex, extraData) => (
         <div>
-          <SwitchesCustom status={row.status === 'A' ? true : false} code={row.code}></SwitchesCustom>
+          <SwitchesCustom
+            status={row.status === "A" ? true : false}
+            code={row.code}
+          ></SwitchesCustom>
         </div>
       ),
     },
@@ -122,8 +132,7 @@ function ProductBarcodeTable(props) {
       formatter: ActionsColumnFormatter,
       formatExtraData: {
         openEdit: UIProps.openEdit,
-        openDelete: UIProps.openDelete,
-        columnName: "fcm_code",
+        columnName: "id",
       },
       classes: "text-right pr-0",
       headerClasses: "text-right pr-3",
@@ -134,16 +143,78 @@ function ProductBarcodeTable(props) {
   ];
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
-      ShowingA {from} to {to} of {size} Results
+      Showing {from} to {to} of {size} Results
     </span>
   );
   const paginationOptions = {
     custom: true,
-    totalSize: entities.length,
+    totalSize: total,
     sizePerPageList: sizePerPageList,
     limit: UIProps.queryParams.limit,
     page: UIProps.queryParams.page,
     paginationTotalRenderer: customTotal,
+  };
+
+  console.log("productBarcodeImageEdit", productBarcodeImageEdit);
+
+  const [tagsEdit, setTagsEdit] = useState([])
+
+  console.log('tagsEdit', tagsEdit)
+
+  //convert tag string => array
+  function generateTag(tages) {
+    return tages.split("#").filter(Boolean);
+  }
+
+  // thêm xóa tag
+  const handleChangeTag = (tages) =>{
+    setTagsEdit(tages)
+  }
+
+  //tắt expanded khi chuyển panigation, limit
+  useEffect(() => {
+    dispatch(editProductBarcodeImage(productBarcodeImageEdit));
+  }, [UIProps.queryParams]);
+
+  //đổi state tags khi expand sản phẩm khác
+  useEffect(()=>{
+    if(productBarcodeImageEdit){
+      setTagsEdit(generateTag(entities.find((en)=> en.id === productBarcodeImageEdit)?.tags))
+    }
+  },[entities, productBarcodeImageEdit])
+  
+  // html mở rộng
+  const expandRow = {
+    renderer: (row) => (
+      <div className="my-5">
+        <div className="row">
+            <div className="col-lg-5 offset-md-1">
+              <div className="row">
+                <p className="col-lg-2 offset-md-1"> Name: </p>
+                <input className="col-lg-9 form-control" defaultValue={row.name} />
+            </div>
+            <div className="row my-5">
+              <p className="col-lg-2 offset-md-1"> Tags: </p>
+              <div className="col-lg-9 d-flex flex-column" style={{gap:10}}>
+                <TagsInput value={tagsEdit} onChange={handleChangeTag}   />
+              </div>
+            </div>
+            <div className="row mt-5">
+              <button className="offset-md-1 btn btn-light-primary font-weight-bolder font-size-sm"> SAVE </button>
+              <button className="ml-5 btn btn-danger font-weight-bolder font-size-sm" onClick={()=>dispatch(editProductBarcodeImage(productBarcodeImageEdit))}> Cancle </button>
+            </div>
+          </div>
+          <div  className="col-lg-5 offset-md-1">
+          <img style={{ width: "30%" }} src={row.arrImage.image_uri} alt="" className=" offset-md-2"/>
+          </div>
+        </div>
+      </div>
+    ),
+    expanded: [productBarcodeImageEdit], // dựa vào này mở rộng row nào đó
+    onExpand: (row, isExpand) => {
+      console.log('rowrowrow')
+    },
+    onlyOneExpanding: true,
   };
 
   return (
@@ -158,9 +229,10 @@ function ProductBarcodeTable(props) {
                 bootstrap4
                 bordered={false}
                 remote
-                keyField="fcm_code"
+                keyField="id"
                 data={entities === null ? [] : entities}
                 columns={columns}
+                expandRow={expandRow}
                 defaultSorted={defaultSorted}
                 onTableChange={getHandlerTableChange(UIProps.setQueryParams)}
                 selectRow={getSelectRow({

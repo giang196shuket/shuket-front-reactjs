@@ -12,7 +12,6 @@ function BannerCouponCard(props, history) {
       setQueryParams: UIContext.setQueryParams,
       openAdd: UIContext.openAdd,
       openDelete: UIContext.openDelete,
-      openEdit: UIContext.openEdit,
 
     };
   }, [UIContext]);

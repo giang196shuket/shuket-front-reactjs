@@ -378,14 +378,14 @@ function ProductTable(props) {
   ];
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
-      ShowingA {from} to {to} of {size} Results
+      Showing {from} to {to} of {size} Results
     </span>
   );
   const paginationOptions = {
     custom: true,
     totalSize: entities.length,
     sizePerPageList: sizePerPageList,
-    sizePerPage: UIProps.queryParams.pageSize,
+    limit: UIProps.queryParams.pageSize,
     page: UIProps.queryParams.pageNumber,
     paginationTotalRenderer: customTotal,
   };

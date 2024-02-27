@@ -1,32 +1,11 @@
-import { Formik, ImageCategories, ImageType, isEqual, keyImagesList, sortType, statusList, useBannerCouponUIContext, useMemo, useSelector } from './index'
+import { Formik, ImageCategories, ImageType, isEqual, keyImagesList, orderList, statusList, useBannerCouponUIContext, useMemo, useSelector } from './index'
 
 const prepareFilter = (queryParams, values) => {
-  const { status, keyType, keyValue, appType, useStock, isSyncOrder } = values;
-  const newQueryParams = { ...queryParams };
-  const filter = {};
-  // Filter by status
-  filter.status = status !== "" ? status : "";
-
-  // Filter by condition
-  filter.keyType = keyType !== "" ? keyType : '';
-  filter.keyValue = keyValue !== "" ? keyValue : '';
-  filter.appType = appType !== "" ? appType : '';
-  if (useStock) {
-    filter.useStock = 1;
-  } else {
-    filter.useStock = 0;
-  }
-  if (isSyncOrder) {
-    filter.isSyncOrder = 1;
-  } else {
-    filter.isSyncOrder = 0;
-  }
-  newQueryParams.filter = filter;
+  const newQueryParams = { ...queryParams,...values };
   return newQueryParams;
 };
 
 export function BannerCouponFilter({ listLoading }) {
-  const typeMart = useSelector((state) => state.main.typeMart);
 
   // Products UI Context
   const UIContext = useBannerCouponUIContext();
@@ -48,12 +27,12 @@ export function BannerCouponFilter({ listLoading }) {
     <>
       <Formik
         initialValues={{
-          status: "", // values => All=""/Selling=0/Sold=1
-          keyType: "", // values => All=""/New=0/Used=1
-          keyValue: "",
-          appType: "",
-          useStock: false,
-          isSyncOrder: false
+          status: "",
+          keywordType: "",
+          keywordValue: "",        
+          orderBy: "",
+          imageType:"",
+          imageCategory:""
         }}
         onSubmit={(values) => {
           applyFilter(values);
@@ -71,14 +50,14 @@ export function BannerCouponFilter({ listLoading }) {
               <div className="col-lg-2 offset-md-2">
                 <select
                   className="form-control"
-                  name="keyType"
+                  name="keywordType"
                   placeholder={"Filter by Type"}
                   onChange={(e) => {
-                    setFieldValue("keyType", e.target.value);
+                    setFieldValue("keywordType", e.target.value);
                     //handleSubmit();
                   }}
                   onBlur={handleBlur}
-                  value={values.keyType}
+                  value={values.keywordType}
                 >
                   <option value="">All</option>
                   {keyImagesList.map((typeList) => (
@@ -96,17 +75,17 @@ export function BannerCouponFilter({ listLoading }) {
                 <input
                   type="text"
                   className="form-control"
-                  name="keyValue"
+                  name="keywordValue"
                   placeholder="Search"
                   onBlur={handleBlur}
-                  value={values.keyValue}
+                  value={values.keywordValue}
                   onChange={(e) => {
-                    setFieldValue("keyValue", e.target.value);
+                    setFieldValue("keywordValue", e.target.value);
                     //handleSubmit();
                   }}
                 />
                 <small className="form-text text-muted">
-                  <b>Filter</b> value of Type
+                  <b>Search</b> value
                 </small>
               </div>
               
@@ -137,18 +116,18 @@ export function BannerCouponFilter({ listLoading }) {
                 <select
                   className="form-control"
                   placeholder="Filter by Type"
-                  name="appType"
+                  name="imageType"
                   onBlur={handleBlur}
                   onChange={(e) => {
-                    setFieldValue("appType", e.target.value);
+                    setFieldValue("imageType", e.target.value);
                     //handleSubmit();
                   }}
-                  value={values.appType}
+                  value={values.imageType}
                 >
                   <option value="">All</option>
                   {ImageType.map((type) => (
-                    <option key={type.value} value={type.code}>
-                      {type.name}
+                    <option key={type.value} value={type.value}>
+                      {type.text}
                     </option>
                   ))}
                 </select>
@@ -163,18 +142,18 @@ export function BannerCouponFilter({ listLoading }) {
                 <select
                   className="form-control"
                   placeholder="Filter by sort"
-                  name="sort"
+                  name="orderBy"
                   onBlur={handleBlur}
                   onChange={(e) => {
-                    setFieldValue("sort", e.target.value);
+                    setFieldValue("orderBy", e.target.value);
                     //handleSubmit();
                   }}
-                  value={values.appType}
+                  value={values.orderBy}
                 >
                   <option value="">All</option>
-                  {sortType.map((type) => (
-                    <option key={type.value} value={type.code}>
-                      {type.name}
+                  {orderList.map((type) => (
+                    <option key={type.value} value={type.value}>
+                      {type.text}
                     </option>
                   ))}
                 </select>
@@ -185,14 +164,14 @@ export function BannerCouponFilter({ listLoading }) {
               <div className="col-lg-2  ">
                 <select
                   className="form-control"
-                  placeholder="Filter by sort"
-                  name="sort"
+                  placeholder="Filter by imageCategory"
+                  name="imageCategory"
                   onBlur={handleBlur}
                   onChange={(e) => {
-                    setFieldValue("sort", e.target.value);
+                    setFieldValue("imageCategory", e.target.value);
                     //handleSubmit();
                   }}
-                  value={values.appType}
+                  value={values.imageCategory}
                 >
                   <option value="">All</option>
                   {ImageCategories.map((type) => (
@@ -208,13 +187,13 @@ export function BannerCouponFilter({ listLoading }) {
               <div className="col-lg-2 ">
                 <button type="reset" className="btn btn-success mr-2" onClick={handleSubmit}>Submit</button>
                 <button type="reset" className="btn btn-secondary" onClick={() => {
-                  setFieldValue("isSyncOrder", false);
-                  setFieldValue("useStock", false);
-                  setFieldValue("status", "");
-                  setFieldValue("keyType", "");
-                  setFieldValue("keyValue", "");
-                  setFieldValue("appType", "");
-                  handleSubmit();
+                   setFieldValue("keywordType", "");
+                   setFieldValue("keywordValue", "");
+                   setFieldValue("status", "");
+                   setFieldValue("orderBy", "");
+                   setFieldValue("imageType", "");
+                   setFieldValue("imageCategory", "");
+                   handleSubmit();
                 }}>Cancel</button>
               </div>
             </div>

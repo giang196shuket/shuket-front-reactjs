@@ -8,7 +8,7 @@ export const ActionsColumnFormatter = (
   cellContent,
   row,
   rowIndex,
-  { openEdit, openDelete, columnName }
+  { openEdit, columnName }
 ) => (
   <>
   {openEdit &&(
@@ -29,21 +29,6 @@ export const ActionsColumnFormatter = (
   )}
    
 
-    <> </>
-    {openDelete &&  (
-        <OverlayTrigger
-        overlay={<Tooltip id="products-delete-tooltip">Delete images</Tooltip>}
-      >
-        <a
-          className="btn btn-icon btn-light btn-hover-danger btn-sm"
-          onClick={() => openDelete(row[columnName])}
-        >
-          <span className="svg-icon svg-icon-md svg-icon-danger">
-            <SVG src={toAbsoluteUrl("/images/svg/icons/General/Trash.svg")} />
-          </span>
-        </a>
-      </OverlayTrigger>
-    )}
   
   </>
 );

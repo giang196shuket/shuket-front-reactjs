@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { getDetailMart, moaSearchList, uploadMartLogo } from "./Thunk";
+import { getDetailMart, getMoaMartList, uploadMartLogo } from "./Thunk";
 
 const initialMartsState = {
   listLoading: false,
@@ -57,7 +57,7 @@ export const martSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(moaSearchList.fulfilled, (state, action) => {
+      .addCase(getMoaMartList.fulfilled, (state, action) => {
         state.entities = action.payload.data?.list;
         state.totalCount = action.payload.data?.total;
         state.error = null;
@@ -67,7 +67,7 @@ export const martSlice = createSlice({
       .addMatcher(
         isAnyOf(
           uploadMartLogo.pending,
-          moaSearchList.pending,
+          getMoaMartList.pending,
           getDetailMart.pending
         ),
         (state, action) => {
@@ -77,7 +77,7 @@ export const martSlice = createSlice({
       .addMatcher(
         isAnyOf(
           uploadMartLogo.rejected,
-          moaSearchList.rejected,
+          getMoaMartList.rejected,
           getDetailMart.rejected
         ),
         (state, action) => {

@@ -96,8 +96,8 @@ function BannerCouponAdd(props) {
           >
             <option value="">--All--</option>
             {ImageType.map((type, index) => (
-              <option key={index} value={type.code}>
-                {type.name}
+              <option key={index} value={type.value}>
+                {type.text}
               </option>
             ))}
           </select>

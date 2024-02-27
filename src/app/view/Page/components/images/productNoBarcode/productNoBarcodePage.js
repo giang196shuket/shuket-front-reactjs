@@ -1,18 +1,18 @@
-import { injectIntl } from './index'
-
+import { editProductNoBarcodeImage } from '../../../redux/images/Slice';
+import { injectIntl, useDispatch } from './index'
 
 import ProductNoBarcodeCart from "./productNoBarcodeCart";
 import { ProductNoBarcodeUIProvider } from "./productNoBarcodeUIContext";
 function ProductNoBarcodePage(props) {
+  const dispatch = useDispatch();
+
   const UIEvents = {
     openAdd: () => {
       props.history.push("/m-shuket/MOA SERVICE/marts/general-images/list/add");
     },
     openEdit: (id) => {
-      console.log('id', id)
-      props.history.push(
-        `/m-shuket/MOA SERVICE/service/fcm-management/${id}/edit`
-      );
+      dispatch(editProductNoBarcodeImage(id))
+
     },
   };
   return (

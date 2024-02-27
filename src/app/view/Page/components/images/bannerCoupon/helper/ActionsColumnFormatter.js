@@ -8,26 +8,10 @@ export const ActionsColumnFormatter = (
   cellContent,
   row,
   rowIndex,
-  { openEdit, openDelete, columnName }
+  {  openDelete, columnName }
 ) => (
   <>
-  {openEdit &&(
- <OverlayTrigger
- overlay={<Tooltip id="products-edit-tooltip">Edit images</Tooltip>}
->
- <a
-   className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
-   onClick={() => openEdit(row[columnName])}
- >
-   <span className="svg-icon svg-icon-md svg-icon-primary">
-     <SVG
-       src={toAbsoluteUrl("/images/svg/icons/Communication/Write.svg")}
-     />
-   </span>
- </a>
-</OverlayTrigger>
-  )}
-   
+
 
     <> </>
     {openDelete &&  (

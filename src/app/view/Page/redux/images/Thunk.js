@@ -59,6 +59,18 @@ export const addImagesCouponBanner = createAsyncThunk(
 );
 
   
+export const updateBannerStatusImgs = createAsyncThunk(
+  'updateBannerStatusImgs',
+  async (data,{rejectWithValue}) => {
+      try {
+        
+        const response = await axios.post(`${MAIN_URL}/upd_banner_status_imgs`,data)
+        return response.data
+      } catch (err) {
+        return rejectWithValue(err.message);
+      }
+    }
+);
 
 //product barcode
 export const getListImagesWithBarcode = createAsyncThunk(
@@ -96,6 +108,19 @@ export const updateStatusImgs = createAsyncThunk(
       try {
         
         const response = await axios.post(`${MAIN_URL}/update_status_imgs`,data)
+        return response.data
+      } catch (err) {
+        return rejectWithValue(err.message);
+      }
+    }
+);
+
+export const updateMultiStatusImgs = createAsyncThunk(
+  'updateMultiStatusImgs',
+  async (data,{rejectWithValue}) => {
+      try {
+        
+        const response = await axios.post(`${MAIN_URL}/update_multi_status_imgs`,data)
         return response.data
       } catch (err) {
         return rejectWithValue(err.message);

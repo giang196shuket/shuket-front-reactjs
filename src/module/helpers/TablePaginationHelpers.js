@@ -87,7 +87,7 @@ export function getHandlerTableChange(setQueryParams) {
       type === "sort"
         ? { ...prev, orderBy, sortField }
         : type === "pagination"
-        ? { ...prev, page : page || 1, sizePerPage: sizePerPage }
+        ? { ...prev, page : page || 1, limit: sizePerPage }
         : prev
     );
   };

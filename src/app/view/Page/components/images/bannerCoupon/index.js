@@ -23,13 +23,14 @@ import { ActionsColumnFormatter } from "./helper/ActionsColumnFormatter";
 import { defaultSorted, sizePerPageList } from "../../../common/UIhelpers";
 
 import { Formik } from "formik";
+import SwitchesCustom from "./helper/Switches"
 
 import {
   ImageCategories,
   ImageType,
   keyImagesList,
 } from "./helper/UIHelper";
-import { sortType, statusList } from "../../../common/UIhelpers";
+import { orderList, statusList } from "../../../common/UIhelpers";
 import {
   Card,
   CardBody,
@@ -47,11 +48,11 @@ import {
 } from "../../../redux/images/Thunk";
 
 export {
-  Formik,
+  Formik,SwitchesCustom,
   ImageCategories,
   ImageType,
   keyImagesList,
-  sortType,
+  orderList,
   statusList,
   Card,
   CardBody,

@@ -1,3 +1,34 @@
+export const initialFilter = {
+  keywordType: "",
+  keywordValue: "",
+  status: "",
+  orderBy: "", 
+  page: 1,
+  limit: 10,
+};
+export const orderList = [
+  {
+    text: "Newest",
+    value: "newest",
+  },
+  {
+    text: "Oldest",
+    value: "oldest",
+  },
+]
+
+export const statusList = [
+  {
+    text: "Active",
+    value: "used",
+    code:'A'
+  },
+  {
+    text: "Deactive",
+    value: "unused",
+    code:'C'
+  },
+];
 export const StatusCssClasses = {
   A: "info",
   C: "warning",
@@ -19,19 +50,3 @@ export const sizePerPageList = [
   { text: "100", value: 100 },
 ];
 
-export const sortType = [
-  {
-    name: "Desc",
-    code: "RD",
-  },
-  {
-    name: "Asc",
-    code: "RA",
-  },
-];
-
-export const statusList = [
-  { text: "Active", value: "A" },
-  { text: "Inactive", value: "S" },
-  { text: "Deleted", value: "D" },
-];

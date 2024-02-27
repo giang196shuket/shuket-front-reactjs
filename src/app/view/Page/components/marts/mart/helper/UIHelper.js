@@ -36,8 +36,8 @@ export const initialFilter = {
   appType: "",
   useStock: false,
   isSyncOrder: false,
-  orderBy: "desc", // asc||desc
-  sortField: "registerDate", //
+  orderBy: "",
+  sortField: "registerDate",
   page: 1,
   limit: 10,
 };

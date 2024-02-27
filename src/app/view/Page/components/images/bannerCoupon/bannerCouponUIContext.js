@@ -29,7 +29,6 @@ export function BannerCouponUIProvider({UIEvents, children }) {
     setIds,
     setQueryParams,
     openAdd: UIEvents.openAdd,
-    openEdit: UIEvents.openEdit,
     openDelete: UIEvents.openDelete,
   };
 

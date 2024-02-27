@@ -2,23 +2,21 @@ export const initialFilter = {
   keywordType: "",
   keywordValue: "",
   status: "",
-  appType: "",
-  useStock: false,
-  isSyncOrder: false,
-  orderBy: "desc", // asc||desc
-  sortField: "registerDate", //
+  imageType: "",
+  imageCategory:"",
+  orderBy: "", 
   page: 1,
   limit: 10,
 };
 
 export const ImageType = [
   {
-    name: "Banner",
-    code: "B",
+    text: "Banner",
+    value: "B",
   },
   {
-    name: "Coupon",
-    code: "C",
+    text: "Coupon",
+    value: "C",
   },
 ];
 

@@ -74,7 +74,7 @@ function FcmTable(props) {
   ];
   const customTotal = (from, to, size) => (
     <span className="react-bootstrap-table-pagination-total">
-      ShowingA {from} to {to} of {size} Results
+      Showing {from} to {to} of {size} Results
     </span>
   );
   const paginationOptions = {
