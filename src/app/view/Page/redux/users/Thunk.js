@@ -4,6 +4,18 @@ import axios from "axios";
 
 export const MAIN_URL = process.env.REACT_APP_BACKEND_URL + "/users";
 
+export const checkUserAdminId = createAsyncThunk(
+  'checkUserAdminId',
+  async (data,{rejectWithValue}) => {
+      try {
+        
+        const response = await axios.post(`${MAIN_URL}/check_users_admin_id`,data)
+        return response.data
+      } catch (err) {
+        return rejectWithValue(err.message);
+      }
+    }
+);
 
 export const getUserAccountList = createAsyncThunk(
     'getUserAccountList',

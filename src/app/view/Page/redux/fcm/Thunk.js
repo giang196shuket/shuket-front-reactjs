@@ -18,6 +18,18 @@ export const getFcmList = createAsyncThunk(
       }
   );
 
+  export const getFcmOptions = createAsyncThunk(
+    'getFcmOptions',
+    async (data,{rejectWithValue}) => {
+        try {
+          
+          const response = await axios.get(`${MAIN_URL}/get_fcm_options`)
+          return response.data
+        } catch (err) {
+          return rejectWithValue(err.message);
+        }
+      }
+  );
 
   
 

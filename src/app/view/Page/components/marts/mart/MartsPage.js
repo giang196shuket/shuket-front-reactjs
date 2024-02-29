@@ -19,7 +19,7 @@ import { MartsCard, MartsUIProvider, getTypeMart, injectIntl, useDispatch, useEf
 
   const martsUIEvents = {
     openAdd: () => {
-      props.history.push("/m-shuket/MOA SERVICE/service/sales-collection");
+      props.history.push("/m-shuket/MOA SERVICE/service/sales-collection/add");
     },
     openEdit: (id) => {
       props.history.push(`/m-shuket/MOA SERVICE/service/sales-collection/${id}/edit`);

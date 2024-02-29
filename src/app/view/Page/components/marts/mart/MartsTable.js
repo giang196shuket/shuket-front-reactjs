@@ -1,3 +1,4 @@
+import { checkAcceptUrl } from "../../../common/funtion";
 import {
   ActionsColumnFormatter,
   BootstrapTable,
@@ -22,7 +23,7 @@ import {
   useSelector,
 } from "./index";
 
-export function MartsTable() {
+export function MartsTable({isLoading}) {
   const lang = useLang();
   const martsUIContext = useMartsUIContext();
 
@@ -41,13 +42,13 @@ export function MartsTable() {
     (state) => ({ currentState: state.marts }),
     shallowEqual
   );
-  const { totalCount, entities, listLoading } = currentState;
+  const { totalCount, entities } = currentState;
+
   const dispatch = useDispatch();
   useEffect(() => {
     martsUIProps.setIds([]);
     dispatch(getMoaMartList(martsUIProps.queryParams));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [martsUIProps.queryParams, dispatch]);
+  }, [ martsUIProps.queryParams]);
 
   const columns = [
     {
@@ -158,7 +159,7 @@ export function MartsTable() {
         {({ paginationProps, paginationTableProps }) => {
           return (
             <Pagination
-              isLoading={listLoading}
+              isLoading={isLoading}
               paginationProps={paginationProps}
             >
               <BootstrapTable

@@ -1,8 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { getDetailMart, getMoaMartList, uploadMartLogo } from "./Thunk";
+import { getDetailMart, getListGroupMart, getMoaMartList, updateMart, uploadMartLogo } from "./Thunk";
 
 const initialMartsState = {
-  listLoading: false,
   isLoading: false,
   totalCount: 0,
   entities: null,
@@ -10,38 +9,14 @@ const initialMartsState = {
   martHQList: [],
   lastError: null,
 };
-export const callTypes = {
-  list: "list",
-  action: "action",
-};
+
 
 export const martSlice = createSlice({
   name: "marts",
   initialState: initialMartsState,
   reducers: {
-    catchError: (state, action) => {
-      state.error = `${action.type}: ${action.payload.error}`;
-      if (action.payload.callType === callTypes.list) {
-        state.listLoading = false;
-      } else {
-        state.isLoading = false;
-      }
-    },
-    startCall: (state, action) => {
-      state.error = null;
-      if (action.payload.callType === callTypes.list) {
-        state.listLoading = true;
-      } else {
-        state.isLoading = true;
-      }
-    },
-    // getProductById
-    martFetched: (state, action) => {
-      console.log("martFetched", action.payload);
-      state.isLoading = false;
-      state.martForEdit = action.payload.martForEdit;
-      state.martHQList = action.payload.martHQList;
-      state.error = null;
+    resetMartEdit: (state, action) => {
+      state.martForEdit = undefined;
     },
   },
   extraReducers: (builder) => {
@@ -63,12 +38,26 @@ export const martSlice = createSlice({
         state.error = null;
         state.isLoading = false;
       })
-
+      .addCase(getListGroupMart.fulfilled, (state, action) => {
+        state.martHQList = action.payload.data?.list;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addMatcher(
+        isAnyOf(
+          updateMart.fulfilled
+        ),
+        (state, action) => {
+          state.isLoading = false;
+        }
+      )
       .addMatcher(
         isAnyOf(
           uploadMartLogo.pending,
           getMoaMartList.pending,
-          getDetailMart.pending
+          getDetailMart.pending,
+          updateMart.pending,
+          getListGroupMart.pending
         ),
         (state, action) => {
           state.isLoading = true;
@@ -78,7 +67,9 @@ export const martSlice = createSlice({
         isAnyOf(
           uploadMartLogo.rejected,
           getMoaMartList.rejected,
-          getDetailMart.rejected
+          getDetailMart.rejected,
+          updateMart.rejected,
+          getListGroupMart.rejected
         ),
         (state, action) => {
           state.isLoading = false;
@@ -86,3 +77,4 @@ export const martSlice = createSlice({
       );
   },
 });
+export const {resetMartEdit } = martSlice.actions;

@@ -15,7 +15,7 @@ const prepareFilter = (queryParams, values) => {
   return newQueryParams;
 };
 
-export function ProductBarcodeFilter({ listLoading }) {
+export function ProductBarcodeFilter({ isLoading }) {
   // Products UI Context
   const UIContext = useProductBarcodeUIContext();
   const UIProps = useMemo(() => {

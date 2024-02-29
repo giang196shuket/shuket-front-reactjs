@@ -1,12 +1,12 @@
 import { orderList } from '../../../common/UIhelpers';
-import { Formik, isEqual, keyTypeList, statusList, useMartsUIContext, useMemo, useSelector }  from './index'
+import { Formik, initialFilter, isEqual, keyTypeList, statusList, useMartsUIContext, useMemo, useSelector }  from './index'
 
 const prepareFilter = (queryParams, values) => {
   const newQueryParams = { ...queryParams, ...values };
   return newQueryParams;
 };
 
-export function MartsFilter({ listLoading }) {
+export function MartsFilter({ isLoading }) {
   const typeMart = useSelector((state) => state.main.typeMart);
 
   const martsUIContext = useMartsUIContext();
@@ -24,17 +24,11 @@ export function MartsFilter({ listLoading }) {
       martsUIProps.setQueryParams(newQueryParams);
     }
   };
+
   return (
     <>
       <Formik
-        initialValues={{
-          status: "", 
-          keywordType: "", 
-          keywordValue: "",
-          appType: "",
-          useStock: false,
-          isSyncOrder: false
-        }}
+        initialValues={initialFilter}
         onSubmit={(values) => {
           applyFilter(values);
         }}
@@ -86,7 +80,7 @@ export function MartsFilter({ listLoading }) {
                   }}
                 />
                 <small className="form-text text-muted">
-                  <b>Filter</b> value of Type
+                  <b>search</b> value 
                 </small>
               </div>
               <div className="col-lg-2">
@@ -176,7 +170,7 @@ export function MartsFilter({ listLoading }) {
                 </label>              
               </div>
               <div className="col-lg-2 ">
-                <button type="reset" className="btn btn-success mr-2" onClick={handleSubmit}>Submit</button>
+                <button type="submit" className="btn btn-success mr-2" onClick={handleSubmit} disabled={isLoading}>Submit</button>
                 <button type="reset" className="btn btn-secondary" onClick={() => {
                   setFieldValue("isSyncOrder", false);
                   setFieldValue("useStock", false);

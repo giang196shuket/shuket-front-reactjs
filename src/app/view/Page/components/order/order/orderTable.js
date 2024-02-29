@@ -42,7 +42,7 @@ export function OrderTable() {
     (state) => ({ currentState: state.order }),
     shallowEqual
   );
-  const { totalCount, entities, listLoading } = currentState;
+  const { totalCount, entities, isLoading } = currentState;
   const dispatch = useDispatch();
   useEffect(() => {
     UIProps.setIds([]);
@@ -202,7 +202,7 @@ export function OrderTable() {
         {({ paginationProps, paginationTableProps }) => {
           return (
             <Pagination
-              isLoading={listLoading}
+              isLoading={isLoading}
               paginationProps={paginationProps}
             >
               <BootstrapTable

@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { getLevelList, getUserAccountList } from "./Thunk";
+import { checkUserAdminId, getLevelList, getUserAccountList } from "./Thunk";
 
 const initialState = {
   isLoading: false,
@@ -23,13 +23,13 @@ export const usersSlice = createSlice({
         state.entitiesLevel = action.payload.data.list;
       })
       .addMatcher(
-        isAnyOf(getUserAccountList.pending, getLevelList.pending),
+        isAnyOf(getUserAccountList.pending, getLevelList.pending, checkUserAdminId.pending),
         (state, action) => {
           state.isLoading = true;
         }
       )
       .addMatcher(
-        isAnyOf(getUserAccountList.rejected, getLevelList.rejected),
+        isAnyOf(getUserAccountList.rejected, getLevelList.rejected, checkUserAdminId.rejected),
         (state, action) => {
           state.isLoading = false;
         }

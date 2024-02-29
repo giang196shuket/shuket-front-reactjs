@@ -53,12 +53,12 @@ export const getTypeMart = createAsyncThunk(
   );
 
 
-  export const getMartCommonWhere = createAsyncThunk(
-    'getMartCommonWhere',
+  export const getDBConnect = createAsyncThunk(
+    'getDBConnect',
     async (data,{rejectWithValue}) => {
         try {
           
-          const response = await axios.get(`${SALECOLLECTION_URL}/get_mart_common_where`)
+          const response = await axios.get(`${MAIN_URL}/get_db_connect`)
           return response.data
         } catch (err) {
           return rejectWithValue(err.message);
@@ -73,7 +73,33 @@ export const getTypeMart = createAsyncThunk(
     async (data,{rejectWithValue}) => {
         try {
           
-          const response = await axios.get(`${POS_URL}/get_pos_options`)
+          const response = await axios.get(`${MAIN_URL}/get_pos_options`)
+          return response.data
+        } catch (err) {
+          return rejectWithValue(err.message);
+        }
+      }
+  );
+
+  export const getLevelOptions = createAsyncThunk(
+    'getLevelOptions',
+    async (data,{rejectWithValue}) => {
+        try {
+          
+          const response = await axios.get(`${MAIN_URL}/level_options`)
+          return response.data
+        } catch (err) {
+          return rejectWithValue(err.message);
+        }
+      }
+  );
+
+  export const getGroupOptions = createAsyncThunk(
+    'getGroupOptions',
+    async (data,{rejectWithValue}) => {
+        try {
+          
+          const response = await axios.get(`${MAIN_URL}/group_options`)
           return response.data
         } catch (err) {
           return rejectWithValue(err.message);
@@ -88,7 +114,7 @@ export const getTypeMart = createAsyncThunk(
     async (data,{rejectWithValue}) => {
         try {
           
-          const response = await axios.get(`${PARTNER_URL}/get_partner_options`)
+          const response = await axios.get(`${MAIN_URL}/get_partner_options`)
           return response.data
         } catch (err) {
           return rejectWithValue(err.message);
@@ -104,7 +130,7 @@ export const getTypeMart = createAsyncThunk(
     async (data,{rejectWithValue}) => {
         try {
           
-          const response = await axios.get(`${PARTNER_URL}/get_partner_sales_team_options?sp_code=${data}`)
+          const response = await axios.get(`${MAIN_URL}/get_partner_sales_team_options?sp_code=${data}`)
           return response.data
         } catch (err) {
           return rejectWithValue(err.message);

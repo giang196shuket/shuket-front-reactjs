@@ -22,6 +22,7 @@ import levelPage from "./user/level/levelPage";
 import noticeMoaPage from "./notice/moa/moaPage";
 import noticeAppPage from "./notice/app/appPage";
 import orderPage from "./order/order/orderPage";
+import { MartAdd } from "./marts/mart/MartAdd";
 
 
 export default function Page() {
@@ -34,7 +35,9 @@ export default function Page() {
         }
         <ContentRoute path="/m-shuket/dashboard" component={DashBoardPage} />
         <ContentRoute path="/m-shuket/MOA SERVICE/service/sales-collection/:id/edit" component={MartEdit}/>
+        <ContentRoute path="/m-shuket/MOA SERVICE/service/sales-collection/add" component={MartAdd} />
         <ContentRoute path="/m-shuket/MOA SERVICE/service/sales-collection" component={MartsPage} />
+
         <ContentRoute path="/m-shuket/MOA SERVICE/service/import-product" component={importPage} />
         <ContentRoute path="/m-shuket/MOA SERVICE/service/fcm-management/:id/edit" component={FcmEdit} />
         <ContentRoute path="/m-shuket/MOA SERVICE/service/fcm-management" component={fcmPage} />

@@ -1,8 +1,8 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { getTypeMart } from "./Thunk.js";
+import { getGroupOptions, getLevelOptions, getTypeMart } from "./Thunk.js";
 import { getCityOptions } from "./Thunk.js";
 import { getDistrictOptions } from "./Thunk.js";
-import { getMartCommonWhere } from "./Thunk.js";
+import { getDBConnect } from "./Thunk.js";
 import { getPosOptions } from "./Thunk.js";
 import { getPartnerOptions } from "./Thunk.js";
 import { getPartnerSalesTeamOptions } from "./Thunk.js";
@@ -14,8 +14,11 @@ const initialState = {
   city: [],
   pos:[],
   partner:[],
+  partnerSale:[],
   dbConnect:[],
   district: [],
+  groupAccount:[],
+  levelAcccount:[]
 
 };
 
@@ -39,39 +42,50 @@ export const mainSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getGroupOptions.fulfilled, (state, action) => {
+        state.groupAccount = action.payload.data.list;
+        state.isLoading = false;
+      })
+      .addCase(getLevelOptions.fulfilled, (state, action) => {
+        state.levelAcccount = action.payload.data.list;
+        state.isLoading = false;
+      })
       .addCase(getTypeMart.fulfilled, (state, action) => {
-        state.typeMart = action.payload.data.list_type_mart;
+        state.typeMart = action.payload.data.list;
         state.isLoading = false;
       })
       .addCase(getCityOptions.fulfilled, (state, action) => {
-        state.city = action.payload.data.list_cities;
+        state.city = action.payload.data.list;
         state.isLoading = false;
       })
       .addCase(getPosOptions.fulfilled, (state, action) => {
-        state.pos = action.payload.data.list_pos;
+        state.pos = action.payload.data.list;
         state.isLoading = false;
       })
       .addCase(getPartnerOptions.fulfilled, (state, action) => {
-        state.partner = action.payload.data.list_partners;
+        state.partner = action.payload.data.list;
         state.isLoading = false;
       })
-      .addCase(getMartCommonWhere.fulfilled, (state, action) => {
-        state.dbConnect = action.payload.data;
+      .addCase(getDBConnect.fulfilled, (state, action) => {
+        state.dbConnect = action.payload.data.list;
         state.isLoading = false;
       })
       .addCase(getDistrictOptions.fulfilled, (state, action) => {
-        state.district = action.payload.data.list_districts;
+        state.district = action.payload.data.list;
         state.isLoading = false;
       })
       .addCase(getPartnerSalesTeamOptions.fulfilled , (state, action) => {
+        state.partnerSale = action.payload.data.list;
         state.isLoading = false;
       })
       .addMatcher(
         isAnyOf(   getTypeMart.pending,
           getCityOptions.pending,
           getDistrictOptions.pending,
-          getMartCommonWhere.pending,
+          getDBConnect.pending,
           getPosOptions.pending,
+          getGroupOptions.pending,
+          getLevelOptions.pending,
           getPartnerOptions.pending ,
           getPartnerSalesTeamOptions.pending) ,
         (state, action) => {
@@ -83,8 +97,10 @@ export const mainSlice = createSlice({
         isAnyOf(   getTypeMart.rejected,
           getCityOptions.rejected,
           getDistrictOptions.rejected,
-          getMartCommonWhere.pending,
+          getDBConnect.pending,
           getPosOptions.rejected,
+          getGroupOptions.rejected,
+          getLevelOptions.rejected,
           getPartnerOptions.rejected ,
           getPartnerSalesTeamOptions.rejected) ,
         (state, action) => {

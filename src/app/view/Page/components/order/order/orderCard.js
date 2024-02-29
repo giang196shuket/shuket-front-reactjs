@@ -8,7 +8,7 @@ function OrderCard(props, history) {
     (state) => ({ currentState: state.order }),
     shallowEqual
   );
-  const { totalCount, entities, listLoading } = currentState;
+  const { totalCount, entities, isLoading } = currentState;
 
   const UIContext = useOrderUIContext();
   const UIProps = useMemo(() => {

@@ -5,7 +5,7 @@ const prepareFilter = (queryParams, values) => {
   return newQueryParams;
 };
 
-export function BannerCouponFilter({ listLoading }) {
+export function BannerCouponFilter({ isLoading }) {
 
   // Products UI Context
   const UIContext = useBannerCouponUIContext();

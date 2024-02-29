@@ -6,7 +6,7 @@ const prepareFilter = (queryParams, values) => {
   return newQueryParams;
 };
 
-export function AreaFilter({ listLoading }) {
+export function AreaFilter({ isLoading }) {
 
   const UIContext = useAreaUIContext();
   const UIProps = useMemo(() => {

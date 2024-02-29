@@ -1,5 +1,19 @@
-
-import {generateCSVName,ExportCSV, Card, CardBody, CardHeader, CardHeaderToolbar, MartsFilter, MartsGrouping, MartsTable, injectIntl, shallowEqual, useMartsUIContext, useMemo, useSelector }  from './index'
+import {
+  generateCSVName,
+  ExportCSV,
+  Card,
+  CardBody,
+  CardHeader,
+  CardHeaderToolbar,
+  MartsFilter,
+  MartsGrouping,
+  MartsTable,
+  injectIntl,
+  shallowEqual,
+  useMartsUIContext,
+  useMemo,
+  useSelector,
+} from "./index";
 
 function MartsCard(props, history) {
   const { intl } = props;
@@ -8,7 +22,7 @@ function MartsCard(props, history) {
     (state) => ({ currentState: state.marts }),
     shallowEqual
   );
-  const { totalCount, entities, listLoading } = currentState;
+  const { totalCount, entities, isLoading } = currentState;
 
   const martsUIContext = useMartsUIContext();
   const martsUIProps = useMemo(() => {
@@ -27,12 +41,19 @@ function MartsCard(props, history) {
   return (
     <Card>
       <CardHeader
-        title={intl.formatMessage({
-          id: `MART.LIST`
-        },{ length: 10})}
+        title={intl.formatMessage(
+          {
+            id: `MART.LIST`,
+          },
+          { length: 10 }
+        )}
       >
         <CardHeaderToolbar>
-          <ExportCSV csvData={entities} fileName={generateCSVName('mart')}  UIProps={martsUIProps}></ExportCSV>
+          <ExportCSV
+            csvData={entities}
+            fileName={generateCSVName("mart")}
+            UIProps={martsUIProps}
+          ></ExportCSV>
 
           <button
             type="button"
@@ -44,13 +65,13 @@ function MartsCard(props, history) {
         </CardHeaderToolbar>
       </CardHeader>
       <CardBody>
-        <MartsFilter />
+        <MartsFilter isLoading={isLoading}/>
         {martsUIProps.ids.length > 0 && (
           <>
             <MartsGrouping />
           </>
         )}
-        <MartsTable />
+        <MartsTable isLoading={isLoading}/>
       </CardBody>
     </Card>
   );

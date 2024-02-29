@@ -5,7 +5,7 @@ const prepareFilter = (queryParams, values) => {
   return { status, keyType, keyValue, appType, useStock, isSyncOrder, keywordType, keywordValue} ;
 };
 
-export function OrderFilter({ listLoading }) {
+export function OrderFilter({ isLoading }) {
   const typeMart = useSelector((state) => state.main.typeMart);
 
   const UIContext = useOrderUIContext();

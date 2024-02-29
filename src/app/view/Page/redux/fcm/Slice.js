@@ -1,12 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getFcmList } from "./Thunk";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { getFcmList, getFcmOptions } from "./Thunk";
 
 
 const initialState = {
   isLoading: false,
   error: null,
-  entities:[]
-
+  entities:[],
+  fcmOptions:[]
 };
 
 export const fcmSlice = createSlice({
@@ -21,15 +21,25 @@ export const fcmSlice = createSlice({
         state.isLoading = false;
         state.entities = action.payload.data.fcm_list
       })
-
-      .addCase(
+      .addCase(getFcmOptions.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.fcmOptions = action.payload.data.list
+      })
+      .addMatcher(
+        isAnyOf(
+          getFcmList.pending,
+          getFcmOptions.pending,
+        ),
         getFcmList.pending ,
         (state, action) => {
           state.isLoading = true;
         }
       )
-      .addCase(
-        getFcmList.rejected,
+      .addMatcher(
+        isAnyOf(
+          getFcmList.rejected,
+          getFcmOptions.rejected,
+        ),
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;

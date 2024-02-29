@@ -1,7 +1,32 @@
-
-
-import { Card, CardBody, CardHeader, CardHeaderToolbar, LayoutSplashScreen, MartEditForm, getDetailMart, shallowEqual, useDispatch, useEffect, useRef, useSelector, useState, useSubheader } from './index'
-
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { Backdrop, CircularProgress } from "@material-ui/core";
+import {
+  MartEditPayment,
+  Card,
+  CardBody,
+  CardHeader,
+  CardHeaderToolbar,
+  LayoutSplashScreen,
+  MartEditApp,
+  MartEditBasic,
+  getDetailMart,
+  shallowEqual,
+  useDispatch,
+  useEffect,
+  useRef,
+  useSelector,
+  useState,
+  updateMart,
+  MartEditDelivery,
+  MartEditContact,
+  MartEditSupcription,
+  MartEditAccStatus,
+  MartEditBalance,
+  MartEditService,
+  MartEditBilling,
+  resetMartEdit
+} from "./index";
+import { toast } from "react-toastify";
 export function MartEdit({
   history,
   match: {
@@ -22,7 +47,6 @@ export function MartEdit({
     }),
     shallowEqual
   );
-
   useEffect(() => {
     const fetchData = async () => {
       await dispatch(getDetailMart(id));
@@ -33,14 +57,25 @@ export function MartEdit({
   useEffect(() => {
     let _title = id ? "" : "New mart";
     if (martForEdit && id) {
-      _title = `Edit mart '${martForEdit.moa_code}'`;
+      _title = `Edit mart '${martForEdit.mart_code}'`;
     }
 
     setTitle(_title);
   }, [martForEdit, id]);
 
   const saveProduct = (values) => {
-    console.log("saveProduct", values);
+    dispatch(updateMart(values))
+      .then((res) => {
+        if (res.payload.code === 200) {
+          // history.go(0)
+          // toast.success(res.payload.message);
+        } else {
+          toast.error(res.payload.errors);
+        }
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
     // if (!id) {
     //   dispatch(actions.createProduct(values)).then(() => backToProductsList());
     // } else {
@@ -56,11 +91,13 @@ export function MartEdit({
   };
 
   const backToMartList = () => {
+    dispatch(resetMartEdit())
     history.push(`/m-shuket/MOA%20SERVICE/service/sales-collection`);
   };
   return (
     <Card>
-      {isLoading && <LayoutSplashScreen />}
+      {/* {isLoading && <LayoutSplashScreen />} */}
+
       <CardHeader title={title}>
         <CardHeaderToolbar>
           <button
@@ -72,7 +109,7 @@ export function MartEdit({
             Back
           </button>
           {`  `}
-          <button className="btn btn-light ml-2">
+          <button className="btn btn-light ml-2" onClick={()=>dispatch(getDetailMart(id))}>
             <i className="fa fa-redo"></i>
             Reset
           </button>
@@ -188,11 +225,14 @@ export function MartEdit({
               Account status
             </a>
           </li>
-          
         </ul>
-        <div className="mt-5">
+        <Backdrop sx={{ color: "#fff", zIndex: 1300 }} open={isLoading}>
+          <CircularProgress color="inherit" />
+        </Backdrop>{" "}
+        
+        <div className="mt-5" style={{display: isLoading ? "none" : "block"}} >
           {tab === "basic" && martForEdit && (
-            <MartEditForm          
+            <MartEditBasic
               isLoading={isLoading}
               mart={martForEdit && martForEdit}
               btnRef={btnRef}
@@ -201,11 +241,79 @@ export function MartEdit({
             />
           )}
           {tab === "app-setting" && martForEdit && (
-
-            <>BB</>
+            <MartEditApp
+              isLoading={isLoading}
+              mart={martForEdit && martForEdit}
+              btnRef={btnRef}
+              saveProduct={saveProduct}
+            ></MartEditApp>
           )}
-         
+          {tab === "payment" && martForEdit && (
+            <MartEditPayment
+              isLoading={isLoading}
+              mart={martForEdit && martForEdit}
+              btnRef={btnRef}
+              saveProduct={saveProduct}
+            ></MartEditPayment>
+          )}
+          {tab === "delivery" && martForEdit && (
+            <MartEditDelivery
+              isLoading={isLoading}
+              mart={martForEdit && martForEdit}
+              btnRef={btnRef}
+              saveProduct={saveProduct}
+            ></MartEditDelivery>
+          )}
+          {tab === "contact" && martForEdit && (
+            <MartEditContact
+              isLoading={isLoading}
+              mart={martForEdit && martForEdit}
+              btnRef={btnRef}
+              saveProduct={saveProduct}
+            ></MartEditContact>
+          )}
+          {tab === "subcription" && martForEdit && (
+            <MartEditSupcription
+              isLoading={isLoading}
+              mart={martForEdit && martForEdit}
+              btnRef={btnRef}
+              saveProduct={saveProduct}
+            ></MartEditSupcription>
+          )}
+          {tab === "billing" && martForEdit && (
+            <MartEditBilling
+              isLoading={isLoading}
+              mart={martForEdit && martForEdit}
+              btnRef={btnRef}
+              saveProduct={saveProduct}
+            ></MartEditBilling>
+          )}
+          {tab === "service" && martForEdit && (
+            <MartEditService
+              isLoading={isLoading}
+              mart={martForEdit && martForEdit}
+              btnRef={btnRef}
+              saveProduct={saveProduct}
+            ></MartEditService>
+          )}
+          {tab === "balance" && martForEdit && (
+            <MartEditBalance
+              isLoading={isLoading}
+              mart={martForEdit && martForEdit}
+              btnRef={btnRef}
+              saveProduct={saveProduct}
+            ></MartEditBalance>
+          )}
+          {tab === "account" && martForEdit && (
+            <MartEditAccStatus
+              isLoading={isLoading}
+              mart={martForEdit && martForEdit}
+              btnRef={btnRef}
+              saveProduct={saveProduct}
+            ></MartEditAccStatus>
+          )}
         </div>
+        
       </CardBody>
     </Card>
   );

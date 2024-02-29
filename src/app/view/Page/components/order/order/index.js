@@ -19,7 +19,7 @@ import RadioGroup from "rsuite/RadioGroup";
 import { getDistrictOptions } from "../../../redux/main/Thunk.js";
 import {
   getCityOptions,
-  getMartCommonWhere,
+  getDBConnect,
   getPartnerOptions,
   getPosOptions,
   getTypeMart,
@@ -93,7 +93,7 @@ export {
   RadioGroup,
   getDistrictOptions,
   getCityOptions,
-  getMartCommonWhere,
+  getDBConnect,
   getPartnerOptions,
   getPosOptions,
   getTypeMart,

@@ -1,33 +1,28 @@
-import { DatePicker, Form, FormattedMessage, Formik, Radio, RadioGroup, businessTypeList, caseHeadOrFranch, format, getCityOptions, getDistrictOptions, getMartCommonWhere, getPartnerOptions, getPosOptions, getTypeMart, uploadMartLogo, useDispatch, useEffect, useSelector } from './index'
+import { DatePicker, Form, FormattedMessage, Formik, Radio, RadioGroup, businessTypeList, caseHeadOrFranch, format, getCityOptions, getDistrictOptions, getDBConnect, getPartnerOptions, getPosOptions, getTypeMart, uploadMartLogo, useDispatch, useEffect, useSelector } from './index'
 import "rsuite/dist/rsuite.css";
 import * as Yup from 'yup'
 
-const ProductEditSchema = Yup.object().shape({
-  name: Yup.string().required("AUTH.VALIDATION.REQUIRED_FIELD"),
+const EditSchema = Yup.object().shape({
+  mart_name: Yup.string().required("AUTH.VALIDATION.REQUIRED_FIELD"),
   mart_type: Yup.string().required("AUTH.VALIDATION.REQUIRED_FIELD"),
-  mart_common: Yup.string().required("AUTH.VALIDATION.REQUIRED_FIELD"),
+  mart_db: Yup.string().required("AUTH.VALIDATION.REQUIRED_FIELD"),
   mart_business_type: Yup.string().required("AUTH.VALIDATION.REQUIRED_FIELD"),
   hq_code: Yup.string().required("AUTH.VALIDATION.REQUIRED_FIELD"),
 });
 
-export function MartEditForm({
-  isLoading,
-  mart,
-  btnRef,
-  saveProduct,
-  listHQ,
-}) {
+export function MartEditBasic({isLoading, mart, btnRef, saveProduct, listHQ}) {
   let filteredData = [];
 
-  if (mart.moa_code) {
+  if (mart.mart_code) {
     filteredData = listHQ.filter((itemHQ) => {
-      if (itemHQ.moa_code !== mart.moa_code) {
+      if (itemHQ.mart_code !== mart.mart_code) {
         return true;
       } else {
         return false;
       }
     });
   }
+
 
   const dispatch = useDispatch();
   const district = useSelector((state) => state.main.district);
@@ -43,7 +38,7 @@ export function MartEditForm({
       await dispatch(getCityOptions());
       await dispatch(getPosOptions());
       await dispatch(getPartnerOptions());
-      await dispatch(getMartCommonWhere());
+      await dispatch(getDBConnect());
     };
     fetchData().catch(console.error);
   }, []);
@@ -62,7 +57,7 @@ export function MartEditForm({
       <Formik
         enableReinitialize={true}
         initialValues={mart}
-        validationSchema={ProductEditSchema}
+        validationSchema={EditSchema}
         onSubmit={(values) => {
           saveProduct(values);
         }}
@@ -78,18 +73,18 @@ export function MartEditForm({
                   <input
                     type="text"
                     className="form-control"
-                    name="name"
+                    name="mart_name"
                     placeholder="Search"
-                    value={values.name}
+                    value={values.mart_name}
                     onChange={(e) => {
-                      setFieldValue("name", e.target.value);
+                      setFieldValue("mart_name", e.target.value);
                     }}
                   />
-                  {errors.name ? (
+                  {errors.mart_name ? (
                     <small className="invalid-feedback d-block">
                       <b className="red">Error </b>{" "}
                       <FormattedMessage
-                        id={errors.name}
+                        id={errors.mart_name}
                         defaultMessage="Learn React"
                         description="Link on react page"
                       />
@@ -167,13 +162,11 @@ export function MartEditForm({
                     name="mart_type"
                     value={values.mart_type}
                     onChange={(e) => {
-                      console.log("Mart Type ", e.target.value);
-                      console.log("Values of submit ", values);
                       setFieldValue("mart_type", e.target.value);
                       if (e.target.value === "N") {
                         setFieldValue("mart_business_type", "SW");
                         setFieldValue("hq_code", "");
-                        setFieldValue("type", "S");
+                        setFieldValue("headFranchiseType", "S");
                         setFieldValue("show_franchise", "N");
                       }
                       if (
@@ -183,21 +176,21 @@ export function MartEditForm({
                       ) {
                         setFieldValue("mart_business_type", "FA");
                         setFieldValue("hq_code", "");
-                        setFieldValue("type", "H");
+                        setFieldValue("headFranchiseType", "H");
                         setFieldValue("show_franchise", "N");
                       }
                       if (e.target.value === "SG") {
                         setFieldValue("mart_business_type", "SA");
                         setFieldValue("hq_code", "");
-                        setFieldValue("type", "S");
+                        setFieldValue("headFranchiseType", "S");
                         setFieldValue("show_franchise", "N");
                       }
                     }}
                   >
                     <option value="">All</option>
-                    {typeMart.map((appType, index) => (
-                      <option key={index} value={appType.code}>
-                        {appType.name.en}
+                    {typeMart.map((item, index) => (
+                      <option key={index} value={item.code}>
+                        {item.name.en}
                       </option>
                     ))}
                   </select>
@@ -225,12 +218,12 @@ export function MartEditForm({
                   <div className="col-lg-2">
                     <select
                       className="form-control"
-                      name="mart_common"
-                      value={values.mart_common}
+                      name="mart_db"
+                      value={values.mart_db}
                       onChange={(e) => {
                         console.log("DB connect ", e.target.value);
                         console.log("Values of submit ", values);
-                        setFieldValue("mart_common", e.target.value);
+                        setFieldValue("mart_db", e.target.value);
                       }}
                     >
                       {dbConnect.map((dbItem, index) => (
@@ -239,11 +232,11 @@ export function MartEditForm({
                         </option>
                       ))}
                     </select>
-                    {errors.mart_common ? (
+                    {errors.mart_db ? (
                       <small className="invalid-feedback d-block">
                         <b className="red">Error </b>{" "}
                         <FormattedMessage
-                          id={errors.mart_common}
+                          id={errors.mart_db}
                           defaultMessage="Learn React"
                           description="Link on react page"
                         />
@@ -263,8 +256,6 @@ export function MartEditForm({
                       name="mart_business_type"
                       value={values.mart_business_type}
                       onChange={(e) => {
-                        console.log("Type Of Business ", e.target.value);
-                        console.log("Values of submit ", values);
                         setFieldValue("mart_business_type", e.target.value);
                       }}
                     >
@@ -297,10 +288,10 @@ export function MartEditForm({
                       <div className="col-lg-2  col-sm-12">
                         <RadioGroup
                           inline
-                          name="type"
-                          value={values.type}
+                          name="headFranchiseType"
+                          value={values.headFranchiseType}
                           onChange={(newValue, event) => {
-                            setFieldValue("type", newValue);
+                            setFieldValue("headFranchiseType", newValue);
                             if (newValue === "H") {
                               setFieldValue("show_franchise", "N");
                             }
@@ -313,7 +304,7 @@ export function MartEditForm({
                           <Radio value="F">Franchise</Radio>
                         </RadioGroup>
                       </div>
-                      {values.type === "F" && (
+                      {values.headFranchiseType === "F" && (
                         <>
                           <label className="col-form-label text-right col-lg-1 col-sm-12">
                             Select franchise
@@ -323,30 +314,18 @@ export function MartEditForm({
                               className="form-control"
                               name="hq_code"
                               value={values.hq_code}
-                              onChange={(value) => {
-                                setFieldValue("hq_code", value);
+                              onChange={(e) => {
+                                setFieldValue("hq_code", e.target.value);
                               }}
                             >
                               {filteredData.map((hq, index) => (
+                                 hq.m_app_type === values.mart_type ? 
                                 <option key={index} value={hq.hq_code}>
-                                  {hq.name}
-                                </option>
+                                  {hq.mart_name}
+                                </option> : null
                               ))}
                             </select>
-                            {errors.hq_code ? (
-                              <small className="invalid-feedback d-block">
-                                <b className="red">Error </b>{" "}
-                                <FormattedMessage
-                                  id={errors.hq_code}
-                                  defaultMessage="Learn React"
-                                  description="Link on react page"
-                                />
-                              </small>
-                            ) : (
-                              <small className="form-text text-muted">
-                                <b className="text-danger">*</b> is required
-                              </small>
-                            )}
+
                           </div>
                         </>
                       )}
@@ -431,7 +410,7 @@ export function MartEditForm({
                     }
                     onOk={(date) => {
                       console.log(date);
-                      setFieldValue("bizhour_open", format(date, "HHmm"));
+                      setFieldValue("bizhour_open", format(date, "HH:mm"));
                     }}
                   />
                 </div>
@@ -452,7 +431,7 @@ export function MartEditForm({
                       )
                     }
                     onOk={(date) => {
-                      setFieldValue("bizhour_close", format(date, "HHmm"));
+                      setFieldValue("bizhour_close", format(date, "HH:mm"));
                     }}
                   />
                 </div>
@@ -466,11 +445,7 @@ export function MartEditForm({
                   <select
                     className="form-control"
                     name="city"
-                    value={
-                      typeof values.city === "object"
-                        ? values.city.code
-                        : values.city
-                    }
+                    value={values.city.code}
                     onChange={(e) => {
                       dispatch(getDistrictOptions(e.target.value));
                       setFieldValue("city", e.target.value);
@@ -504,11 +479,7 @@ export function MartEditForm({
                   <select
                     className="form-control"
                     name="district"
-                    value={
-                      typeof values.district === "object"
-                        ? values.district.code
-                        : values.district
-                    }
+                    value={values.district.code}
                     onChange={(e) => {
                       setFieldValue("district", e.target.value);
                     }}
@@ -624,13 +595,8 @@ export function MartEditForm({
                   <select
                     className="form-control"
                     name="pos"
-                    value={
-                      typeof values.pos === "object"
-                        ? values.pos.code
-                        : values.pos
-                    }
+                    value={ values.pos.code}
                     onChange={(e) => {
-                      dispatch(getDistrictOptions(e.target.value));
                       setFieldValue("pos", e.target.value);
                     }}
                   >
@@ -717,8 +683,61 @@ export function MartEditForm({
                   </RadioGroup>
                 </div>
               </div>
-
               <div className="form-group row">
+                <label className="col-form-label text-right col-lg-1 col-sm-12 ">
+                  Mart logo (current)
+                </label>
+                <div className="col-lg-2  col-sm-12 d-flex flex-column justify-content-center align-items-start">
+                  <>
+                    <img
+                      src={values.logo_url}
+                      alt=""
+                      style={{ width: "150px" }}
+                    />
+                    <input
+                      className="form-control form-control-sm mt-5"
+                      name="logo_url"
+                      type="file"
+                      accept=".jpg, .jpeg, .png"
+                      onChange={(e) => {
+                        dispatch(uploadMartLogo(e.target.files[0]))
+                          .unwrap()
+                          .then((res) => {
+                            setFieldValue("logo_url", res.data.image_url);
+                            setFieldValue("logo_name", res.data.image_name);
+
+                          });
+                      }}
+                    />
+                  </>
+                  
+                </div>
+                <label className="col-form-label text-right col-lg-1 col-sm-12 ">
+                  Mart logo push notification(current)
+                </label>
+                <div className="col-lg-2  col-sm-12 d-flex flex-column  justify-content-center align-items-start">
+                  <>
+                    <img
+                      src={values.logo_push_url}
+                      alt=""
+                      style={{ width: "50px" }}
+                    ></img>
+                    <input
+                      className="form-control  mt-5"
+                      name="logo_push_url"
+                      type="file"
+                      accept=".jpg, .jpeg, .png"
+                      onChange={(e) => {
+                        dispatch(uploadMartLogo(e.target.files[0]))
+                          .unwrap()
+                          .then((res) => {
+                            setFieldValue("logo_push_url", res.data.image_url);
+                            setFieldValue("logo_push_name", res.data.image_name);
+                          });
+                      }}
+                    />
+                  </>
+                </div>
                 <label className="col-form-label text-right col-lg-1 col-sm-12">
                   Extended Product
                 </label>
@@ -735,80 +754,26 @@ export function MartEditForm({
                     <Radio value="N">No</Radio>
                   </RadioGroup>
                 </div>
-                <label className="col-form-label text-right col-lg-2 col-sm-12">
+                <label className="col-form-label text-right col-lg-1 col-sm-12">
                   Initial inventory linkage
                 </label>
                 <div className="col-lg-2  col-sm-12">
                   <RadioGroup
                     inline
-                    name="hidecheckbox"
-                    value={values.hidecheckbox}
+                    name="hideInitial"
+                    value={values.hideInitial}
                     onChange={(value, event) => {
-                      setFieldValue("hidecheckbox", value);
+                      setFieldValue("hideInitial", value);
                     }}
                   >
                     <Radio value={1}>Yes</Radio>
                     <Radio value={0}>No</Radio>
                   </RadioGroup>
-                </div>
-                {values.hidecheckbox === 1 ? (
-                  <button type="button" className="btn btn-primary">
-                    Initial stock
-                  </button>
+                  {values.hideInitial === 1 ? (
+                     <button type="button" className="btn btn-primary btn-sm mt-5" style={{height:35}}>
+                        Initial stock
+                   </button>
                 ) : null}
-              </div>
-              <div className="form-group row">
-                <label className="col-form-label text-right col-lg-1 col-sm-12 ">
-                  Mart logo (current)
-                </label>
-
-                <div className="col-lg-2 d-flex flex-column justify-content-center align-items-center">
-                  <>
-                    <img
-                      src={values.logo_url}
-                      alt=""
-                      style={{ width: "150px" }}
-                    />
-                    <input
-                      className="form-control form-control-sm m-5"
-                      name="logo_url"
-                      type="file"
-                      accept=".jpg, .jpeg, .png"
-                      onChange={(e) => {
-                        dispatch(uploadMartLogo(e.target.files[0]))
-                          .unwrap()
-                          .then((res) => {
-                            setFieldValue("logo_url", res.data.image_url);
-                          });
-                      }}
-                    />
-                  </>
-                  
-                </div>
-                <label className="col-form-label text-right col-lg-2 col-sm-12 ">
-                  Mart logo push notification(current)
-                </label>
-                <div className="col-lg-2 d-flex flex-column  justify-content-center align-items-center">
-                  <>
-                    <img
-                      src={values.logo_push_url}
-                      alt=""
-                      style={{ width: "150px" }}
-                    ></img>
-                    <input
-                      className="form-control  m-5"
-                      name="logo_push_url"
-                      type="file"
-                      accept=".jpg, .jpeg, .png"
-                      onChange={(e) => {
-                        dispatch(uploadMartLogo(e.target.files[0]))
-                          .unwrap()
-                          .then((res) => {
-                            setFieldValue("logo_push_url", res.data.image_url);
-                          });
-                      }}
-                    />
-                  </>
                 </div>
               </div>
 
