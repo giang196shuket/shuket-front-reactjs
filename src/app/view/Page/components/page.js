@@ -15,7 +15,7 @@ import productNoBarcodePage from "./images/productNoBarcode/productNoBarcodePage
 import areaPage from "./delivery/area/areaPage";
 import { AppBuilderPage } from "./appBuilder/appBuilderPage";
 import { AppBuilderEdit } from "./appBuilder/appBuilderEdit";
-import productPage from "./product/registed/productPage";
+import productResgterPage from "./product/registed/productRegisterPage";
 import accountPage from "./user/account/accountPage";
 import catalogPage from "./catalog/catalog/catalogPage";
 import levelPage from "./user/level/levelPage";
@@ -50,7 +50,7 @@ export default function Page() {
         <ContentRoute path="/m-shuket/MOA SERVICE/marts/product-images-without-barcode/list" component={productNoBarcodePage} />
 
         <ContentRoute path="/m-shuket/MARTS/marts/delivery/list-address" component={areaPage} />
-        <ContentRoute path="/m-shuket/MARTS/marts/product/registered-list" component={productPage} />
+        <ContentRoute path="/m-shuket/MARTS/marts/product/registered-list" component={productResgterPage} />
         <ContentRoute path="/m-shuket/MOA SERVICE/admin/account/list" component={accountPage} />
         <ContentRoute path="/m-shuket/MOA SERVICE/admin/account/level" component={levelPage} />
 

@@ -1,43 +1,77 @@
-
-
 export const keyTypeList = [
-  { text: "Mart Name", value: "mart_name" },
-  { text: "Mart Code", value: "mart_code" },
-  { text: "Mart PosCode", value: "mart_p_regcode" },
-  { text: "Mart HQ Code", value: "mart_hq_code" },
+  { text: "Product tag", value: "prd_tags" },
+  { text: "Product name", value: "prd_name" },
+  { text: "Product barcode", value: "prd_barcode" },
+  { text: "Product code", value: "prd_code" },
+  { text: "Provider", value: "provider" },
 ];
-
-export const businessTypeList = [
-  { text: "Franchise mart", value: "FA" },
-  { text: "Franchise mart + url order only", value: "FW" },
-  { text: "Franchise mart +  use of both service", value: "FB" },
-  { text: "single mart", value: "SA" },
-  { text: "single mart + url order only", value: "SW" },
-  { text: "single mart + use of both service", value: "SB" },
+export const keyTypeImageProductList = [
+  { text: "Image product tag", value: "tags" },
+  { text: "Image product name", value: "name" },
 ];
-export const deliveryTimeList = [
-  { text: "30 minues", value: "30" },
-  { text: "60 minues", value: "60" },
-  { text: "90 minues", value: "90" },
-  { text: "120 minues", value: "120" },
+export const keyTypeImage = [
+  { text: "Main image", value: "main" },
+  { text: "Sub image", value: "sub" },
 ];
-
-export const date = {
-  startTime: new Date("2023-02-01 00:00:00"),
-  endTime: new Date("2023-03-01 23:59:59"),
-};
-
+export const statusImageList = [
+  {
+    text: "Have image",
+    value: "Y",
+  },
+  {
+    text: "No image",
+    value: "N",
+  },
+];
+export const statusStockList = [
+  {
+    text: "Stock smallest",
+    value: "ASC",
+  },
+  {
+    text: "Stock biggest",
+    value: "DESC",
+  },
+];
+export const statusList = [
+  {
+    text: "Active",
+    value: "A",
+    code: "A",
+  },
+  {
+    text: "Deactive",
+    value: "C",
+    code: "C",
+  },
+  {
+    text: "Out of stock",
+    value: "O",
+    code: "O",
+  },
+];
 export const caseHeadOrFranch = ["GSK", "YSK"];
-
+export const initailFilterImgProduct = {
+  img_barcode: 1,
+  img_cate: "",
+  img_keyword: "tags",
+  img_type: "all",
+  img_value: "",
+};
 export const initialFilter = {
   keywordType: "",
   keywordValue: "",
   status: "",
-  appType: "",
-  useStock: false,
-  isSyncOrder: false,
-  orderBy: "desc", // asc||desc
-  sortField: "registerDate", //
+  dateStart: "",
+  dateEnd: "",
+  orderBy: "",
   page: 1,
   limit: 10,
+  category_code: "",
+  category_sub_code: "",
+  option_check_stock: "N",
+  stock_search_value: "",
+  product_no_image: "",
+  product_only_brgn: "N",
+  sort_prd_stock: "",
 };

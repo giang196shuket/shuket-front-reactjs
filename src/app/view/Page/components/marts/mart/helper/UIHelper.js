@@ -87,12 +87,9 @@ export const initialAdd = {
   local_partner: "N",
   mart_db: "",
   pop: "Y",
-  mms: null,
-  mms_deposit: null,
   status: "A",
   is_tdc: "Y",
   integrated_messging: "N",
-  time_sync_tdc: "2020-08-26T05:18:22.000Z",
   hideInitial: 1,
   op_payment: [
     {
@@ -147,8 +144,6 @@ export const initialAdd = {
   paymentOnline: "Y",
   paymentCOD: "Y",
   mart_business_type: "SA",
-  old_type: "S",
-  old_group_mart: "M000000221",
   push_key_android: "FCM0000001",
   push_key_ios: "FCM0000001",
   set_delivery: "Y",

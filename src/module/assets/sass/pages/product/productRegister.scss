@@ -1,0 +1,38 @@
+.container-product {
+  width: fit-content !important;
+  position: relative;
+}
+.image-product {
+  opacity: 1;
+  transition: 0.2s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: 0.2s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container-product:hover .image-product {
+  opacity: 0.3;
+}
+
+.container-product:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  cursor: pointer;
+
+  background-color: #09b0d9;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  padding: 15px;
+}

@@ -155,11 +155,8 @@ function ProductBarcodeTable(props) {
     paginationTotalRenderer: customTotal,
   };
 
-  console.log("productBarcodeImageEdit", productBarcodeImageEdit);
 
   const [tagsEdit, setTagsEdit] = useState([])
-
-  console.log('tagsEdit', tagsEdit)
 
   //convert tag string => array
   function generateTag(tages) {
@@ -212,7 +209,6 @@ function ProductBarcodeTable(props) {
     ),
     expanded: [productBarcodeImageEdit], // dựa vào này mở rộng row nào đó
     onExpand: (row, isExpand) => {
-      console.log('rowrowrow')
     },
     onlyOneExpanding: true,
   };

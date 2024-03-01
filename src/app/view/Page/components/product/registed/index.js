@@ -6,12 +6,13 @@ import {
   CardHeaderToolbar,
 } from "../../../../../../module/partials/controls";
 import { injectIntl } from "react-intl";
-import { useProductUIContext } from "./productUIContext";
-import ProductTable from "./productTable";
+import { useProductRegisterUIContext } from "./productRegisterUIContext";
+import ProductRegisterTable from "./productRegisterTable";
 import { useEffect, useState } from "react";
+import SwitchesCustom from "../common/Switches";
 
-import { ProductUIProvider } from "./productUIContext";
-import ProductCart from "./productCart";
+import { ProductRegisterUIProvider } from "./productRegisterUIContext";
+import ProductRegisterCart from "./productRegisterCart";
 
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import BootstrapTable from "react-bootstrap-table-next";
@@ -42,9 +43,33 @@ import {
 import { Button, Form, Modal } from "react-bootstrap";
 import SVG from "react-inlinesvg";
 import { LinearProgress, TextField } from "@material-ui/core";
-import { defaultSorted, sizePerPageList } from "../../../common/UIhelpers";
+import { defaultSorted, sizePerPageList, orderList } from "../../../common/UIhelpers";
+import { Formik } from "formik";
+import { keyTypeList, statusList, statusImageList, statusStockList, keyTypeImageProductList, initailFilterImgProduct, keyTypeImage} from './helper/UIHelper'
+import DatePicker from "rsuite/DatePicker";
+import { format } from "date-fns";
+import { getProductCategory } from '../../../redux/product/Thunk';
+import { FormCheck } from "react-bootstrap";
+import Radio from "rsuite/Radio";
+import RadioGroup from "rsuite/RadioGroup";
+import TagsInput from "react-tagsinput";
 
 export {
+  keyTypeImage,
+  initailFilterImgProduct,
+  keyTypeImageProductList,
+  TagsInput,
+  Radio ,RadioGroup,
+  statusStockList,
+  FormCheck,
+  getProductCategory,
+  orderList,
+  DatePicker,format,
+  keyTypeList,
+  statusImageList,
+  Formik,
+  statusList,
+  SwitchesCustom,
   ViewDetail,
   getProductRegisterList,
   productStockStatus,
@@ -65,12 +90,12 @@ export {
   CardHeader,
   CardHeaderToolbar,
   injectIntl,
-  useProductUIContext,
-  ProductTable,
+  useProductRegisterUIContext,
+  ProductRegisterTable,
   useEffect,
   useState,
-  ProductUIProvider,
-  ProductCart,
+  ProductRegisterUIProvider,
+  ProductRegisterCart,
   shallowEqual,
   useDispatch,
   useSelector,
@@ -90,4 +115,4 @@ export {
   isEqual,
   isFunction,
   initialFilter,
-};
+}

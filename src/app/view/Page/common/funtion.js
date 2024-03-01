@@ -12,3 +12,13 @@ export const formatPrice = (price) => {
   }).format(price);
 };
 
+//tìm id lớn nhất trong 1 mảng object
+export function findMaxId(objectsArray, filed) {
+  let maxId = -Infinity;
+  for (let obj of objectsArray) {
+      if (obj[filed] > maxId) {
+          maxId = obj[filed];
+      }
+  }
+  return maxId;
+}

@@ -1,17 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   getProductRegisterList,
   productStockStatus,
-  productStockStatusToOff,
-  productStockStatusToOn,
+  ViewDetail,
+  searchProductImages,
+  updateStatus,
   setMaxMinProduct,
   updateStockItem,
+  getProductCategory,
 } from "./Thunk";
 
 const initialState = {
   isLoading: false,
   error: null,
-  entities: [],
+  productRegisterList: [],
+  productRegisterTotal: 0
 };
 
 export const productSlice = createSlice({
@@ -22,17 +25,19 @@ export const productSlice = createSlice({
     builder
       .addCase(getProductRegisterList.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.entities = action.payload.data.list;
+        state.productRegisterList = action.payload.data.list;
+        state.productRegisterTotal = action.payload.data.total;
+
       })
       .addCase(updateStockItem.fulfilled, (state, action) => {
         const data = action.payload;
-        state.entities = state.entities.map((en) =>
+        state.productRegisterList = state.productRegisterList.map((en) =>
           en.code === data.p_code ? { ...en, min_stock: data.min_stock } : en
         );
       })
       .addCase(setMaxMinProduct.fulfilled, (state, action) => {
         const data = action.payload;
-        state.entities = state.entities.map((en) =>
+        state.productRegisterList = state.productRegisterList.map((en) =>
           en.seq === data.seq
             ? {
                 ...en,
@@ -47,19 +52,53 @@ export const productSlice = createSlice({
 
       .addCase(productStockStatus.fulfilled, (state, action) => {
         const data = action.payload;
-        state.entities = state.entities.map((en) =>
+        state.productRegisterList = state.productRegisterList.map((en) =>
           en.seq === data.prd_seqs?.[0]
             ? { ...en, is_pro_stock: data.prd_stock_status }
             : en
         );
       })
-      .addCase(getProductRegisterList.pending, (state, action) => {
-        state.isLoading = true;
-      })
-      .addCase(getProductRegisterList.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
+      .addMatcher(
+        isAnyOf(
+          ViewDetail.fulfilled,
+          // getProductCategory.fulfilled,
+          updateStatus.fulfilled
+        ),
+        (state, action) => {
+          state.isLoading = false;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          getProductRegisterList.pending,
+          productStockStatus.pending,
+          ViewDetail.pending,
+          searchProductImages.pending,
+          updateStatus.pending,
+          setMaxMinProduct.pending,
+          updateStockItem.pending,
+          getProductCategory.pending
+        ),
+        (state, action) => {
+          state.isLoading = true;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          getProductRegisterList.rejected,
+          productStockStatus.rejected,
+          ViewDetail.rejected,
+          searchProductImages.rejected,
+          updateStatus.rejected,
+          setMaxMinProduct.rejected,
+          updateStockItem.rejected,
+          getProductCategory.rejected
+        ),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload
+        }
+      );
   },
 });
 

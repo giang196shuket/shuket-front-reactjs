@@ -7,9 +7,9 @@ export const getProductRegisterList = createAsyncThunk(
   "getProductRegisterList",
   async (data, { rejectWithValue }) => {
     try {
+
       const response = await axios.post(
-        `${MAIN_URL}/search_product_registered_list`,
-        { ...data, page: data.pageNumber, limit: data.pageSize, keyword_type: "prd_tags", prd_status: "A" }
+        `${MAIN_URL}/search_product_registered_list`,data       
       );
       return response.data;
     } catch (err) {
@@ -67,7 +67,7 @@ export const ViewDetail = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response =  await axios.get(
-        `${MAIN_URL}/view_detail?prd_seq=${data}`,
+        `${MAIN_URL}/view_detail?code=${data}`,
       );
       return response.data;
     } catch (err) {
@@ -92,5 +92,33 @@ export const searchProductImages = createAsyncThunk(
   }
 );
 
+
+//common
+export const updateStatus = createAsyncThunk(
+  'updateStatus',
+  async (data,{rejectWithValue}) => {
+      try {
+        
+        const response = await axios.post(`${MAIN_URL}/update_status`,data)
+        return response.data
+      } catch (err) {
+        return rejectWithValue(err.message);
+      }
+    }
+);
+
+
+export const getProductCategory = createAsyncThunk(
+  'getProductCategory',
+  async (data,{rejectWithValue}) => {
+      try {
+        
+        const response = await axios.post(`${MAIN_URL}/get_product_categories`,data)
+        return response.data
+      } catch (err) {
+        return rejectWithValue(err.message);
+      }
+    }
+);
 
 
