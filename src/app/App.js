@@ -14,7 +14,6 @@ import "react-toastify/dist/ReactToastify.css";
 export default function App({ store, persistor, basename }) {
   return (
     <>
-      /* Provide Redux store */
       <Provider store={store}>
         {/* Asynchronously persist redux stores and show `SplashScreen` while it's loading. */}
         <PersistGate persistor={persistor} loading={<LayoutSplashScreen />}>

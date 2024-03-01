@@ -3,8 +3,8 @@ import {useSubheader} from "../../module/layout";
 
 export const MyPage = () => {
   const suhbeader = useSubheader();
-  suhbeader.setTitle("My Custom title");
-  document.title = "My page title";
+  suhbeader.setTitle("SHUKET SERVICE");
+  document.title = "SHUKET SERVICE";
 
   return (<>My Page</>);
 };

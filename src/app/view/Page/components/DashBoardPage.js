@@ -6,8 +6,8 @@ import { Demo1Dashboard } from "../../../../module/partials/dashboards/Demo1Dash
 export function DashBoardPage() {
   const { user } = useSelector((state) => state.auth);
   const suhbeader = useSubheader();
-  suhbeader.setTitle("My Custom title");
-  document.title = "My page title";
+  suhbeader.setTitle("SHUKET SERVICE");
+  document.title = "SHUKET SERVICE";
 
   return <>{user.menu_list ? <Demo1Dashboard /> : <LayoutSplashScreen />}</>;
 }

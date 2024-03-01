@@ -24,9 +24,9 @@ export function HeaderMenuWrapper() {
         };
     }, [uiService]);
     const getHeaderLogo = () => {
-        let result = "logo-light.png";
+        let result = "logo-shuket.png";
         if (layoutProps.headerSelfTheme && layoutProps.headerSelfTheme !== "dark") {
-            result = "logo-dark.png";
+            result = "logo-shuket.png";
         }
         return toAbsoluteUrl(`/images/logos/${result}`);
     };

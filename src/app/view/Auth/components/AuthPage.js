@@ -21,25 +21,25 @@ export function AuthPage() {
           <div
             className="login-aside d-flex flex-row-auto bgi-size-cover bgi-no-repeat p-10 p-lg-10"
             style={{
-              backgroundImage: `url(${toAbsoluteUrl("/images/bg/bg-4.jpg")})`
+              backgroundImage: `url(${toAbsoluteUrl("/images/bg/bg-8.jpg")})`
             }}
           >
             {/*begin: Aside Container*/}
             <div className="d-flex flex-row-fluid flex-column justify-content-between">
               {/* start:: Aside header */}
-              <Link to="/" className="flex-column-auto mt-5">
+              {/* <Link to="/" className="flex-column-auto mt-5">
                 <img
                   alt="Logo"
                   className="max-h-70px"
-                  src={toAbsoluteUrl("/images/logos/logo-letter-1.png")}
+                  src={toAbsoluteUrl("/images/logos/logo-letter-.png")}
                 />
-              </Link>
+              </Link> */}
               {/* end:: Aside header */}
 
               {/* start:: Aside content */}
               <div className="flex-column-fluid d-flex flex-column justify-content-center">
                 <h3 className="font-size-h1 mb-5 text-white">
-                  Welcome to Metronic!
+                  Welcome to SHUKET!
                 </h3>
                 <p className="font-weight-lighter text-white opacity-80">
                   The ultimate Bootstrap & React 16 admin theme framework for next

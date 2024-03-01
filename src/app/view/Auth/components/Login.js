@@ -126,7 +126,7 @@ function Login(props,history) {
             <div style={{ width: "100%" }} className="alert-text font-weight-bold">{formik.status}</div>
           </div>
         ) : (
-          <div className="mb-10 alert alert-custom alert-light-info alert-dismissible">
+          <div className="mb-10 alert alert-custom alert-light-success alert-dismissible">
               <div style={{ width: "100%" }} className="alert-text ">
               Use account <strong>admin@demo.com</strong> and password{" "}
               <strong>demo</strong> to continue.
@@ -178,7 +178,7 @@ function Login(props,history) {
             id="kt_login_signin_submit"
             type="submit"
             disabled={formik.isSubmitting}
-            className={`btn btn-primary font-weight-bold px-9 py-4 my-3`}
+            className={`btn btn-success font-weight-bold px-9 py-4 my-3`}
           >
             <span>Sign In</span>
             {loading && <span className="ml-3 spinner spinner-white"></span>}
