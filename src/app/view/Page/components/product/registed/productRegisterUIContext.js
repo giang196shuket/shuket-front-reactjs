@@ -28,14 +28,15 @@ export function ProductRegisterUIProvider({UIEvents, children }) {
     ids,
     setIds,
     setQueryParams,
-    openAdd: UIEvents.openAdd,
-    openEdit: UIEvents.openEdit,
-    openDelete: UIEvents.openDelete,
+    openEditMaxMin:  UIEvents.openEditMaxMin,
+    openEditStock: UIEvents.openEditStock,
+    openEditCate: UIEvents.openEditCate,
+
   };
 
   return (
-    <ProductRegisterUIConsumer.Provider value={value}>
+    <ProductRegisterUIContext.Provider value={value}>
       {children}
-    </ProductRegisterUIConsumer.Provider>
+    </ProductRegisterUIContext.Provider>
   );
 }

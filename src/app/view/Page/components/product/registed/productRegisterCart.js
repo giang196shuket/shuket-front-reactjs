@@ -9,7 +9,7 @@ function ProductRegisterCard(props, history) {
     (state) => ({ currentState: state.product }),
     shallowEqual
   );
-  const { totalCount, entities, isLoading } = currentState;
+  const {  isLoading } = currentState;
 
   const UIContext = useProductRegisterUIContext();
   const UIProps = useMemo(() => {
@@ -17,10 +17,9 @@ function ProductRegisterCard(props, history) {
       ids: UIContext.ids,
       queryParams: UIContext.queryParams,
       setQueryParams: UIContext.setQueryParams,
-      openAdd: UIContext.openAdd,
-      openDelete: UIContext.openDelete,
-      openEdit: UIContext.openEdit,
-
+      openEditMaxMin:  UIContext.openEditMaxMin,
+      openEditStock: UIContext.openEditStock,
+      openEditCate: UIContext.openEditCate
     };
   }, [UIContext]);
 
@@ -32,13 +31,28 @@ function ProductRegisterCard(props, history) {
         },{ length: 10})}
       >
         <CardHeaderToolbar>
-          <button
+        <button
+            type="button"
+            className="btn btn-primary mr-3"
+            onClick={UIProps.openEditCate}
+          >
+           Setting category
+          </button>
+        <button
+            type="button"
+            className="btn btn-primary mr-3"
+            onClick={UIProps.openEditStock}
+          >
+           Setting stock
+          </button>
+        <button
             type="button"
             className="btn btn-primary"
-            onClick={UIProps.openAdd}
+            onClick={UIProps.openEditMaxMin}
           >
-            New Product
+           Setting max/min
           </button>
+
         </CardHeaderToolbar>
       </CardHeader>
       <CardBody>

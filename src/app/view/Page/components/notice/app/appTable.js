@@ -39,7 +39,7 @@ function NoticeAppTable(props) {
     shallowEqual
   );
 
-  const { entitiesApp, isLoading } = currentState;
+  const { entities, isLoading } = currentState;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -133,7 +133,7 @@ function NoticeAppTable(props) {
   );
   const paginationOptions = {
     custom: true,
-    totalSize: entitiesApp.length,
+    totalSize: entities.length,
     sizePerPageList: sizePerPageList,
     limit: UIProps.queryParams.limit,
     page: UIProps.queryParams.page,
@@ -156,19 +156,19 @@ function NoticeAppTable(props) {
                 bordered={false}
                 remote
                 keyField="id"
-                data={entitiesApp === null ? [] : entitiesApp}
+                data={!entities || isLoading ? [] : entities}
                 columns={columns}
                 defaultSorted={defaultSorted}
                 onTableChange={getHandlerTableChange(UIProps.setQueryParams)}
                 selectRow={getSelectRow({
-                  entities: entitiesApp,
+                  entities: entities,
                   ids: UIProps.ids,
                   setIds: UIProps.setIds,
                 })}
                 {...paginationTableProps}
               >
-                <PleaseWaitMessage entities={entitiesApp} />
-                <NoRecordsFoundMessage entities={entitiesApp} />
+                <PleaseWaitMessage entities={entities} />
+                <NoRecordsFoundMessage entities={entities} />
               </BootstrapTable>
             </Pagination>
           );

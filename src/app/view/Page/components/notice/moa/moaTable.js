@@ -39,7 +39,7 @@ function NoticeMoaTable(props) {
     shallowEqual
   );
 
-  const { entitiesMoa, isLoading } = currentState;
+  const { entities, isLoading } = currentState;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -128,7 +128,7 @@ function NoticeMoaTable(props) {
   );
   const paginationOptions = {
     custom: true,
-    totalSize: entitiesMoa.length,
+    totalSize: entities.length,
     sizePerPageList: sizePerPageList,
     limit: UIProps.queryParams.limit,
     page: UIProps.queryParams.page,
@@ -151,19 +151,19 @@ function NoticeMoaTable(props) {
                 bordered={false}
                 remote
                 keyField="id"
-                data={entitiesMoa === null ? [] : entitiesMoa}
+                data={!entities || isLoading ? [] : entities}
                 columns={columns}
                 defaultSorted={defaultSorted}
                 onTableChange={getHandlerTableChange(UIProps.setQueryParams)}
                 selectRow={getSelectRow({
-                  entities: entitiesMoa,
+                  entities: entities,
                   ids: UIProps.ids,
                   setIds: UIProps.setIds,
                 })}
                 {...paginationTableProps}
               >
-                <PleaseWaitMessage entities={entitiesMoa} />
-                <NoRecordsFoundMessage entities={entitiesMoa} />
+                <PleaseWaitMessage entities={entities} />
+                <NoRecordsFoundMessage entities={entities} />
               </BootstrapTable>
             </Pagination>
           );

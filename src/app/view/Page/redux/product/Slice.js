@@ -8,36 +8,65 @@ import {
   setMaxMinProduct,
   updateStockItem,
   getProductCategory,
+  updateMultiStatusPrd,
+  getProductUnregisterList,
+  registerProduct,
+  getProductInventoryList,
+  getProductPriceList,
 } from "./Thunk";
 
 const initialState = {
   isLoading: false,
   error: null,
-  productRegisterList: [],
-  productRegisterTotal: 0
+  editProductId: undefined,
+  productList: [],
+  productTotal: 0,
+  productMinMax: undefined,
+  productStock: undefined
 };
 
 export const productSlice = createSlice({
   name: "product",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    editProduct: (state, action) => {
+      state.editProductId = state.editProductId === action.payload ? null : action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProductRegisterList.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.productRegisterList = action.payload.data.list;
-        state.productRegisterTotal = action.payload.data.total;
-
+        state.productList = action.payload.data.list;
+        state.productTotal = action.payload.data.total;
+        state.productMinMax = action.payload.data.valueMinMax;
+        state.productStock = action.payload.data.valueStock;
+      })
+      .addCase(getProductInventoryList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productList = action.payload.data.list;
+        state.productTotal = action.payload.data.total;
+        state.productStock = action.payload.data.valueStock;
+      })
+      .addCase(getProductPriceList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productList = action.payload.data.list;
+        state.productTotal = action.payload.data.total;
+      })
+      .addCase(getProductUnregisterList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productList = action.payload.data.list;
+        state.productTotal = action.payload.data.total;
       })
       .addCase(updateStockItem.fulfilled, (state, action) => {
         const data = action.payload;
-        state.productRegisterList = state.productRegisterList.map((en) =>
+        state.productList = state.productList.map((en) =>
           en.code === data.p_code ? { ...en, min_stock: data.min_stock } : en
         );
       })
       .addCase(setMaxMinProduct.fulfilled, (state, action) => {
         const data = action.payload;
-        state.productRegisterList = state.productRegisterList.map((en) =>
+        state.productList = state.productList.map((en) =>
           en.seq === data.seq
             ? {
                 ...en,
@@ -52,7 +81,7 @@ export const productSlice = createSlice({
 
       .addCase(productStockStatus.fulfilled, (state, action) => {
         const data = action.payload;
-        state.productRegisterList = state.productRegisterList.map((en) =>
+        state.productList = state.productList.map((en) =>
           en.seq === data.prd_seqs?.[0]
             ? { ...en, is_pro_stock: data.prd_stock_status }
             : en
@@ -77,7 +106,12 @@ export const productSlice = createSlice({
           updateStatus.pending,
           setMaxMinProduct.pending,
           updateStockItem.pending,
-          getProductCategory.pending
+          updateMultiStatusPrd.pending,
+          getProductCategory.pending,
+          getProductUnregisterList.pending,
+          registerProduct.pending,
+          getProductInventoryList.pending,
+          getProductPriceList.pending
         ),
         (state, action) => {
           state.isLoading = true;
@@ -92,7 +126,12 @@ export const productSlice = createSlice({
           updateStatus.rejected,
           setMaxMinProduct.rejected,
           updateStockItem.rejected,
-          getProductCategory.rejected
+          getProductCategory.rejected,
+          updateMultiStatusPrd.rejected,
+          getProductUnregisterList.rejected,
+          registerProduct.rejected,
+          getProductInventoryList.rejected,
+          getProductPriceList.rejected
         ),
         (state, action) => {
           state.isLoading = false;
@@ -101,5 +140,6 @@ export const productSlice = createSlice({
       );
   },
 });
+export const {editProduct } = productSlice.actions;
 
 export default productSlice.reducer;

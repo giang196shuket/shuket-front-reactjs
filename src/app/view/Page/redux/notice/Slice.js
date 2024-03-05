@@ -5,8 +5,7 @@ import {  getNoticeAppList, getNoticeMoaList } from "./Thunk";
 const initialState = {
   isLoading: false,
   error: null,
-  entitiesMoa:[],
-  entitiesApp:[]
+  entities:[],
 
 };
 
@@ -20,11 +19,11 @@ export const noticeSlice = createSlice({
     builder
       .addCase(getNoticeMoaList.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.entitiesMoa = action.payload.data.list
+        state.entities = action.payload.data.list
       })
       .addCase(getNoticeAppList.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.entitiesApp = action.payload.data.list
+        state.entities = action.payload.data.list
       })
       .addMatcher(
         isAnyOf(

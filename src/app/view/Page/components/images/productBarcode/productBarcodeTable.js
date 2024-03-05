@@ -21,7 +21,7 @@ import {
   useMemo,
   useSelector,
   SwitchesCustom,
-  editProductBarcodeImage
+  editProductImage
 } from "./index";
 import 'react-tagsinput/react-tagsinput.css'
 import '../../../../../../module/assets/sass/pages/images/productBarcode.scss'
@@ -47,10 +47,10 @@ function ProductBarcodeTable(props) {
   );
 
   const {
-    productBarcodeImage: entities,
-    productBarcodeImageTotal: total,
+    productImage: entities,
+    productImageTotal: total,
     isLoading,
-    productBarcodeImageEdit,
+    productImageEdit,
   } = currentState;
   const dispatch = useDispatch();
   console.log("UIProps.queryParams", UIProps.queryParams);
@@ -170,15 +170,15 @@ function ProductBarcodeTable(props) {
 
   //tắt expanded khi chuyển panigation, limit
   useEffect(() => {
-    dispatch(editProductBarcodeImage(productBarcodeImageEdit));
+    dispatch(editProductImage(productImageEdit));
   }, [UIProps.queryParams]);
 
   //đổi state tags khi expand sản phẩm khác
   useEffect(()=>{
-    if(productBarcodeImageEdit){
-      setTagsEdit(generateTag(entities.find((en)=> en.id === productBarcodeImageEdit)?.tags))
+    if(productImageEdit){
+      setTagsEdit(generateTag(entities.find((en)=> en.id === productImageEdit)?.tags))
     }
-  },[entities, productBarcodeImageEdit])
+  },[entities, productImageEdit])
   
   // html mở rộng
   const expandRow = {
@@ -198,7 +198,7 @@ function ProductBarcodeTable(props) {
             </div>
             <div className="row mt-5">
               <button className="offset-md-1 btn btn-light-primary font-weight-bolder font-size-sm"> SAVE </button>
-              <button className="ml-5 btn btn-danger font-weight-bolder font-size-sm" onClick={()=>dispatch(editProductBarcodeImage(productBarcodeImageEdit))}> Cancle </button>
+              <button className="ml-5 btn btn-danger font-weight-bolder font-size-sm" onClick={()=>dispatch(editProductImage(productImageEdit))}> Cancle </button>
             </div>
           </div>
           <div  className="col-lg-5 offset-md-1">
@@ -207,7 +207,7 @@ function ProductBarcodeTable(props) {
         </div>
       </div>
     ),
-    expanded: [productBarcodeImageEdit], // dựa vào này mở rộng row nào đó
+    expanded: [productImageEdit], // dựa vào này mở rộng row nào đó
     onExpand: (row, isExpand) => {
     },
     onlyOneExpanding: true,
@@ -226,7 +226,7 @@ function ProductBarcodeTable(props) {
                 bordered={false}
                 remote
                 keyField="id"
-                data={entities === null ? [] : entities}
+                data={!entities || isLoading ? [] : entities}
                 columns={columns}
                 expandRow={expandRow}
                 defaultSorted={defaultSorted}

@@ -1,4 +1,4 @@
-import { editProductNoBarcodeImage } from '../../../redux/images/Slice';
+import { editProductImage } from '../../../redux/images/Slice';
 import { injectIntl, useDispatch } from './index'
 
 import ProductNoBarcodeCart from "./productNoBarcodeCart";
@@ -11,7 +11,7 @@ function ProductNoBarcodePage(props) {
       props.history.push("/m-shuket/MOA SERVICE/marts/general-images/list/add");
     },
     openEdit: (id) => {
-      dispatch(editProductNoBarcodeImage(id))
+      dispatch(editProductImage(id))
 
     },
   };

@@ -3,7 +3,7 @@ import { getDetailMart, getListGroupMart, getMoaMartList, updateMart, uploadMart
 
 const initialMartsState = {
   isLoading: false,
-  totalCount: 0,
+  total: 0,
   entities: null,
   martForEdit: undefined,
   martHQList: [],
@@ -34,7 +34,7 @@ export const martSlice = createSlice({
       })
       .addCase(getMoaMartList.fulfilled, (state, action) => {
         state.entities = action.payload.data?.list;
-        state.totalCount = action.payload.data?.total;
+        state.total = action.payload.data?.total;
         state.error = null;
         state.isLoading = false;
       })

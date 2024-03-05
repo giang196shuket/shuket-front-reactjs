@@ -126,13 +126,13 @@ export function ProductRegisterFilter({ isLoading }) {
                 <select
                   className="form-control"
                   placeholder="Filter by category"
-                  name="category_code"
+                  name="categoryCode"
                   onBlur={handleBlur}
                   onChange={(e) => {
-                    setFieldValue("category_code", e.target.value);
+                    setFieldValue("categoryCode", e.target.value);
                     handleFetchSubCategory(e.target.value);
                   }}
-                  value={values.category_code}
+                  value={values.categoryCode}
                 >
                   <option value="">All</option>
                   {categories.map((item) => (
@@ -149,12 +149,12 @@ export function ProductRegisterFilter({ isLoading }) {
                 <select
                   className="form-control"
                   placeholder="Filter by sub category"
-                  name="category_sub_code"
+                  name="categorySubCode"
                   onBlur={handleBlur}
                   onChange={(e) => {
-                    setFieldValue("category_sub_code", e.target.value);
+                    setFieldValue("categorySubCode", e.target.value);
                   }}
-                  value={values.category_sub_code}
+                  value={values.categorySubCode}
                 >
                   <option value="">All</option>
                   {subCategories.map((item) => (
@@ -173,12 +173,12 @@ export function ProductRegisterFilter({ isLoading }) {
                 <select
                   className="form-control"
                   placeholder="Filter by Image"
-                  name="product_no_image"
+                  name="productNoImage"
                   onBlur={handleBlur}
                   onChange={(e) => {
-                    setFieldValue("product_no_image", e.target.value);
+                    setFieldValue("productNoImage", e.target.value);
                   }}
-                  value={values.product_no_image}
+                  value={values.productNoImage}
                 >
                   <option value="">All</option>
                   {statusImageList.map((item) => (
@@ -244,10 +244,10 @@ export function ProductRegisterFilter({ isLoading }) {
                 <div className="col-lg-2 ">
                   <RadioGroup
                     inline
-                    name="option_check_stock"
-                    value={values.option_check_stock}
+                    name="optionCheckStock"
+                    value={values.optionCheckStock}
                     onChange={(newValue, event) => {
-                      setFieldValue("option_check_stock", newValue);
+                      setFieldValue("optionCheckStock", newValue);
                     }}
                   >
                      <Radio value="N">NONE</Radio>
@@ -258,16 +258,16 @@ export function ProductRegisterFilter({ isLoading }) {
                   <b>Filter</b> by stock value
                 </small>
                 </div>
-                {values.option_check_stock !== 'N' &&  <div className="col-lg-2">
+                {values.optionCheckStock !== 'N' &&  <div className="col-lg-2">
                 <input
                   type="text"
                   className="form-control"
-                  name="stock_search_value"
+                  name="stockSearchValue"
                   placeholder="Search"
                   onBlur={handleBlur}
-                  value={values.stock_search_value}
+                  value={values.stockSearchValue}
                   onChange={(e) => {
-                    setFieldValue("stock_search_value", e.target.value);
+                    setFieldValue("stockSearchValue", e.target.value);
                   }}
                 />
                 <small className="form-text text-muted">
@@ -278,12 +278,12 @@ export function ProductRegisterFilter({ isLoading }) {
                 <select
                   className="form-control"
                   placeholder="Filter by Image"
-                  name="sort_prd_stock"
+                  name="sortPrdStock"
                   onBlur={handleBlur}
                   onChange={(e) => {
-                    setFieldValue("sort_prd_stock", e.target.value);
+                    setFieldValue("sortPrdStock", e.target.value);
                   }}
-                  value={values.sort_prd_stock}
+                  value={values.sortPrdStock}
                 >
                   <option value="">All</option>
                   {statusStockList.map((item) => (
@@ -329,11 +329,11 @@ export function ProductRegisterFilter({ isLoading }) {
               <FormCheck
                 size="large"
                 type="checkbox"
-                id={values.product_only_brgn}
+                id={values.productOnlyBrgn}
                 label={"Only product BRGN"}
-                checked={values.product_only_brgn === "Y" ? true : false}
+                checked={values.productOnlyBrgn === "Y" ? true : false}
                 onChange={(e) => {
-                  setFieldValue("product_only_brgn", e.target.checked ? 'Y' : 'N');
+                  setFieldValue("productOnlyBrgn", e.target.checked ? 'Y' : 'N');
                 }}
               />
             </div>

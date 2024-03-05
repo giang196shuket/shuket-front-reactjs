@@ -22,3 +22,9 @@ export function findMaxId(objectsArray, filed) {
   }
   return maxId;
 }
+// ngủ
+export function sleep(callback) {
+  setTimeout(function() {
+     callback();
+  }, 5000); // 1000 milliseconds = 1 giây
+}

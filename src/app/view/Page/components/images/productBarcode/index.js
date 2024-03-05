@@ -45,11 +45,11 @@ import {
 } from "../../../redux/images/Thunk";
 import SwitchesCustom from "../common/Switches"
 import { format } from "date-fns";
-import { editProductBarcodeImage } from "../../../redux/images/Slice";
+import { editProductImage } from "../../../redux/images/Slice";
 
 export {
   orderList,
-  editProductBarcodeImage,
+  editProductImage,
   format,
   DatePicker,
   SwitchesCustom,

@@ -42,7 +42,7 @@ export function MartsTable({isLoading}) {
     (state) => ({ currentState: state.marts }),
     shallowEqual
   );
-  const { totalCount, entities } = currentState;
+  const { total, entities } = currentState;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -147,7 +147,7 @@ export function MartsTable({isLoading}) {
   );
   const paginationOptions = {
     custom: true,
-    totalSize: totalCount,
+    totalSize: total,
     sizePerPageList: sizePerPageList,
     limit: martsUIProps.queryParams.limit,
     page: martsUIProps.queryParams.page,

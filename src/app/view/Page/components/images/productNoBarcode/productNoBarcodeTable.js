@@ -21,7 +21,7 @@ import {
   useMemo,
   useSelector,
   SwitchesCustom,
-  editProductNoBarcodeImage
+  editProductImage
 } from "./index";
 import 'react-tagsinput/react-tagsinput.css'
 import '../../../../../../module/assets/sass/pages/images/productBarcode.scss'
@@ -47,10 +47,10 @@ function ProductNoBarcodeTable(props) {
   );
 
   const {
-    productNoBarcodeImage: entities,
-    productNoBarcodeImageTotal: total,
+    productImage: entities,
+    productImageTotal: total,
     isLoading,
-    productNoBarcodeImageEdit,
+    productImageEdit,
   } = currentState;
   const dispatch = useDispatch();
   console.log("UIProps.queryParams", UIProps.queryParams);
@@ -155,7 +155,7 @@ function ProductNoBarcodeTable(props) {
     paginationTotalRenderer: customTotal,
   };
 
-  console.log("productNoBarcodeImageEdit", productNoBarcodeImageEdit);
+  console.log("productImageEdit", productImageEdit);
 
   const [tagsEdit, setTagsEdit] = useState([])
 
@@ -173,15 +173,15 @@ function ProductNoBarcodeTable(props) {
 
   //tắt expanded khi chuyển panigation, limit
   useEffect(() => {
-    dispatch(editProductNoBarcodeImage(productNoBarcodeImageEdit));
+    dispatch(editProductImage(productImageEdit));
   }, [UIProps.queryParams]);
 
   //đổi state tags khi expand sản phẩm khác
   useEffect(()=>{
-    if(productNoBarcodeImageEdit){
-      setTagsEdit(generateTag(entities.find((en)=> en.id === productNoBarcodeImageEdit)?.tags))
+    if(productImageEdit){
+      setTagsEdit(generateTag(entities.find((en)=> en.id === productImageEdit)?.tags))
     }
-  },[entities, productNoBarcodeImageEdit])
+  },[entities, productImageEdit])
   
   // html mở rộng
   const expandRow = {
@@ -201,7 +201,7 @@ function ProductNoBarcodeTable(props) {
             </div>
             <div className="row mt-5">
               <button className="offset-md-1 btn btn-light-primary font-weight-bolder font-size-sm"> SAVE </button>
-              <button className="ml-5 btn btn-danger font-weight-bolder font-size-sm" onClick={()=>dispatch(editProductNoBarcodeImage(productNoBarcodeImageEdit))}> Cancle </button>
+              <button className="ml-5 btn btn-danger font-weight-bolder font-size-sm" onClick={()=>dispatch(editProductImage(productImageEdit))}> Cancle </button>
             </div>
           </div>
           <div  className="col-lg-5 offset-md-1">
@@ -210,7 +210,7 @@ function ProductNoBarcodeTable(props) {
         </div>
       </div>
     ),
-    expanded: [productNoBarcodeImageEdit], // dựa vào này mở rộng row nào đó
+    expanded: [productImageEdit], // dựa vào này mở rộng row nào đó
     onExpand: (row, isExpand) => {
       console.log('rowrowrow')
     },
@@ -230,7 +230,7 @@ function ProductNoBarcodeTable(props) {
                 bordered={false}
                 remote
                 keyField="id"
-                data={entities === null ? [] : entities}
+                data={!entities || isLoading ? [] : entities}
                 columns={columns}
                 expandRow={expandRow}
                 defaultSorted={defaultSorted}

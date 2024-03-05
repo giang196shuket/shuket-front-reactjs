@@ -16,15 +16,15 @@ import {
   initailFilterImgProduct,
   keyTypeImage,
   FormCheck,
-} from "../index";
-import "../../../../../../../module/assets/sass/pages/product/productRegister.scss";
-import { findMaxId } from "../../../../common/funtion";
+  findMaxId,
+  updateProduct,toast
+} from "../registed/index";
+import "../../../../../../module/assets/sass/pages/product/productRegister.scss"
 
-export const ProductDetailUpdate = ({ row }) => {
-  const [images, setImages] = useState(null);
+export const ProductDetail = ({ row }) => {
+  const [images, setImages] = useState([]);
   const [loadingImage, setLoadingImage] = useState(false);
 
-  // const [keyword, setKeyword] = useState("");
   const [dataFind, setDataFind] = useState(initailFilterImgProduct);
   const dispatch = useDispatch();
   const [detail, setDetail] = useState(null);
@@ -54,25 +54,12 @@ export const ProductDetailUpdate = ({ row }) => {
         setLoadingImage(false);
       });
   };
-
-  const [tagsEdit, setTagsEdit] = useState([]);
-
-  //convert tag string => array
-  function generateTag(tages) {
-    return tages.split("#").filter(Boolean);
-  }
-
+ 
   // thêm xóa tag
   const handleChangeTag = (tages) => {
-    setTagsEdit(tages);
-  };
+    setDetail({ ...detail, tags: tages });
 
-  //đổi state tags khi expand sản phẩm khác
-  useEffect(() => {
-    if (detail) {
-      setTagsEdit(generateTag(detail.tags));
-    }
-  }, [detail]);
+  };
 
   // thêm ảnh vào detail
   const handleAddImg = (img) => {
@@ -136,14 +123,25 @@ export const ProductDetailUpdate = ({ row }) => {
 
     setDetail({ ...detail, images: newImgList });
   };
-  console.log(detail?.images);
+
+  //update tag and img 
+  const handleUpdate = () =>{
+
+    dispatch(updateProduct({prd_seq : detail.seq, prd_tags: detail.tags, prd_images: detail.images}))
+    .then((res)=>{
+      toast.success(res.payload.message)
+    })
+    .catch((err) => {
+      toast.error(err)
+    })
+  }
   return (
     <>
       <Modal
         show={detail}
         onHide={() => {
           setDetail(null);
-          setImages(null);
+          setImages([]);
         }}
         size="xl"
         fullscreen={true}
@@ -176,7 +174,7 @@ export const ProductDetailUpdate = ({ row }) => {
           <div style={{ display: "flex", gap: 50 }}>
             <div style={{ width: "50%" }}>
               <div className="mt-3">
-                <TagsInput value={tagsEdit} onChange={handleChangeTag} />
+                <TagsInput value={detail ? detail?.tags : []} onChange={handleChangeTag} />
               </div>
               <label className="mt-3">Product detail image list:</label>
 
@@ -190,7 +188,7 @@ export const ProductDetailUpdate = ({ row }) => {
                   marginTop: 5,
                 }}
               >
-                {detail?.images.map((img, index) => {
+                {detail && detail?.images.map((img, index) => {
                   return (
                     <div key={img.id}>
                       <div className="form-group row">
@@ -331,7 +329,7 @@ export const ProductDetailUpdate = ({ row }) => {
                     flexWrap: "wrap",
                   }}
                 >
-                  {images?.map((img) => {
+                  {detail && images?.map((img) => {
                     return (
                       <div className="container-product">
                         <img
@@ -355,7 +353,7 @@ export const ProductDetailUpdate = ({ row }) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{ display: "block", margin: "auto" }}>UPDATE</Button>
+          <Button style={{ display: "block", margin: "auto" }} onClick={handleUpdate}>UPDATE</Button>
         </Modal.Footer>
       </Modal>
       <a

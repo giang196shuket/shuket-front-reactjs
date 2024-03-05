@@ -1,4 +1,4 @@
-import { editProductBarcodeImage } from '../../../redux/images/Slice';
+import { editProductImage } from '../../../redux/images/Slice';
 import { injectIntl, useDispatch } from './index'
 
 
@@ -12,7 +12,7 @@ function ProductBarcodePage(props) {
       props.history.push("/m-shuket/MOA SERVICE/marts/general-images/list/add");
     },
     openEdit: (id) => {
-     dispatch(editProductBarcodeImage(id))
+     dispatch(editProductImage(id))
       
     },
   };

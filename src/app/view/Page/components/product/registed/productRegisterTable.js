@@ -1,4 +1,5 @@
-import { ProductDetailUpdate } from "./helper/productDetailUpdate";
+import { getProductInventoryList } from "../../../redux/product/Thunk";
+import { ProductDetail } from "../common/productDetail";
 import { ProductInfo } from "./helper/productInfo";
 import { ProductMinMax } from "./helper/productMinMax";
 import { ProductPrice } from "./helper/productPrice";
@@ -45,8 +46,9 @@ function ProductRegisterTable(props) {
       setIds: UIContext.setIds,
       queryParams: UIContext.queryParams,
       setQueryParams: UIContext.setQueryParams,
-      openEdit: UIContext.openEdit,
-      openDelete: UIContext.openDelete,
+      openEditMaxMin: UIContext.openEditMaxMin,
+      openEditStock: UIContext.openEditStock,
+      openEditCate: UIContext.openEditCate,
     };
   }, [UIContext]);
 
@@ -57,12 +59,12 @@ function ProductRegisterTable(props) {
 
 
 
-  const { productRegisterList: entities, isLoading, productRegisterTotal: total } = currentState;
+  const { productList: entities, isLoading, productTotal: total } = currentState;
   const dispatch = useDispatch();
 
   useEffect(() => {
     UIProps.setIds([]);
-    dispatch(getProductRegisterList(UIProps.queryParams));
+    dispatch(getProductInventoryList(UIProps.queryParams));
   }, [dispatch, UIProps.queryParams]);
 
   const columns = [
@@ -84,7 +86,7 @@ function ProductRegisterTable(props) {
         width: "200px",
       },
       formatter: (cell, row, rowIndex, extraData) => (
-        <img style={{ width: "100%" }} src={row.images[0].thumb} alt="" />
+        <img style={{ width: "100%" }} src={row?.images[0]?.thumb} alt="" />
       ),
     },
     {
@@ -202,7 +204,7 @@ function ProductRegisterTable(props) {
       },
       formatter: (cell, row, rowIndex, extraData) => (
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
-       <ProductDetailUpdate row={row}/>
+       <ProductDetail row={row}/>
       ),
     },
   ];
@@ -215,8 +217,8 @@ function ProductRegisterTable(props) {
     custom: true,
     totalSize: total,
     sizePerPageList: sizePerPageList,
-    limit: UIProps.queryParams.pageSize,
-    page: UIProps.queryParams.pageNumber,
+    limit: UIProps.queryParams.limit,
+    page: UIProps.queryParams.page,
     paginationTotalRenderer: customTotal,
   };
 
@@ -234,7 +236,7 @@ function ProductRegisterTable(props) {
                 bordered={false}
                 remote
                 keyField="code"
-                data={entities === null ? [] : entities}
+                data={!entities || isLoading ? [] : entities}
                 columns={columns}
                 defaultSorted={defaultSorted}
                 onTableChange={getHandlerTableChange(UIProps.setQueryParams)}

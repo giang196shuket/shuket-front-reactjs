@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useProductRegisterUIContext, useMemo, statusList, useDispatch } from "./index";
-import { updateMultiStatusImgs } from "../../../redux/images/Thunk";
 import { useHistory  } from "react-router-dom";
+import { updateMultiStatusPrd } from "../../../redux/product/Thunk";
 
 export function ProductRegisterGrouping() {
   // Products UI Context
@@ -18,11 +18,10 @@ export function ProductRegisterGrouping() {
   const history = useHistory ();
 
   const handleUpdate = () =>{
-    console.log('UIContext.ids', UIContext.ids)
-    // dispatch(updateMultiStatusImgs({code :UIContext.ids, status: status === 'used' ? 'A' : 'C'}))
-    // .then((res)=>{
-    //   history.go(0);
-    // })
+    dispatch(updateMultiStatusPrd({code :UIContext.ids, status: status}))
+    .then((res)=>{
+      history.go(0);
+    })
   }
   return (
     <div className="form">

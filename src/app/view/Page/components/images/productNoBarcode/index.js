@@ -39,7 +39,7 @@ import {
 import ProductNoBarcodeTable from "./productNoBarcodeTable";
 import { ProductNoBarcodeGrouping } from "./productNoBarcodeGrouping";
 import { ProductNoBarcodeFilter } from "./productNoBarcodeFilter";
-import { editProductNoBarcodeImage } from "../../../redux/images/Slice";
+import { editProductImage } from "../../../redux/images/Slice";
 
 import {
   addImagesCouponBanner,
@@ -53,7 +53,7 @@ export {
   DatePicker,
   format,
   orderList,
-  editProductNoBarcodeImage,
+  editProductImage,
   Formik,
   ImageCategories,
   ImageType,
