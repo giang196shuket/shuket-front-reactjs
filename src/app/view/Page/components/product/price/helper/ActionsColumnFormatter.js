@@ -19,7 +19,7 @@ export const ActionsColumnFormatter = (
    className="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
    onClick={() => openEdit(row[columnName])}
  >
-   <span className="svg-icon svg-icon-md svg-icon-primary">
+   <span className={`svg-icon svg-icon-md ${row.is_show_price === 'A' ? 'svg-icon-primary' : 'svg-icon-success'}`}>
      <SVG
        src={toAbsoluteUrl("/images/svg/icons/Communication/Write.svg")}
      />
@@ -30,13 +30,13 @@ export const ActionsColumnFormatter = (
    
 
     <> </>
-    {openDelete &&  (
+    {(openDelete && row.is_show_price === 'A')  &&(
         <OverlayTrigger
         overlay={<Tooltip id="products-delete-tooltip">Delete price of product</Tooltip>}
       >
         <a
           className="btn btn-icon btn-light btn-hover-danger btn-sm"
-          onClick={() => openDelete(row[columnName])}
+          onClick={() => openDelete(row[columnName], row.barcode)}
         >
           <span className="svg-icon svg-icon-md svg-icon-danger">
             <SVG src={toAbsoluteUrl("/images/svg/icons/General/Trash.svg")} />

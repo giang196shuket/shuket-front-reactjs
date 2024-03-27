@@ -17,7 +17,9 @@ function ProductPriceCard(props, history) {
       ids: UIContext.ids,
       queryParams: UIContext.queryParams,
       setQueryParams: UIContext.setQueryParams,
-      openEditPrice: UIContext.openEditPrice,
+      openEdit: UIContext.openEdit,
+      openDelete: UIContext.openDelete,
+
     };
   }, [UIContext]);
 

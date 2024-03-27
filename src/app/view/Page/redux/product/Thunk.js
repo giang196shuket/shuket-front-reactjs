@@ -32,6 +32,21 @@ export const setPriceForProduct = createAsyncThunk(
     }
   }
 );
+
+export const deletePriceProduct = createAsyncThunk(
+  "deletePriceProduct",
+  async (data, { rejectWithValue }) => {
+    try {
+
+      const response = await axios.post(
+        `${MAIN_URL}/delete_price_product`,data       
+      );
+      return response.data;
+    } catch (err) {
+      return rejectWithValue(err.message);
+    }
+  }
+);
 //inventory
 export const getProductInventoryList = createAsyncThunk(
   "getProductInventoryList",

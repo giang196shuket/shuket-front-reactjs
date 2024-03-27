@@ -11,7 +11,7 @@ function ProductPricePage(props) {
       setEditPrice(id)
     },
     openDelete: (id) => {
-     
+     console.log(id)
     },
 
   };
