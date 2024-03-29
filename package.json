@@ -29,7 +29,7 @@
     "fg-loadcss": "^3.1.0",
     "file-saver": "^2.0.5",
     "firebase": "^10.7.1",
-    "formik": "2.1.4",
+    "formik": "^2.4.5",
     "json2mq": "0.2.0",
     "jwt-decode": "^4.0.0",
     "lodash": "4.17.15",
